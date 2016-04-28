@@ -1,0 +1,3 @@
+[submodule "dragon/thirdParty/Math/glm"]
+	path = dragon/thirdParty/Math/glm
+	url = git@github.com:g-truc/glm.git
