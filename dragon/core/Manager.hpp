@@ -14,6 +14,7 @@
 #include "Message.hpp"
 
 namespace dragon {
+    class EventComponent;
     class Manager : public Module {
     public:
         static Manager* getInstance();
@@ -28,6 +29,7 @@ namespace dragon {
         
     protected:
         void loadDefaultModule();
+        void loadDefaultComponent();
         void dispatchMsg();
         
     protected:
@@ -35,6 +37,7 @@ namespace dragon {
         bool running;
         int fps;
         Module* uiModule;
+        EventComponent* eventComponent;
 
     private:
         static Manager* instance;

@@ -31,7 +31,8 @@ namespace dragon {
         void addComponent(const std::string& name, Component* comp);
         void removeComponent(const std::string& name);
         void removeAllComponent();
-        Component* getComponent(const std::string& name);
+        template <typename T>
+        T* getComponent(const std::string& name);
 
     protected:
         std::map<std::string, Component*> components;

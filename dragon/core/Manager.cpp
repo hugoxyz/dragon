@@ -12,10 +12,12 @@
 #include "Manager.hpp"
 #include "Logger.hpp"
 #include "AutoReleasePoolMgr.hpp"
+#include "EventComponent.hpp"
 
 #include "../uiModule/UIModule.hpp"
 #include "../fbxModule/FBXModule.hpp"
 #include "../rendererModule/RendererModule.hpp"
+
 
 namespace dragon {
     Manager* Manager::instance = nullptr;
@@ -30,9 +32,11 @@ namespace dragon {
     
     Manager::Manager()
     : running(false)
+    , eventComponent(nullptr)
     , fps(60) {
         msgs.clear();
         
+        loadDefaultComponent();
         loadDefaultModule();
     }
     
@@ -68,6 +72,12 @@ namespace dragon {
             m = nullptr;
         }
     }
+    
+    void Manager::loadDefaultComponent() {
+        auto* comp = new EventComponent();
+        addComponent("__event_component", comp);
+        eventComponent = comp;
+    }
 
     void Manager::run() {
         time_t startTime, endTime;
@@ -93,7 +103,7 @@ namespace dragon {
             }
         }
     }
-    
+
     void Manager::exit() {
         running = false;
     }
@@ -104,29 +114,20 @@ namespace dragon {
     }
 
     void Manager::sendMsg(const std::string& modName, Message* msg) {
-        Node* child = getChild(modName);
-        if (nullptr == child) {
-            LOGE("Manager", "sendMsg can't find mod %s", modName.c_str());
-            return;
-        }
-        msg->receiver = child->getId();
-        sendMsg(msg);
+        LOGE("Manager", "sendMsg is not support");
+//        Node* child = getChild(modName);
+//        if (nullptr == child) {
+//            LOGE("Manager", "sendMsg can't find mod %s", modName.c_str());
+//            return;
+//        }
+//        msg->receiver = child->getId();
+//        sendMsg(msg);
     }
     
     void Manager::dispatchMsg() {
-        for (const auto& msg : msgs) {
-            if (0 == msg->receiver) {
-                LOGD("Manager", "receiver is 0");
-                continue;
-            }
-            Module* m = dynamic_cast<Module*>(getChild(msg->receiver));
-            if (nullptr == m) {
-                LOGD("Manager", "cast node to module fail");
-                continue;
-            }
-            m->onMessage(msg);
-            msg->release();
+        if (nullptr == eventComponent) {
+            return;
         }
-        msgs.clear();
+        eventComponent->dispatch();
     }
 }

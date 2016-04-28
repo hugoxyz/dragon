@@ -49,8 +49,9 @@ namespace dragon {
         components.clear();
     }
     
-    Component* Component::getComponent(const std::string& name) {
+    template <typename T>
+    T* Component::getComponent(const std::string& name) {
         auto iter = components.find(name);
-        return iter->second;
+        return dynamic_cast<T>(iter->second);
     }
 }
