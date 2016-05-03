@@ -31,11 +31,13 @@ namespace dragon {
         std::string getWaitingPath();
         bool parserFBX(const std::string& file);
         
-        bool initFBX();
+        bool createFBX();
         bool importFBX(const std::string& file);
         void processFBXNode(FbxNode* node);
         void processMesh(FbxNode* node);
         void processMaterial(FbxMesh* node, int triangleCount);
+        
+        void onInputEvent(int event, Object* data, Object* userData);
 
     protected:
         std::vector<std::string> waitingPaths;

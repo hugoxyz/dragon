@@ -154,8 +154,8 @@
 		499F2BB41CCCA91400827D40 /* vector_relational.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F2A761CCCA91400827D40 /* vector_relational.hpp */; };
 		9A3362791CC3D2CF00C8C7C0 /* RendererModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3362771CC3D2CF00C8C7C0 /* RendererModule.cpp */; };
 		9A33627A1CC3D2CF00C8C7C0 /* RendererModule.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A3362781CC3D2CF00C8C7C0 /* RendererModule.hpp */; };
-		9A33627D1CC3D3EE00C8C7C0 /* RendererMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A33627B1CC3D3EE00C8C7C0 /* RendererMessage.cpp */; };
-		9A33627E1CC3D3EE00C8C7C0 /* RendererMessage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A33627C1CC3D3EE00C8C7C0 /* RendererMessage.hpp */; };
+		9A33627D1CC3D3EE00C8C7C0 /* EventRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A33627B1CC3D3EE00C8C7C0 /* EventRenderer.cpp */; };
+		9A33627E1CC3D3EE00C8C7C0 /* EventRenderer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A33627C1CC3D3EE00C8C7C0 /* EventRenderer.hpp */; };
 		9A33628E1CC6675B00C8C7C0 /* FBXMessage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A33628C1CC6675B00C8C7C0 /* FBXMessage.cpp */; };
 		9A33628F1CC6675B00C8C7C0 /* FBXMessage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A33628D1CC6675B00C8C7C0 /* FBXMessage.hpp */; };
 		9A3362911CC66AC800C8C7C0 /* libglfw3.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A3362901CC66AC800C8C7C0 /* libglfw3.a */; };
@@ -194,6 +194,8 @@
 		9AE585691CD251970050BA74 /* EventComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE585671CD251970050BA74 /* EventComponent.cpp */; };
 		9AE5856A1CD251970050BA74 /* EventComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9AE585681CD251970050BA74 /* EventComponent.hpp */; };
 		9AE5856F1CD25B500050BA74 /* libfbxsdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE5856E1CD25B500050BA74 /* libfbxsdk.a */; };
+		9AE585731CD2EF580050BA74 /* EventInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE585711CD2EF580050BA74 /* EventInput.cpp */; };
+		9AE585741CD2EF580050BA74 /* EventInput.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9AE585721CD2EF580050BA74 /* EventInput.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -455,8 +457,8 @@
 		499F2A761CCCA91400827D40 /* vector_relational.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_relational.hpp; sourceTree = "<group>"; };
 		9A3362771CC3D2CF00C8C7C0 /* RendererModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererModule.cpp; sourceTree = "<group>"; };
 		9A3362781CC3D2CF00C8C7C0 /* RendererModule.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RendererModule.hpp; sourceTree = "<group>"; };
-		9A33627B1CC3D3EE00C8C7C0 /* RendererMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererMessage.cpp; sourceTree = "<group>"; };
-		9A33627C1CC3D3EE00C8C7C0 /* RendererMessage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RendererMessage.hpp; sourceTree = "<group>"; };
+		9A33627B1CC3D3EE00C8C7C0 /* EventRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventRenderer.cpp; sourceTree = "<group>"; };
+		9A33627C1CC3D3EE00C8C7C0 /* EventRenderer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EventRenderer.hpp; sourceTree = "<group>"; };
 		9A33628C1CC6675B00C8C7C0 /* FBXMessage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FBXMessage.cpp; sourceTree = "<group>"; };
 		9A33628D1CC6675B00C8C7C0 /* FBXMessage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FBXMessage.hpp; sourceTree = "<group>"; };
 		9A3362901CC66AC800C8C7C0 /* libglfw3.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libglfw3.a; path = glfw/osx/libglfw3.a; sourceTree = "<group>"; };
@@ -497,6 +499,8 @@
 		9AE585671CD251970050BA74 /* EventComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventComponent.cpp; sourceTree = "<group>"; };
 		9AE585681CD251970050BA74 /* EventComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EventComponent.hpp; sourceTree = "<group>"; };
 		9AE5856E1CD25B500050BA74 /* libfbxsdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfbxsdk.a; path = ../thirdParty/fbx/lib/clang/debug/libfbxsdk.a; sourceTree = "<group>"; };
+		9AE585711CD2EF580050BA74 /* EventInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventInput.cpp; sourceTree = "<group>"; };
+		9AE585721CD2EF580050BA74 /* EventInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EventInput.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -831,8 +835,8 @@
 				9A3362901CC66AC800C8C7C0 /* libglfw3.a */,
 				9A3362771CC3D2CF00C8C7C0 /* RendererModule.cpp */,
 				9A3362781CC3D2CF00C8C7C0 /* RendererModule.hpp */,
-				9A33627B1CC3D3EE00C8C7C0 /* RendererMessage.cpp */,
-				9A33627C1CC3D3EE00C8C7C0 /* RendererMessage.hpp */,
+				9A33627B1CC3D3EE00C8C7C0 /* EventRenderer.cpp */,
+				9A33627C1CC3D3EE00C8C7C0 /* EventRenderer.hpp */,
 				9A3362BD1CC9B9F700C8C7C0 /* GLProgram.cpp */,
 				9A3362BE1CC9B9F700C8C7C0 /* GLProgram.hpp */,
 			);
@@ -899,6 +903,8 @@
 				9A71D73D1CBFF70500564A1B /* UUID.hpp */,
 				9AE585671CD251970050BA74 /* EventComponent.cpp */,
 				9AE585681CD251970050BA74 /* EventComponent.hpp */,
+				9AE585711CD2EF580050BA74 /* EventInput.cpp */,
+				9AE585721CD2EF580050BA74 /* EventInput.hpp */,
 			);
 			name = core;
 			path = ../core;
@@ -989,7 +995,7 @@
 				499F2B451CCCA91400827D40 /* type_mat2x4.hpp in Headers */,
 				499F2B581CCCA91400827D40 /* constants.hpp in Headers */,
 				9A71D6D51CBE44D300564A1B /* Message.hpp in Headers */,
-				9A33627E1CC3D3EE00C8C7C0 /* RendererMessage.hpp in Headers */,
+				9A33627E1CC3D3EE00C8C7C0 /* EventRenderer.hpp in Headers */,
 				499F2B811CCCA91400827D40 /* matrix_interpolation.hpp in Headers */,
 				499F2B461CCCA91400827D40 /* type_mat3x2.hpp in Headers */,
 				499F2B291CCCA91400827D40 /* _swizzle_func.hpp in Headers */,
@@ -1021,6 +1027,7 @@
 				499F2B411CCCA91400827D40 /* type_int.hpp in Headers */,
 				499F2B541CCCA91400827D40 /* geometric.hpp in Headers */,
 				499F2B6C1CCCA91400827D40 /* color_space.hpp in Headers */,
+				9AE585741CD2EF580050BA74 /* EventInput.hpp in Headers */,
 				499F2BA31CCCA91400827D40 /* wrap.hpp in Headers */,
 				499F2B2A1CCCA91400827D40 /* _vectorize.hpp in Headers */,
 				499F2B6F1CCCA91400827D40 /* compatibility.hpp in Headers */,
@@ -1173,8 +1180,9 @@
 				9A71D6D21CBE44D300564A1B /* Manager.cpp in Sources */,
 				9A3362BF1CC9B9F700C8C7C0 /* GLProgram.cpp in Sources */,
 				9A33628E1CC6675B00C8C7C0 /* FBXMessage.cpp in Sources */,
+				9AE585731CD2EF580050BA74 /* EventInput.cpp in Sources */,
 				9A71D6E11CBE45CF00564A1B /* UIModule.cpp in Sources */,
-				9A33627D1CC3D3EE00C8C7C0 /* RendererMessage.cpp in Sources */,
+				9A33627D1CC3D3EE00C8C7C0 /* EventRenderer.cpp in Sources */,
 				9A71D6DC1CBE44D300564A1B /* Reference.cpp in Sources */,
 				9A3362791CC3D2CF00C8C7C0 /* RendererModule.cpp in Sources */,
 				9A3362BA1CC9B80400C8C7C0 /* FileUtils.cpp in Sources */,

@@ -18,19 +18,20 @@ namespace dragon {
     class EventComponent : public Component {
     public:
         enum class Event {
-            EVENT_NONE,
+            EVENT_NONE = 0,
             EVENT_ALL,
             EVENT_INPUT,
+            EVENT_RENDERER,
             
             EVENT_USER = 1000,
         };
-
-        typedef void (*EventComponentCallBack)(int event, Object* params, Object* userData);
+        
+        typedef std::function<void(int, Object*, Object*)> EventObserverFun;
 
         EventComponent();
         ~EventComponent();
         
-        int addObserver(int event, EventComponentCallBack cb, Object* userData = nullptr);
+        int addObserver(int event, EventObserverFun cb, Object* userData = nullptr);
         void removeObserver(int event, int tag);
 
         void postEvent(int event, Object* params = nullptr);
@@ -40,7 +41,7 @@ namespace dragon {
         void clear();
     protected:
         struct EventData {
-            EventComponentCallBack cb;
+            EventObserverFun cb;
             Object* userData;
             int tag;
         };

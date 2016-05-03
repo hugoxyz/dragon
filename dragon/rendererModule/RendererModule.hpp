@@ -16,8 +16,10 @@
 #include "glfw/glfw3.h"
 
 namespace dragon {
+
     class RendererModule : public Module {
     public:
+
         RendererModule();
         ~RendererModule();
         
@@ -32,6 +34,8 @@ namespace dragon {
     protected:
         void createGLProgram();
         void setBufferData(GLuint buffer, void* data, int size);
+        
+        void onRendererEvent(int event, Object* data, Object* userData);
 
     protected:
         int width;

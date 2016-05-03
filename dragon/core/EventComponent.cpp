@@ -19,13 +19,15 @@ namespace dragon {
         clear();
     }
 
-    int EventComponent::addObserver(int event, EventComponentCallBack cb, Object* userData) {
+    int EventComponent::addObserver(int event, EventObserverFun cb, Object* userData) {
         auto vec = getEventData(event);
         EventData cbs;
         cbs.cb = cb;
         cbs.userData = userData;
         cbs.tag = increaseIndex();
-        cbs.userData->retain();
+        if (nullptr != cbs.userData) {
+            cbs.userData->retain();
+        }
         vec->push_back(cbs);
 
         return cbs.tag;
@@ -48,6 +50,9 @@ namespace dragon {
         EventInfo info;
         info.event = event;
         info.params = params;
+        if (nullptr != params) {
+            params->retain();
+        }
         events.push_back(info);
     }
     
@@ -64,7 +69,9 @@ namespace dragon {
         }
         for (auto event : events) {
             sendEvent(event.event, event.params);
-            event.params->release();
+            if (nullptr != event.params) {
+                event.params->release();
+            }
         }
         events.clear();
     }

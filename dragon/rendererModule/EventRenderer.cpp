@@ -8,11 +8,11 @@
 
 #include <stdlib.h>
 
-#include "RendererMessage.hpp"
+#include "EventRenderer.hpp"
 
 
 namespace dragon {
-    RendererMessage::RendererMessage()
+    EventRenderer::EventRenderer()
     : vertexes(nullptr)
     , vertexCapacity(0)
     , vertexLength(0)
@@ -30,7 +30,7 @@ namespace dragon {
         stepLength = 6;
     }
     
-    RendererMessage::~RendererMessage() {
+    EventRenderer::~EventRenderer() {
         if (nullptr != vertexes) {
             free(vertexes);
             vertexes = nullptr;
@@ -58,7 +58,7 @@ namespace dragon {
         }
     }
     
-    void RendererMessage::reallocVertex() {
+    void EventRenderer::reallocVertex() {
         int capacity = 0;
         if (0 == vertexCapacity) {
             capacity = stepLength;
@@ -73,7 +73,7 @@ namespace dragon {
         vertexCapacity = capacity;
     }
     
-    void RendererMessage::reallocColor() {
+    void EventRenderer::reallocColor() {
         int capacity = 0;
         if (0 == colorsCapacity) {
             capacity = stepLength;
@@ -88,7 +88,7 @@ namespace dragon {
         colorsCapacity = capacity;
     }
     
-    void RendererMessage::reallocNormal() {
+    void EventRenderer::reallocNormal() {
         int capacity = 0;
         if (0 == normalCapacity) {
             capacity = stepLength;
@@ -103,7 +103,7 @@ namespace dragon {
         normalCapacity = capacity;
     }
     
-    void RendererMessage::reallocUV() {
+    void EventRenderer::reallocUV() {
         int capacity = 0;
         if (0 == uvCapacity) {
             capacity = stepLength;
@@ -118,7 +118,7 @@ namespace dragon {
         uvCapacity = capacity;
     }
     
-    void RendererMessage::appendVertex(const Vertex &v) {
+    void EventRenderer::appendVertex(const Vertex &v) {
         if (vertexLength == vertexCapacity) {
             reallocVertex();
         }
@@ -128,7 +128,7 @@ namespace dragon {
         }
     }
     
-    void RendererMessage::appendColor(const Color &c) {
+    void EventRenderer::appendColor(const Color &c) {
         if (colorsLength == colorsCapacity) {
             reallocColor();
         }
@@ -138,7 +138,7 @@ namespace dragon {
         }
     }
     
-    void RendererMessage::appendNormal(const Normal &n) {
+    void EventRenderer::appendNormal(const Normal &n) {
         if (normalLength == normalCapacity) {
             reallocNormal();
         }
@@ -148,7 +148,7 @@ namespace dragon {
         }
     }
     
-    void RendererMessage::appendUV(const UV &uv) {
+    void EventRenderer::appendUV(const UV &uv) {
         if (uvLength == uvCapacity) {
             reallocUV();
         }
@@ -158,7 +158,7 @@ namespace dragon {
         }
     }
 
-    int* RendererMessage::createMaterialMeshAssociate(int n) {
+    int* EventRenderer::createMaterialMeshAssociate(int n) {
         if (materialAssociate) {
             free(materialAssociate);
             materialAssociate = nullptr;
@@ -170,5 +170,12 @@ namespace dragon {
         }
         materialLength = n;
         return materialAssociate;
+    }
+    
+    bool EventRenderer::getVertex(Vertex** ppVertex, int *pSize) {
+        *ppVertex = vertexes;
+        *pSize = vertexLength;
+        
+        return true;
     }
 }

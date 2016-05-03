@@ -26,6 +26,7 @@ namespace dragon {
         if (nullptr == instance) {
             instance = new Manager();
             instance->retain();
+            instance->init();
         }
         return instance;
     }
@@ -34,15 +35,20 @@ namespace dragon {
     : running(false)
     , eventComponent(nullptr)
     , fps(60) {
-        msgs.clear();
-        
-        loadDefaultComponent();
-        loadDefaultModule();
     }
     
     Manager::~Manager() {
         uiModule->release();
         uiModule = nullptr;
+    }
+    
+    bool Manager::init() {
+        Module::init();
+        msgs.clear();
+        
+        loadDefaultComponent();
+        loadDefaultModule();
+        return true;
     }
     
     void Manager::loadDefaultModule() {
@@ -75,7 +81,7 @@ namespace dragon {
     
     void Manager::loadDefaultComponent() {
         auto* comp = new EventComponent();
-        addComponent("__event_component", comp);
+        addComponent("__component_event", comp);
         eventComponent = comp;
     }
 
@@ -122,6 +128,10 @@ namespace dragon {
 //        }
 //        msg->receiver = child->getId();
 //        sendMsg(msg);
+    }
+    
+    void Manager::postEvent(int event, Object* data) {
+        eventComponent->postEvent(event, data);
     }
     
     void Manager::dispatchMsg() {

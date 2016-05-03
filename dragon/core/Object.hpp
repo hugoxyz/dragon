@@ -12,6 +12,8 @@
 #include <string>
 #include "Reference.hpp"
 
+#define FREEIF(p) do { if (p) { free(p); p = nullptr;} } while(0)
+
 namespace dragon {
     class Node;
     class Object : public Reference {

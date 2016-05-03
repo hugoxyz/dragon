@@ -13,16 +13,27 @@
 #include "FBXMessage.hpp"
 #include "Logger.hpp"
 #include "../core/UUID.hpp"
-#include "../rendererModule/RendererMessage.hpp"
+#include "../rendererModule/EventRenderer.cpp"
+#include "../core/EventComponent.hpp"
+#include "../core/EventInput.hpp"
 
 namespace dragon {
-
+    
     FBXModule::FBXModule()
     : fbxManager(nullptr)
     , fbxScene(nullptr)
     , fbxPassword("") {
         name = "__fbx_mod";
         waitingPaths.clear();
+        
+        EventComponent* event = dynamic_cast<EventComponent*>(Manager::getInstance()->getComponent("__component_event"));
+        if (nullptr != event) {
+            EventComponent::EventObserverFun cb = std::bind(&FBXModule::onInputEvent, this,
+                                                            std::placeholders::_1,
+                                                            std::placeholders::_2,
+                                                            std::placeholders::_3);
+            event->addObserver(static_cast<int>(EventComponent::Event::EVENT_INPUT), cb);
+        }
     }
 
     FBXModule::~FBXModule() {
@@ -33,7 +44,7 @@ namespace dragon {
     }
     
     bool FBXModule::init() {
-        return initFBX();
+        return true;
     }
     
     void FBXModule::addWaitingPath(const std::string& path) {
@@ -87,8 +98,34 @@ namespace dragon {
         }
     }
     
+    void FBXModule::onInputEvent(int event, Object* data, Object* userData) {
+        if (event == static_cast<int>(EventComponent::Event::EVENT_INPUT)) {
+            EventInput* event = dynamic_cast<EventInput*>(data);
+            switch (event->getEventType()) {
+                case EventInput::EventInputType::DROP_FILE: {
+                    auto paths = event->getPaths();
+                    for (auto path : paths) {
+                        addWaitingPath(path);
+                    }
+                    break;
+                }
+                default: {
+                    LOGD("FBXModule", "unknow eventInput:%d", event->getEventType());
+                    break;
+                }
+            }
+        } else {
+            LOGD("FBXModule", "unknow event:%d", event);
+        }
+
+    }
+    
     bool FBXModule::parserFBX(const std::string& file) {
         LOGD("FBXModule", "parser fbx: %s", file.c_str());
+        
+        if (!createFBX()) {
+            return false;
+        }
         
         bool bRet = importFBX(file);
         if (!bRet) {
@@ -101,9 +138,10 @@ namespace dragon {
         return true;
     }
     
-    bool FBXModule::initFBX() {
+    bool FBXModule::createFBX() {
         if (nullptr != fbxManager) {
-            return false;
+            fbxManager->Destroy();
+            fbxManager = nullptr;
         }
 
         fbxManager = FbxManager::Create();
@@ -221,11 +259,11 @@ namespace dragon {
         LOGD("FBXModule", "mesh triangel count: %d", triangleCount);
         int vertexCounter = 0;
 
-        RendererMessage *cmd = new RendererMessage();
-        RendererMessage::Vertex vertex;
-        RendererMessage::Color color;
-        RendererMessage::Normal normal;
-        RendererMessage::UV uv;
+        EventRenderer *event = new EventRenderer();
+        EventRenderer::Vertex vertex;
+        EventRenderer::Color color;
+        EventRenderer::Normal normal;
+        EventRenderer::UV uv;
         bool haveValue = false;
 
         FbxVector4* fbxControlPoints = fbxMesh->GetControlPoints();
@@ -246,7 +284,7 @@ namespace dragon {
                 vertex.x = x;
                 vertex.y = y;
                 vertex.z = z;                
-                cmd->appendVertex(vertex);
+                event->appendVertex(vertex);
                 
                 //read color
                 if (fbxMesh->GetElementVertexColorCount() > 0) {
@@ -325,7 +363,7 @@ namespace dragon {
                         }
                     }
                     if (haveValue) {
-                        cmd->appendColor(color);
+                        event->appendColor(color);
                     }
                 }
 
@@ -386,7 +424,7 @@ namespace dragon {
                             break;
                     }
                     if (haveValue) {
-                        cmd->appendUV(uv);
+                        event->appendUV(uv);
                     }
                 }
                 
@@ -459,7 +497,7 @@ namespace dragon {
                         }
                     }
                     if (haveValue) {
-                        cmd->appendNormal(normal);
+                        event->appendNormal(normal);
                     }
                 }
 
@@ -475,9 +513,9 @@ namespace dragon {
         for (int layer = 0; layer < layerCount; layer++) {
             FbxGeometryElementMaterial* fbxMaterial = fbxMesh->GetElementMaterial(layer);
             if (nullptr != fbxMaterial) {
-                FbxLayerElementArrayTemplate<int> materialIndex = fbxMaterial->GetIndexArray();
+                auto& materialIndex = fbxMaterial->GetIndexArray();
                 if (triangleCount == materialIndex.GetCount()) {
-                    int* index = cmd->createMaterialMeshAssociate(triangleCount);
+                    int* index = event->createMaterialMeshAssociate(triangleCount);
                     for (int k = 0; k < triangleCount; k++) {
                         index[k] = materialIndex[k];
                     }
@@ -486,14 +524,8 @@ namespace dragon {
                 }
             }
         }
-
-        Node* rendererNode = Manager::getInstance()->getChild("__renderer_mod");
-        if (nullptr == rendererNode) {
-            LOGE("FBXModule", "can't find renderer module");
-            return;
-        }
-        cmd->receiver = rendererNode->getId();
-        Manager::getInstance()->sendMsg(cmd);
+        
+        Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_RENDERER), event);
         // 根据读入的信息组装三角形，并以某种方式使用即可，比如存入到列表中、保存到文件等...
     }
     

@@ -21,11 +21,14 @@ namespace dragon {
         Manager();
         virtual ~Manager();
         
+        virtual bool init();
+        
         void run();
         void exit();
-        
+
         void sendMsg(Message* msg);
         void sendMsg(const std::string& modName, Message* msg);
+        void postEvent(int event, Object* data);
         
     protected:
         void loadDefaultModule();

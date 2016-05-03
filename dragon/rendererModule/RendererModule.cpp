@@ -7,16 +7,19 @@
 //
 
 #include <stdlib.h>
+#include <functional>
 
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
 #include "RendererModule.hpp"
-#include "RendererMessage.hpp"
+#include "EventRenderer.hpp"
 #include "../core/Manager.hpp"
 #include "../core/FileUtils.hpp"
 #include "Logger.hpp"
 #include "../fbxModule/FBXMessage.hpp"
+#include "../core/EventInput.hpp"
+#include "../core/EventComponent.hpp"
 
 namespace dragon {
     
@@ -24,6 +27,9 @@ namespace dragon {
     public:
         static void drop_cb(GLFWwindow* w, int count, const char** path) {
             const char* file = nullptr;
+            EventInput* event = new EventInput(EventInput::EventInputType::DROP_FILE);
+            std::vector<std::string> paths;
+
             Node* rendererNode = Manager::getInstance()->getChild("__renderer_mod");
             if (nullptr == rendererNode) {
                 LOGE("glCallbacks", "rendererModule is null");
@@ -38,13 +44,10 @@ namespace dragon {
             for (auto i = 0; i < count; i ++) {
                 file = *(path + i);
                 LOGD("glCallbacks", file);
-
-                FBXMessage* msg = new FBXMessage();
-                msg->receiver = fbxNode->getId();
-                msg->sender = rendererNode->getId();
-                msg->setFilePath(file);
-                Manager::getInstance()->sendMsg(msg);
+                paths.push_back(file);
             }
+            event->setPaths(paths);
+            Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_INPUT), event);
         }
     };
     
@@ -86,14 +89,19 @@ namespace dragon {
         
         createGLProgram();
         glGenBuffers(1, &vertexesBuf);
-        
-        float attr[] = {
-            -1, -1, 0,
-            1,  -1, 0,
-            0,  1, 0
-        };
-        
-        setBufferData(vertexesBuf, attr, sizeof(attr));
+
+        EventRenderer::Vertex vertex[3] = {};
+        vertex[0].x = -1;
+        vertex[0].y = -1;
+        vertex[0].z = 0;
+        vertex[1].x = 1;
+        vertex[1].y = -1;
+        vertex[1].z = 0;
+        vertex[2].x = 0;
+        vertex[2].y = 1;
+        vertex[2].z = 0;
+
+        setBufferData(vertexesBuf, vertex, sizeof(vertex));
         
         program->use();
         
@@ -102,6 +110,16 @@ namespace dragon {
         program->setUnifrom("um4PMatrix", glm::value_ptr(projectMatrix), 16);
         
         glClearColor(0.5, 0.5, 0.5, 0.5);
+        
+        EventComponent* event = dynamic_cast<EventComponent*>(Manager::getInstance()->getComponent("__component_event"));
+        if (nullptr != event) {
+            event->addObserver(static_cast<int>(EventComponent::Event::EVENT_RENDERER),
+                               std::bind(&RendererModule::onRendererEvent,
+                                         this,
+                                         std::placeholders::_1,
+                                         std::placeholders::_2,
+                                         std::placeholders::_3));
+        }
         return true;
     }
     
@@ -126,10 +144,9 @@ namespace dragon {
                 glBindBuffer(GL_ARRAY_BUFFER, vertexesBuf);
                 glEnableVertexAttribArray(vertextLocation);
                 glVertexAttribPointer(vertextLocation, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
-                glDrawArrays(GL_LINE_LOOP, 0, 3);
+                glDrawArrays(GL_LINE_LOOP, 0, 30000);
                 glBindBuffer(GL_ARRAY_BUFFER, 0);
             }
-            
         } while (false);
 
         glfwSwapBuffers(window);
@@ -157,12 +174,25 @@ namespace dragon {
     }
     
     void RendererModule::onMessage(Message *msg) {
-        RendererMessage *m = dynamic_cast<RendererMessage*>(msg);
+        EventRenderer *m = dynamic_cast<EventRenderer*>(msg);
         if (nullptr == m) {
             return;
         }
-        
-        
+    }
+    
+    void RendererModule::onRendererEvent(int event, dragon::Object *data, dragon::Object *userData) {
+        if (event == static_cast<int>(EventComponent::Event::EVENT_RENDERER)) {
+            EventRenderer* event = dynamic_cast<EventRenderer*>(data);
+            if (nullptr == event) {
+                return;
+            }
+            EventRenderer::Vertex *pVertex = nullptr;
+            int size = 0;
+            event->getVertex(&pVertex, &size);
+            setBufferData(vertexesBuf, pVertex, size * sizeof(EventRenderer::Vertex));
+        } else {
+            LOGD("RendererModule", "unknow event:%d", event);
+        }
     }
 
     void RendererModule::createGLProgram() {
@@ -200,4 +230,6 @@ namespace dragon {
         glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
+    
+    
 }
