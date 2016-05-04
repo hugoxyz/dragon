@@ -196,6 +196,10 @@
 		9AE5856F1CD25B500050BA74 /* libfbxsdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE5856E1CD25B500050BA74 /* libfbxsdk.a */; };
 		9AE585731CD2EF580050BA74 /* EventInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE585711CD2EF580050BA74 /* EventInput.cpp */; };
 		9AE585741CD2EF580050BA74 /* EventInput.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9AE585721CD2EF580050BA74 /* EventInput.hpp */; };
+		9AF7FBB81CDA486D0091FF73 /* RendererNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF7FBB61CDA486D0091FF73 /* RendererNode.cpp */; };
+		9AF7FBB91CDA486D0091FF73 /* RendererNode.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9AF7FBB71CDA486D0091FF73 /* RendererNode.hpp */; };
+		9AF7FBBC1CDA494A0091FF73 /* TransformComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF7FBBA1CDA494A0091FF73 /* TransformComponent.cpp */; };
+		9AF7FBBD1CDA494A0091FF73 /* TransformComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9AF7FBBB1CDA494A0091FF73 /* TransformComponent.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -501,6 +505,10 @@
 		9AE5856E1CD25B500050BA74 /* libfbxsdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfbxsdk.a; path = ../thirdParty/fbx/lib/clang/debug/libfbxsdk.a; sourceTree = "<group>"; };
 		9AE585711CD2EF580050BA74 /* EventInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventInput.cpp; sourceTree = "<group>"; };
 		9AE585721CD2EF580050BA74 /* EventInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EventInput.hpp; sourceTree = "<group>"; };
+		9AF7FBB61CDA486D0091FF73 /* RendererNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererNode.cpp; sourceTree = "<group>"; };
+		9AF7FBB71CDA486D0091FF73 /* RendererNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RendererNode.hpp; sourceTree = "<group>"; };
+		9AF7FBBA1CDA494A0091FF73 /* TransformComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransformComponent.cpp; sourceTree = "<group>"; };
+		9AF7FBBB1CDA494A0091FF73 /* TransformComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TransformComponent.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -839,6 +847,8 @@
 				9A33627C1CC3D3EE00C8C7C0 /* EventRenderer.hpp */,
 				9A3362BD1CC9B9F700C8C7C0 /* GLProgram.cpp */,
 				9A3362BE1CC9B9F700C8C7C0 /* GLProgram.hpp */,
+				9AF7FBB61CDA486D0091FF73 /* RendererNode.cpp */,
+				9AF7FBB71CDA486D0091FF73 /* RendererNode.hpp */,
 			);
 			name = rendererModule;
 			path = ../rendererModule;
@@ -905,6 +915,8 @@
 				9AE585681CD251970050BA74 /* EventComponent.hpp */,
 				9AE585711CD2EF580050BA74 /* EventInput.cpp */,
 				9AE585721CD2EF580050BA74 /* EventInput.hpp */,
+				9AF7FBBA1CDA494A0091FF73 /* TransformComponent.cpp */,
+				9AF7FBBB1CDA494A0091FF73 /* TransformComponent.hpp */,
 			);
 			name = core;
 			path = ../core;
@@ -1000,6 +1012,7 @@
 				499F2B461CCCA91400827D40 /* type_mat3x2.hpp in Headers */,
 				499F2B291CCCA91400827D40 /* _swizzle_func.hpp in Headers */,
 				499F2B311CCCA91400827D40 /* func_packing.hpp in Headers */,
+				9AF7FBBD1CDA494A0091FF73 /* TransformComponent.hpp in Headers */,
 				499F2BB11CCCA91400827D40 /* vec2.hpp in Headers */,
 				499F2B7E1CCCA91400827D40 /* log_base.hpp in Headers */,
 				499F2B961CCCA91400827D40 /* scalar_relational.hpp in Headers */,
@@ -1043,6 +1056,7 @@
 				9A71D6D91CBE44D300564A1B /* Node.hpp in Headers */,
 				499F2B8E1CCCA91400827D40 /* polar_coordinates.hpp in Headers */,
 				499F2B921CCCA91400827D40 /* raw_data.hpp in Headers */,
+				9AF7FBB91CDA486D0091FF73 /* RendererNode.hpp in Headers */,
 				499F2BB41CCCA91400827D40 /* vector_relational.hpp in Headers */,
 				499F2B5F1CCCA91400827D40 /* noise.hpp in Headers */,
 				499F2B891CCCA91400827D40 /* normalize_dot.hpp in Headers */,
@@ -1175,8 +1189,10 @@
 				9A71D73A1CBFE9B100564A1B /* FBXModule.cpp in Sources */,
 				9A71D6CA1CBE44D300564A1B /* AutoReleasePool.cpp in Sources */,
 				499F2B341CCCA91400827D40 /* glm.cpp in Sources */,
+				9AF7FBBC1CDA494A0091FF73 /* TransformComponent.cpp in Sources */,
 				9AE585691CD251970050BA74 /* EventComponent.cpp in Sources */,
 				9A71D6CE1CBE44D300564A1B /* Component.cpp in Sources */,
+				9AF7FBB81CDA486D0091FF73 /* RendererNode.cpp in Sources */,
 				9A71D6D21CBE44D300564A1B /* Manager.cpp in Sources */,
 				9A3362BF1CC9B9F700C8C7C0 /* GLProgram.cpp in Sources */,
 				9A33628E1CC6675B00C8C7C0 /* FBXMessage.cpp in Sources */,

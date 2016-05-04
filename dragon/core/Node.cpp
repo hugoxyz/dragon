@@ -8,6 +8,7 @@
 
 #include "Node.hpp"
 #include "Module.hpp"
+#include "TransformComponent.hpp"
 
 namespace dragon {
     Node::Node()
@@ -16,6 +17,15 @@ namespace dragon {
     
     Node::~Node() {
         removeAllChild();
+    }
+    
+    void Node::createTransformIf() {
+        std::string name = "__component_transform";
+        TransformComponent *component = dynamic_cast<TransformComponent*>(getComponent(name));
+        if (nullptr == component) {
+            component = new TransformComponent();
+            addComponent(name, component);
+        }
     }
     
     void Node::addChild(Node* n) {

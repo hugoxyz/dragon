@@ -178,4 +178,26 @@ namespace dragon {
         
         return true;
     }
+    
+    void EventRenderer::setPreRenderer(const RendererFunction& func) {
+        preRendererFun = func;
+    }
+
+    void EventRenderer::setRenderer(const RendererFunction& func) {
+        rendererFun = func;
+    }
+    
+    void EventRenderer::setAfterRenderer(const RendererFunction& func) {
+        afterRendererFun = func;
+    }
+    
+    const EventRenderer::RendererFunction& EventRenderer::getPreRenderer() {
+        return preRendererFun;
+    }
+    const EventRenderer::RendererFunction& EventRenderer::getRenderer() {
+        return rendererFun;
+    }
+    const EventRenderer::RendererFunction& EventRenderer::getAfterRenderer() {
+        return afterRendererFun;
+    }
 }

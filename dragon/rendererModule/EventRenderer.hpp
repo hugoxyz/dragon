@@ -9,11 +9,15 @@
 #ifndef RendererCommand_hpp
 #define RendererCommand_hpp
 
+#include <functional>
+
 #include "../core/Object.hpp"
 
 namespace dragon {
     class EventRenderer : public Object {
     public:
+        typedef std::function<bool(Object*)> RendererFunction;
+
         typedef struct {
             float x;
             float y;
@@ -50,6 +54,14 @@ namespace dragon {
         int* createMaterialMeshAssociate(int n);
         
         bool getVertex(Vertex** ppVertex, int *pSize);
+        
+        void setPreRenderer(const RendererFunction& func);
+        void setRenderer(const RendererFunction& func);
+        void setAfterRenderer(const RendererFunction& func);
+        
+        const RendererFunction& getPreRenderer();
+        const RendererFunction& getRenderer();
+        const RendererFunction& getAfterRenderer();
 
     protected:
         void reallocVertex();
@@ -78,6 +90,10 @@ namespace dragon {
         
         int* materialAssociate;
         int materialLength;
+        
+        RendererFunction preRendererFun;
+        RendererFunction rendererFun;
+        RendererFunction afterRendererFun;
     };
 }
 

@@ -30,7 +30,7 @@ namespace dragon {
         void addWaitingPath(const std::string& path);
         std::string getWaitingPath();
         bool parserFBX(const std::string& file);
-        
+
         bool createFBX();
         bool importFBX(const std::string& file);
         void processFBXNode(FbxNode* node);

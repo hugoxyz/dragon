@@ -1,0 +1,20 @@
+//
+//  RendererNode.hpp
+//  dragon
+//
+//  Created by hugo on 16/5/4.
+//
+//
+
+#ifndef RendererNode_hpp
+#define RendererNode_hpp
+
+#include "../core/Node.hpp"
+
+namespace dragon {
+    class RendererNode : public Node {
+        
+    };
+}
+
+#endif /* RendererNode_hpp */

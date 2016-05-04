@@ -19,6 +19,8 @@ namespace dragon {
         Node();
         virtual ~Node();
         
+        void createTransformIf();
+
         void onEnter();
         void onSuspend();
         void onResume();
