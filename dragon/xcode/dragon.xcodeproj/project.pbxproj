@@ -152,6 +152,8 @@
 		499F2BB21CCCA91400827D40 /* vec3.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F2A741CCCA91400827D40 /* vec3.hpp */; };
 		499F2BB31CCCA91400827D40 /* vec4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F2A751CCCA91400827D40 /* vec4.hpp */; };
 		499F2BB41CCCA91400827D40 /* vector_relational.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F2A761CCCA91400827D40 /* vector_relational.hpp */; };
+		9A1FD8871CDC87F40053D1FE /* MeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FD8851CDC87F40053D1FE /* MeshComponent.cpp */; };
+		9A1FD8881CDC87F40053D1FE /* MeshComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FD8861CDC87F40053D1FE /* MeshComponent.hpp */; };
 		9A3362791CC3D2CF00C8C7C0 /* RendererModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3362771CC3D2CF00C8C7C0 /* RendererModule.cpp */; };
 		9A33627A1CC3D2CF00C8C7C0 /* RendererModule.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A3362781CC3D2CF00C8C7C0 /* RendererModule.hpp */; };
 		9A33627D1CC3D3EE00C8C7C0 /* EventRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A33627B1CC3D3EE00C8C7C0 /* EventRenderer.cpp */; };
@@ -459,6 +461,9 @@
 		499F2A741CCCA91400827D40 /* vec3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec3.hpp; sourceTree = "<group>"; };
 		499F2A751CCCA91400827D40 /* vec4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec4.hpp; sourceTree = "<group>"; };
 		499F2A761CCCA91400827D40 /* vector_relational.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_relational.hpp; sourceTree = "<group>"; };
+		9A1FD8851CDC87F40053D1FE /* MeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshComponent.cpp; sourceTree = "<group>"; };
+		9A1FD8861CDC87F40053D1FE /* MeshComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MeshComponent.hpp; sourceTree = "<group>"; };
+		9A1FD8891CDC89C30053D1FE /* GLStructDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLStructDefine.h; sourceTree = "<group>"; };
 		9A3362771CC3D2CF00C8C7C0 /* RendererModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererModule.cpp; sourceTree = "<group>"; };
 		9A3362781CC3D2CF00C8C7C0 /* RendererModule.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RendererModule.hpp; sourceTree = "<group>"; };
 		9A33627B1CC3D3EE00C8C7C0 /* EventRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventRenderer.cpp; sourceTree = "<group>"; };
@@ -917,6 +922,9 @@
 				9AE585721CD2EF580050BA74 /* EventInput.hpp */,
 				9AF7FBBA1CDA494A0091FF73 /* TransformComponent.cpp */,
 				9AF7FBBB1CDA494A0091FF73 /* TransformComponent.hpp */,
+				9A1FD8851CDC87F40053D1FE /* MeshComponent.cpp */,
+				9A1FD8861CDC87F40053D1FE /* MeshComponent.hpp */,
+				9A1FD8891CDC89C30053D1FE /* GLStructDefine.h */,
 			);
 			name = core;
 			path = ../core;
@@ -994,6 +1002,7 @@
 				499F2B7F1CCCA91400827D40 /* matrix_cross_product.hpp in Headers */,
 				499F2B491CCCA91400827D40 /* type_mat4x2.hpp in Headers */,
 				499F2B841CCCA91400827D40 /* matrix_query.hpp in Headers */,
+				9A1FD8881CDC87F40053D1FE /* MeshComponent.hpp in Headers */,
 				9A71D6D11CBE44D300564A1B /* Logger.hpp in Headers */,
 				9A71D6CD1CBE44D300564A1B /* AutoReleasePoolMgr.hpp in Headers */,
 				499F2B751CCCA91400827D40 /* fast_exponential.hpp in Headers */,
@@ -1201,6 +1210,7 @@
 				9A33627D1CC3D3EE00C8C7C0 /* EventRenderer.cpp in Sources */,
 				9A71D6DC1CBE44D300564A1B /* Reference.cpp in Sources */,
 				9A3362791CC3D2CF00C8C7C0 /* RendererModule.cpp in Sources */,
+				9A1FD8871CDC87F40053D1FE /* MeshComponent.cpp in Sources */,
 				9A3362BA1CC9B80400C8C7C0 /* FileUtils.cpp in Sources */,
 				9A71D73E1CBFF70500564A1B /* UUID.cpp in Sources */,
 				9A71D6D61CBE44D300564A1B /* Module.cpp in Sources */,

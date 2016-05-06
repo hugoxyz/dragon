@@ -14,12 +14,14 @@
 
 #include "RendererModule.hpp"
 #include "EventRenderer.hpp"
+#include "RendererNode.hpp"
 #include "../core/Manager.hpp"
 #include "../core/FileUtils.hpp"
 #include "Logger.hpp"
 #include "../fbxModule/FBXMessage.hpp"
 #include "../core/EventInput.hpp"
 #include "../core/EventComponent.hpp"
+
 
 namespace dragon {
     
@@ -111,10 +113,16 @@ namespace dragon {
         
         glClearColor(0.5, 0.5, 0.5, 0.5);
         
-        EventComponent* event = dynamic_cast<EventComponent*>(Manager::getInstance()->getComponent("__component_event"));
+        EventComponent* event = dynamic_cast<EventComponent*>(Manager::getInstance()->getComponent(typeid(EventComponent).name()));
         if (nullptr != event) {
             event->addObserver(static_cast<int>(EventComponent::Event::EVENT_RENDERER),
                                std::bind(&RendererModule::onRendererEvent,
+                                         this,
+                                         std::placeholders::_1,
+                                         std::placeholders::_2,
+                                         std::placeholders::_3));
+            event->addObserver(static_cast<int>(EventComponent::Event::EVENT_RENDERER_NODE),
+                               std::bind(&RendererModule::onRendererNode,
                                          this,
                                          std::placeholders::_1,
                                          std::placeholders::_2,
@@ -132,25 +140,57 @@ namespace dragon {
             Manager::getInstance()->exit();
             return;
         }
+
+        //pre renderer
+        for (auto child : children) {
+            RendererNode* node = dynamic_cast<RendererNode*>(child);
+            if (nullptr == node) {
+                LOGD("RendererModule", "can't cast child to renderer node");
+                continue;
+            }
+            node->onPreRenderer();
+        }
         
         glClear(GL_COLOR_BUFFER_BIT);
         
-        do {
-            if (nullptr != program) {
-                GLuint vertextLocation = 0;
-                if (!program->getAttributeLocation("av3Vertex", &vertextLocation)) {
-                    break;
-                }
-                glBindBuffer(GL_ARRAY_BUFFER, vertexesBuf);
-                glEnableVertexAttribArray(vertextLocation);
-                glVertexAttribPointer(vertextLocation, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
-                glDrawArrays(GL_LINE_LOOP, 0, 30000);
-                glBindBuffer(GL_ARRAY_BUFFER, 0);
+        //renderer
+        for (auto child : children) {
+            RendererNode* node = dynamic_cast<RendererNode*>(child);
+            if (nullptr == node) {
+                LOGD("RendererModule", "can't cast child to renderer node");
+                continue;
             }
-        } while (false);
+            node->onRenderer();
+        }
+
+//        do {
+//            
+//            
+//            if (nullptr != program) {
+//                GLuint vertextLocation = 0;
+//                if (!program->getAttributeLocation("av3Vertex", &vertextLocation)) {
+//                    break;
+//                }
+//                glBindBuffer(GL_ARRAY_BUFFER, vertexesBuf);
+//                glEnableVertexAttribArray(vertextLocation);
+//                glVertexAttribPointer(vertextLocation, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
+//                glDrawArrays(GL_LINE_LOOP, 0, 30000);
+//                glBindBuffer(GL_ARRAY_BUFFER, 0);
+//            }
+//        } while (false);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
+        
+        //after renderer
+        for (auto child : children) {
+            RendererNode* node = dynamic_cast<RendererNode*>(child);
+            if (nullptr == node) {
+                LOGD("RendererModule", "can't cast child to renderer node");
+                continue;
+            }
+            node->onAfterRenderer();
+        }
     }
 
     void RendererModule::onStateEvent(StateEvent e) {
@@ -190,6 +230,19 @@ namespace dragon {
             int size = 0;
             event->getVertex(&pVertex, &size);
             setBufferData(vertexesBuf, pVertex, size * sizeof(EventRenderer::Vertex));
+        } else {
+            LOGD("RendererModule", "unknow event:%d", event);
+        }
+    }
+    
+    void RendererModule::onRendererNode(int event, dragon::Object *data, dragon::Object *userData) {
+        if (event == static_cast<int>(EventComponent::Event::EVENT_RENDERER_NODE)) {
+            RendererNode* node = dynamic_cast<RendererNode*>(data);
+            if (nullptr == node) {
+                return;
+            }
+
+            addChild(node);
         } else {
             LOGD("RendererModule", "unknow event:%d", event);
         }

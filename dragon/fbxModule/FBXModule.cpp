@@ -16,17 +16,19 @@
 #include "../rendererModule/EventRenderer.cpp"
 #include "../core/EventComponent.hpp"
 #include "../core/EventInput.hpp"
+#include "../core/MeshComponent.hpp"
 
 namespace dragon {
     
     FBXModule::FBXModule()
     : fbxManager(nullptr)
     , fbxScene(nullptr)
-    , fbxPassword("") {
+    , fbxPassword("")
+    , rendererNode(nullptr) {
         name = "__fbx_mod";
         waitingPaths.clear();
         
-        EventComponent* event = dynamic_cast<EventComponent*>(Manager::getInstance()->getComponent("__component_event"));
+        EventComponent* event = dynamic_cast<EventComponent*>(Manager::getInstance()->getComponent(typeid(EventComponent).name()));
         if (nullptr != event) {
             EventComponent::EventObserverFun cb = std::bind(&FBXModule::onInputEvent, this,
                                                             std::placeholders::_1,
@@ -132,7 +134,12 @@ namespace dragon {
             LOGD("FBXModule", "import fbx file fail");
             return false;
         }
-        
+
+        if (nullptr != rendererNode) {
+            rendererNode->release();
+            rendererNode = nullptr;
+        }
+        rendererNode = new RendererNode();
         processFBXNode(fbxScene->GetRootNode());
 
         return true;
@@ -260,12 +267,14 @@ namespace dragon {
         int vertexCounter = 0;
 
         EventRenderer *event = new EventRenderer();
-        EventRenderer::Vertex vertex;
         EventRenderer::Color color;
         EventRenderer::Normal normal;
         EventRenderer::UV uv;
         bool haveValue = false;
+        gl::Vertex vertex;
 
+        MeshComponent *meshComp = new MeshComponent();
+        meshComp->createVertexesIf(triangleCount * 3);
         FbxVector4* fbxControlPoints = fbxMesh->GetControlPoints();
         for(int i = 0 ; i < triangleCount ; ++i) {
             int polygonSize = fbxMesh->GetPolygonSize(i);
@@ -283,9 +292,9 @@ namespace dragon {
                 
                 vertex.x = x;
                 vertex.y = y;
-                vertex.z = z;                
-                event->appendVertex(vertex);
-                
+                vertex.z = z;
+                meshComp->addVertex(vertex);
+
                 //read color
                 if (fbxMesh->GetElementVertexColorCount() > 0) {
                     FbxGeometryElementVertexColor* pVertexColor = fbxMesh->GetElementVertexColor();
@@ -504,7 +513,11 @@ namespace dragon {
                 vertexCounter++;  
             }
         }
-        
+        if (rendererNode) {
+            rendererNode->addComponent(meshComp);
+        }
+        Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_RENDERER_NODE), rendererNode);
+
         //取 纹理与材质 的相联表, 现在只取第一层的
         int layerCount = fbxMesh->GetElementMaterialCount();
         if (layerCount > 1) {
@@ -525,7 +538,8 @@ namespace dragon {
             }
         }
         
-        Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_RENDERER), event);
+//        Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_RENDERER), event);
+        
         // 根据读入的信息组装三角形，并以某种方式使用即可，比如存入到列表中、保存到文件等...
     }
     

@@ -20,11 +20,10 @@ namespace dragon {
     }
     
     void Node::createTransformIf() {
-        std::string name = "__component_transform";
         TransformComponent *component = dynamic_cast<TransformComponent*>(getComponent(name));
         if (nullptr == component) {
             component = new TransformComponent();
-            addComponent(name, component);
+            addComponent(component);
         }
     }
     

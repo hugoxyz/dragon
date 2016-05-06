@@ -28,10 +28,12 @@ namespace dragon {
 
         virtual void onStateEvent(StateEvent e);
         
-        void addComponent(const std::string& name, Component* comp);
+        void addComponent(Component* comp, const std::string& name = "");
         void removeComponent(const std::string& name);
         void removeAllComponent();
         Component* getComponent(const std::string& name);
+        template <typename T>
+        T* getComponent();
 
     protected:
         std::map<std::string, Component*> components;

@@ -22,6 +22,7 @@ namespace dragon {
             EVENT_ALL,
             EVENT_INPUT,
             EVENT_RENDERER,
+            EVENT_RENDERER_NODE,
             
             EVENT_USER = 1000,
         };

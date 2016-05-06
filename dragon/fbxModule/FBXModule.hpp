@@ -14,6 +14,7 @@
 #include "fbxsdk.h"
 
 #include "../core/Module.hpp"
+#include "../rendererModule/RendererNode.hpp"
 
 namespace dragon {
     class FBXModule : public Module {
@@ -45,6 +46,9 @@ namespace dragon {
         FbxManager* fbxManager;
         FbxScene* fbxScene;
         std::string fbxPassword;
+        
+        
+        RendererNode* rendererNode;        
     };
 }
 

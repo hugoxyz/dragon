@@ -81,7 +81,7 @@ namespace dragon {
     
     void Manager::loadDefaultComponent() {
         auto* comp = new EventComponent();
-        addComponent("__component_event", comp);
+        addComponent(comp);
         eventComponent = comp;
     }
 

@@ -23,7 +23,13 @@ namespace dragon {
         state = e;
     }
 
-    void Component::addComponent(const std::string& name, Component* comp) {
+    void Component::addComponent(Component* comp, const std::string& n) {
+        std::string name;
+        if (n.empty()) {
+            name = typeid(*comp).name();
+        } else {
+            name = n;
+        }
         auto ret = components.insert(std::make_pair(name, comp));
         if (ret.second) {
             comp->host = this;
@@ -52,5 +58,11 @@ namespace dragon {
     Component* Component::getComponent(const std::string& name) {
         auto iter = components.find(name);
         return iter->second;
+    }
+    
+    template <typename T>
+    T* Component::getComponent() {
+        Component *comp = getComponent(typeid(T).name());
+        return dynamic_cast<T*>(comp);
     }
 }

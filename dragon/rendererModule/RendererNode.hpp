@@ -12,8 +12,15 @@
 #include "../core/Node.hpp"
 
 namespace dragon {
+    class RendererModule;
     class RendererNode : public Node {
+    public:
+        friend RendererModule;
         
+    protected:
+        virtual void onPreRenderer();
+        virtual void onRenderer();
+        virtual void onAfterRenderer();
     };
 }
 

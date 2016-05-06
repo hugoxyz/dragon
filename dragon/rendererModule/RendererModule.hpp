@@ -36,6 +36,7 @@ namespace dragon {
         void setBufferData(GLuint buffer, void* data, int size);
         
         void onRendererEvent(int event, Object* data, Object* userData);
+        void onRendererNode(int event, Object *data, Object *userData);
 
     protected:
         int width;
