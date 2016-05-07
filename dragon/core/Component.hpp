@@ -12,6 +12,7 @@
 #include <string>
 #include <map>
 #include "Object.hpp"
+#include "ILifeCycle.hpp"
 
 namespace dragon {
     enum class StateEvent {
@@ -21,7 +22,7 @@ namespace dragon {
         LEAVE
     };
 
-    class Component : public Object {
+    class Component : public Object, public ILifeCycle {
     public:
         Component();
         virtual ~Component();
@@ -35,6 +36,7 @@ namespace dragon {
         template <typename T>
         T* getComponent();
 
+        friend class Manager;
     protected:
         std::map<std::string, Component*> components;
         StateEvent state;

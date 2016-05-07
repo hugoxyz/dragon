@@ -15,7 +15,6 @@
 namespace dragon {
     class Module : public Node {
     public:
-        virtual bool init();
         virtual void update(int dt);
         virtual void onMessage(Message* msg);
 

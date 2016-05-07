@@ -10,6 +10,7 @@
 
 namespace dragon {
     void RendererNode::onPreRenderer() {
+        
     }
     
     void RendererNode::onRenderer() {

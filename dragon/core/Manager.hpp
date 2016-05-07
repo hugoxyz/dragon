@@ -21,8 +21,11 @@ namespace dragon {
         Manager();
         virtual ~Manager();
         
-        virtual bool init();
+        void addChild(Node* n);
+        void addComponent(Component* comp, const std::string& name = "");
         
+        virtual void onInit();
+
         void run();
         void exit();
 

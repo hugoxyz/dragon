@@ -19,7 +19,6 @@ namespace dragon {
         
         static UIModule* currentModule();
 
-        virtual bool init();
         virtual void update(int dt);
         
         void sendMessage(Message* m);

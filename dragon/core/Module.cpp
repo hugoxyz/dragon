@@ -10,10 +10,6 @@
 
 namespace dragon {
     
-    bool Module::init() {
-        return true;
-    }
-    
     void Module::update(int dt) {
     }
     

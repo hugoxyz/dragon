@@ -25,7 +25,7 @@ namespace dragon {
         
         static RendererModule* self();
         
-        virtual bool init();
+        virtual void onInit();
         virtual void update(int dt);
         bool windowShouldClose();
         void onStateEvent(StateEvent e);

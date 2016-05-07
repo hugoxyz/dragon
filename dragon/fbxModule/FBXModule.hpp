@@ -22,7 +22,6 @@ namespace dragon {
         FBXModule();
         ~FBXModule();
 
-        virtual bool init();
         virtual void update(int dt);
         virtual void onStateEvent(StateEvent e);
         virtual void onMessage(Message* msg);

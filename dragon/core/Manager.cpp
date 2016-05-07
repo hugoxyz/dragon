@@ -42,41 +42,34 @@ namespace dragon {
         uiModule = nullptr;
     }
     
-    bool Manager::init() {
-        Module::init();
+    void Manager::addChild(Node* n) {
+        Module::addChild(n);
+        n->enter();
+    }
+
+    void Manager::addComponent(Component* comp, const std::string& name) {
+        Module::addComponent(comp, name);
+        comp->enter();
+    }
+    
+    void Manager::onInit() {
         msgs.clear();
         
         loadDefaultComponent();
         loadDefaultModule();
-        return true;
     }
     
     void Manager::loadDefaultModule() {
         Module* m = new UIModule();
-        if (m->init()) {
-            addChild(m);
-            uiModule = m;
-            uiModule->retain();
-        } else {
-            delete m;
-            m = nullptr;
-        }
+        addChild(m);
+        uiModule = m;
+        uiModule->retain();
         
         m = new FBXModule();
-        if (m->init()) {
-            addChild(m);
-        } else {
-            delete m;
-            m = nullptr;
-        }
+        addChild(m);
         
         m = new RendererModule();
-        if (m->init()) {
-            addChild(m);
-        } else {
-            delete m;
-            m = nullptr;
-        }
+        addChild(m);
     }
     
     void Manager::loadDefaultComponent() {

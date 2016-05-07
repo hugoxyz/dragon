@@ -21,21 +21,29 @@ namespace dragon {
         
         void createTransformIf();
 
-        void onEnter();
-        void onSuspend();
-        void onResume();
-        void onLeave();
-
         void addChild(Node* n);
-        void removeChild(int id);
-        void removeAllChild();
+        void removeChild(int id, bool release = true);
+        void removeAllChild(bool release = true);
         Node* getChild(int id);
         Node* getChild(const std::string& name);
         
         Module* getModule();
-        
+
+        friend class Manager;
     protected:
         virtual void onStateEvent(StateEvent e);
+        /*
+         * Life Cycle
+         */
+        virtual void init();
+        virtual void enter();
+        virtual void resume();
+        virtual void preUpdate();
+        virtual void update();
+        virtual void afterUpdate();
+        virtual void suspend();
+        virtual void leave();
+        virtual void deinit();
 
     protected:
         std::vector<Node*> children;

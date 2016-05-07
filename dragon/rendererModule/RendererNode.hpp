@@ -21,6 +21,11 @@ namespace dragon {
         virtual void onPreRenderer();
         virtual void onRenderer();
         virtual void onAfterRenderer();
+        
+        void reset();
+
+    protected:
+        bool dirty;
     };
 }
 

@@ -22,10 +22,6 @@ namespace dragon {
     UIModule::~UIModule() {
     }
     
-    bool UIModule::init() {
-        return true;
-    }
-    
     void UIModule::update(int dt) {
     }
 

@@ -154,6 +154,8 @@
 		499F2BB41CCCA91400827D40 /* vector_relational.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F2A761CCCA91400827D40 /* vector_relational.hpp */; };
 		9A1FD8871CDC87F40053D1FE /* MeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FD8851CDC87F40053D1FE /* MeshComponent.cpp */; };
 		9A1FD8881CDC87F40053D1FE /* MeshComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FD8861CDC87F40053D1FE /* MeshComponent.hpp */; };
+		9A1FD88C1CDDB8100053D1FE /* ILifeCycle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FD88A1CDDB8100053D1FE /* ILifeCycle.cpp */; };
+		9A1FD88D1CDDB8100053D1FE /* ILifeCycle.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FD88B1CDDB8100053D1FE /* ILifeCycle.hpp */; };
 		9A3362791CC3D2CF00C8C7C0 /* RendererModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3362771CC3D2CF00C8C7C0 /* RendererModule.cpp */; };
 		9A33627A1CC3D2CF00C8C7C0 /* RendererModule.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A3362781CC3D2CF00C8C7C0 /* RendererModule.hpp */; };
 		9A33627D1CC3D3EE00C8C7C0 /* EventRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A33627B1CC3D3EE00C8C7C0 /* EventRenderer.cpp */; };
@@ -464,6 +466,8 @@
 		9A1FD8851CDC87F40053D1FE /* MeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshComponent.cpp; sourceTree = "<group>"; };
 		9A1FD8861CDC87F40053D1FE /* MeshComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MeshComponent.hpp; sourceTree = "<group>"; };
 		9A1FD8891CDC89C30053D1FE /* GLStructDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLStructDefine.h; sourceTree = "<group>"; };
+		9A1FD88A1CDDB8100053D1FE /* ILifeCycle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ILifeCycle.cpp; sourceTree = "<group>"; };
+		9A1FD88B1CDDB8100053D1FE /* ILifeCycle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ILifeCycle.hpp; sourceTree = "<group>"; };
 		9A3362771CC3D2CF00C8C7C0 /* RendererModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererModule.cpp; sourceTree = "<group>"; };
 		9A3362781CC3D2CF00C8C7C0 /* RendererModule.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RendererModule.hpp; sourceTree = "<group>"; };
 		9A33627B1CC3D3EE00C8C7C0 /* EventRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventRenderer.cpp; sourceTree = "<group>"; };
@@ -925,6 +929,8 @@
 				9A1FD8851CDC87F40053D1FE /* MeshComponent.cpp */,
 				9A1FD8861CDC87F40053D1FE /* MeshComponent.hpp */,
 				9A1FD8891CDC89C30053D1FE /* GLStructDefine.h */,
+				9A1FD88A1CDDB8100053D1FE /* ILifeCycle.cpp */,
+				9A1FD88B1CDDB8100053D1FE /* ILifeCycle.hpp */,
 			);
 			name = core;
 			path = ../core;
@@ -1118,6 +1124,7 @@
 				9A71D6E21CBE45CF00564A1B /* UIModule.hpp in Headers */,
 				499F2B551CCCA91400827D40 /* glm.hpp in Headers */,
 				499F2B4D1CCCA91400827D40 /* type_vec1.hpp in Headers */,
+				9A1FD88D1CDDB8100053D1FE /* ILifeCycle.hpp in Headers */,
 				9A71D6CF1CBE44D300564A1B /* Component.hpp in Headers */,
 				499F2BB21CCCA91400827D40 /* vec3.hpp in Headers */,
 				9A71D6DD1CBE44D300564A1B /* Reference.hpp in Headers */,
@@ -1210,6 +1217,7 @@
 				9A33627D1CC3D3EE00C8C7C0 /* EventRenderer.cpp in Sources */,
 				9A71D6DC1CBE44D300564A1B /* Reference.cpp in Sources */,
 				9A3362791CC3D2CF00C8C7C0 /* RendererModule.cpp in Sources */,
+				9A1FD88C1CDDB8100053D1FE /* ILifeCycle.cpp in Sources */,
 				9A1FD8871CDC87F40053D1FE /* MeshComponent.cpp in Sources */,
 				9A3362BA1CC9B80400C8C7C0 /* FileUtils.cpp in Sources */,
 				9A71D73E1CBFF70500564A1B /* UUID.cpp in Sources */,

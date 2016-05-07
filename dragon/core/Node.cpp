@@ -31,26 +31,32 @@ namespace dragon {
         n->parent = this;
         n->retain();
         children.push_back(n);
-        n->onStateEvent(StateEvent::ENTER);
     }
     
-    void Node::removeChild(int id) {
+    void Node::removeChild(int id, bool release) {
         for (auto iter = children.end(); iter != children.begin(); iter--) {
             if ((*iter)->getId() == id) {
+                (*iter)->suspend();
+                (*iter)->leave();
                 (*iter)->parent = nullptr;
-                (*iter)->release();
                 children.erase(iter);
-                (*iter)->onStateEvent(StateEvent::LEAVE);
+                (*iter)->suspend();
+                if (release) {
+                    (*iter)->release();
+                }
                 return;
             }
         }
     }
 
-    void Node::removeAllChild() {
+    void Node::removeAllChild(bool release) {
         for(const auto& child : children) {
+            child->suspend();
+            child->leave();
             child->parent = nullptr;
-            child->release();
-            child->onStateEvent(StateEvent::LEAVE);
+            if (release) {
+                child->release();
+            }
         }
         children.clear();
     }
@@ -97,4 +103,98 @@ namespace dragon {
             comp.second->onStateEvent(e);
         }
     }
+    
+    /*
+     * Life Cycle
+     */
+    void Node::init() {
+        Component::init();
+        for (auto child : children) {
+            child->init();
+        }
+        for (auto comp : components) {
+            comp.second->init();
+        }
+    }
+    
+    void Node::enter() {
+        Component::enter();
+        for (auto child : children) {
+            child->enter();
+        }
+        for (auto comp : components) {
+            comp.second->enter();
+        }
+    }
+    
+    void Node::resume() {
+        Component::resume();
+        for (auto child : children) {
+            child->resume();
+        }
+        for (auto comp : components) {
+            comp.second->resume();
+        }
+    }
+    
+    void Node::preUpdate() {
+        Component::preUpdate();
+        for (auto child : children) {
+            child->preUpdate();
+        }
+        for (auto comp : components) {
+            comp.second->preUpdate();
+        }
+    }
+    
+    void Node::update() {
+        Component::update();
+        for (auto child : children) {
+            child->update();
+        }
+        for (auto comp : components) {
+            comp.second->update();
+        }
+    }
+    
+    void Node::afterUpdate() {
+        Component::afterUpdate();
+        for (auto child : children) {
+            child->afterUpdate();
+        }
+        for (auto comp : components) {
+            comp.second->afterUpdate();
+        }
+    }
+    
+    void Node::suspend() {
+        Component::suspend();
+        for (auto child : children) {
+            child->suspend();
+        }
+        for (auto comp : components) {
+            comp.second->suspend();
+        }
+    }
+    
+    void Node::leave() {
+        Component::leave();
+        for (auto child : children) {
+            child->leave();
+        }
+        for (auto comp : components) {
+            comp.second->leave();
+        }
+    }
+    
+    void Node::deinit() {
+        Component::deinit();
+        for (auto child : children) {
+            child->deinit();
+        }
+        for (auto comp : components) {
+            comp.second->deinit();
+        }
+    }
+
 }

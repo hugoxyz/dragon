@@ -44,11 +44,7 @@ namespace dragon {
             fbxManager = nullptr;
         }
     }
-    
-    bool FBXModule::init() {
-        return true;
-    }
-    
+
     void FBXModule::addWaitingPath(const std::string& path) {
         waitingPaths.push_back(path);
     }

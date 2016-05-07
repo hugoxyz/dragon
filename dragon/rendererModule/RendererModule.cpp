@@ -75,15 +75,15 @@ namespace dragon {
         program->release();
     }
     
-    bool RendererModule::init() {
+    void RendererModule::onInit() {
         if (GL_TRUE != glfwInit()) {
-            return false;
+            return ;
         }
         
         window = glfwCreateWindow(width, height, "dragon", nullptr, nullptr);
         if (nullptr == window) {
             glfwTerminate();
-            return false;
+            return ;
         }
         
         glfwMakeContextCurrent(window);
@@ -128,7 +128,7 @@ namespace dragon {
                                          std::placeholders::_2,
                                          std::placeholders::_3));
         }
-        return true;
+        return ;
     }
     
     bool RendererModule::windowShouldClose() {
