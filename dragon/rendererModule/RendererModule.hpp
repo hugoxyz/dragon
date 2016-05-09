@@ -28,8 +28,13 @@ namespace dragon {
         virtual void onInit();
         virtual void update(int dt);
         bool windowShouldClose();
-        void onStateEvent(StateEvent e);
+
         virtual void onMessage(Message* msg);
+        
+        /*
+         * Life Cycle
+         */
+        virtual void onDeinit();
         
     protected:
         void createGLProgram();

@@ -18,10 +18,6 @@ namespace dragon {
     Component::~Component() {
         removeAllComponent();
     }
-    
-    void Component::onStateEvent(StateEvent e) {
-        state = e;
-    }
 
     void Component::addComponent(Component* comp, const std::string& n) {
         std::string name;

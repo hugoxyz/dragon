@@ -11,16 +11,10 @@
 namespace dragon {
     
     ILifeCycle::ILifeCycle()
-    : visible(false) {
-        init();
+    : active(false) {
     }
     
     ILifeCycle::~ILifeCycle() {
-        deinit();
-    }
-
-    void ILifeCycle::init() {
-        onInit();
     }
 
     void ILifeCycle::enter() {
@@ -28,7 +22,7 @@ namespace dragon {
     }
     
     void ILifeCycle::resume() {
-        visible = true;
+        active = true;
         onResume();
     }
     
@@ -45,16 +39,12 @@ namespace dragon {
     }
     
     void ILifeCycle::suspend() {
+        active = false;
         onSuspend();
-        visible = false;
     }
     
     void ILifeCycle::leave() {
         onLeave();
-    }
-    
-    void ILifeCycle::deinit() {
-        onDeinit();
     }
 
 }

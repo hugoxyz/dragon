@@ -31,11 +31,10 @@ namespace dragon {
 
         friend class Manager;
     protected:
-        virtual void onStateEvent(StateEvent e);
+
         /*
          * Life Cycle
          */
-        virtual void init();
         virtual void enter();
         virtual void resume();
         virtual void preUpdate();
@@ -43,7 +42,6 @@ namespace dragon {
         virtual void afterUpdate();
         virtual void suspend();
         virtual void leave();
-        virtual void deinit();
 
     protected:
         std::vector<Node*> children;

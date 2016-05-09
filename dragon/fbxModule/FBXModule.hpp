@@ -23,7 +23,6 @@ namespace dragon {
         ~FBXModule();
 
         virtual void update(int dt);
-        virtual void onStateEvent(StateEvent e);
         virtual void onMessage(Message* msg);
 
     protected:
@@ -41,7 +40,7 @@ namespace dragon {
 
     protected:
         std::vector<std::string> waitingPaths;
-        
+
         FbxManager* fbxManager;
         FbxScene* fbxScene;
         std::string fbxPassword;

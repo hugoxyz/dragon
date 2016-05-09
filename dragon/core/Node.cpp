@@ -94,29 +94,10 @@ namespace dragon {
         
         return dynamic_cast<Module*>(secondParent);
     }
-    
-    void Node::onStateEvent(StateEvent e) {
-        for (auto child : children) {
-            child->onStateEvent(e);
-        }
-        for (auto comp : components) {
-            comp.second->onStateEvent(e);
-        }
-    }
-    
+
     /*
      * Life Cycle
      */
-    void Node::init() {
-        Component::init();
-        for (auto child : children) {
-            child->init();
-        }
-        for (auto comp : components) {
-            comp.second->init();
-        }
-    }
-    
     void Node::enter() {
         Component::enter();
         for (auto child : children) {
@@ -125,6 +106,7 @@ namespace dragon {
         for (auto comp : components) {
             comp.second->enter();
         }
+        onEnter();
     }
     
     void Node::resume() {
@@ -135,6 +117,7 @@ namespace dragon {
         for (auto comp : components) {
             comp.second->resume();
         }
+        onResume();
     }
     
     void Node::preUpdate() {
@@ -145,6 +128,7 @@ namespace dragon {
         for (auto comp : components) {
             comp.second->preUpdate();
         }
+        onPreUpdate();
     }
     
     void Node::update() {
@@ -155,6 +139,7 @@ namespace dragon {
         for (auto comp : components) {
             comp.second->update();
         }
+        onUpdate();
     }
     
     void Node::afterUpdate() {
@@ -165,6 +150,7 @@ namespace dragon {
         for (auto comp : components) {
             comp.second->afterUpdate();
         }
+        onAfterUpdate();
     }
     
     void Node::suspend() {
@@ -175,6 +161,7 @@ namespace dragon {
         for (auto comp : components) {
             comp.second->suspend();
         }
+        onSuspend();
     }
     
     void Node::leave() {
@@ -185,16 +172,7 @@ namespace dragon {
         for (auto comp : components) {
             comp.second->leave();
         }
-    }
-    
-    void Node::deinit() {
-        Component::deinit();
-        for (auto child : children) {
-            child->deinit();
-        }
-        for (auto comp : components) {
-            comp.second->deinit();
-        }
+        onLeave();
     }
 
 }

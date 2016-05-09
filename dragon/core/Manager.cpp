@@ -26,20 +26,18 @@ namespace dragon {
         if (nullptr == instance) {
             instance = new Manager();
             instance->retain();
-            instance->init();
         }
         return instance;
     }
     
     Manager::Manager()
-    : running(false)
-    , eventComponent(nullptr)
+    : eventComponent(nullptr)
+    , running(false)
     , fps(60) {
     }
     
     Manager::~Manager() {
-        uiModule->release();
-        uiModule = nullptr;
+        
     }
     
     void Manager::addChild(Node* n) {
@@ -52,11 +50,18 @@ namespace dragon {
         comp->enter();
     }
     
-    void Manager::onInit() {
+    void Manager::step() {
         msgs.clear();
         
         loadDefaultComponent();
         loadDefaultModule();
+    }
+    
+    void Manager::onDeinit() {
+        if (nullptr != uiModule) {
+            uiModule->release();
+            uiModule = nullptr;
+        }
     }
     
     void Manager::loadDefaultModule() {
@@ -81,7 +86,10 @@ namespace dragon {
     void Manager::run() {
         time_t startTime, endTime;
         int restmilsecond = 0;
-        
+
+        step();
+        enter();
+        resume();
         running = true;
         while (running) {
             time(&startTime);
@@ -93,7 +101,7 @@ namespace dragon {
                 }
             }
             dispatchMsg();
-            
+
             AutoReleasePoolMgr::getInstance()->getCurrentPool()->clear();
             time(&endTime);
             restmilsecond = 1000/fps - difftime(endTime, startTime) * 1000;
@@ -101,6 +109,8 @@ namespace dragon {
                 std::this_thread::sleep_for(std::chrono::milliseconds(restmilsecond));
             }
         }
+        suspend();
+        leave();
     }
 
     void Manager::exit() {

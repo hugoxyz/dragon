@@ -13,10 +13,10 @@ namespace dragon {
     class Manager;
     class ILifeCycle {
     public:
+        
         ILifeCycle();
         ~ILifeCycle();
 
-        virtual void onInit() {};
         virtual void onEnter() {};
         virtual void onResume() {};
         virtual void onPreUpdate() {};
@@ -24,12 +24,11 @@ namespace dragon {
         virtual void onAfterUpdate() {};
         virtual void onSuspend() {};
         virtual void onLeave() {};
-        virtual void onDeinit() {};
-        virtual bool isVisible() { return visible; };
+        virtual bool isActive() { return active; };
 
         friend class Manager;
     protected:
-        void init();
+
         void enter();
         void resume();
         void preUpdate();
@@ -37,10 +36,9 @@ namespace dragon {
         void afterUpdate();
         void suspend();
         void leave();
-        void deinit();
 
     protected:
-        bool visible;
+        bool active;
     };
 }
 

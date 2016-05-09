@@ -24,7 +24,8 @@ namespace dragon {
         void addChild(Node* n);
         void addComponent(Component* comp, const std::string& name = "");
         
-        virtual void onInit();
+        void step();
+        virtual void onDeinit();
 
         void run();
         void exit();
@@ -40,13 +41,13 @@ namespace dragon {
         
     protected:
         std::vector<Message*> msgs;
-        bool running;
         int fps;
         Module* uiModule;
         EventComponent* eventComponent;
 
     private:
         static Manager* instance;
+        bool running;
     };
 }
 

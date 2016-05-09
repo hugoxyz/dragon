@@ -61,25 +61,6 @@ namespace dragon {
         }
     }
 
-    void FBXModule::onStateEvent(StateEvent e) {
-        switch (e) {
-            case StateEvent::ENTER: {
-                break;
-            }
-            case StateEvent::SUSPEND: {
-                break;
-            }
-            case StateEvent::RESUME: {
-                break;
-            }
-            case StateEvent::LEAVE: {
-                break;
-            }
-            default:
-                break;
-        }
-    }
-
     void FBXModule::onMessage(Message* msg) {
         if (nullptr == msg) {
             return;

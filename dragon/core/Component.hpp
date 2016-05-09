@@ -15,19 +15,11 @@
 #include "ILifeCycle.hpp"
 
 namespace dragon {
-    enum class StateEvent {
-        ENTER,
-        SUSPEND,    //挂起阶段
-        RESUME,     //恢复事件
-        LEAVE
-    };
-
+    
     class Component : public Object, public ILifeCycle {
     public:
         Component();
         virtual ~Component();
-
-        virtual void onStateEvent(StateEvent e);
         
         void addComponent(Component* comp, const std::string& name = "");
         void removeComponent(const std::string& name);
@@ -39,7 +31,6 @@ namespace dragon {
         friend class Manager;
     protected:
         std::map<std::string, Component*> components;
-        StateEvent state;
         Component* host;
 
     private:

@@ -193,26 +193,10 @@ namespace dragon {
         }
     }
 
-    void RendererModule::onStateEvent(StateEvent e) {
-        switch (e) {
-            case StateEvent::ENTER: {
-                break;
-            }
-            case StateEvent::SUSPEND: {
-                break;
-            }
-            case StateEvent::RESUME: {
-                break;
-            }
-            case StateEvent::LEAVE: {
-                glfwTerminate();
-                break;
-            }
-            default:
-                break;
-        }
+    void RendererModule::onDeinit() {
+        glfwTerminate();
     }
-    
+
     void RendererModule::onMessage(Message *msg) {
         EventRenderer *m = dynamic_cast<EventRenderer*>(msg);
         if (nullptr == m) {
