@@ -22,7 +22,7 @@ namespace dragon {
         FBXModule();
         ~FBXModule();
 
-        virtual void update(int dt);
+        virtual void onUpdate();
         virtual void onMessage(Message* msg);
 
     protected:
@@ -46,7 +46,7 @@ namespace dragon {
         std::string fbxPassword;
         
         
-        RendererNode* rendererNode;        
+        Node* rendererNode;        
     };
 }
 

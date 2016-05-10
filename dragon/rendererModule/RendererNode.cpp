@@ -9,13 +9,4 @@
 #include "RendererNode.hpp"
 
 namespace dragon {
-    void RendererNode::onPreRenderer() {
-        
-    }
-    
-    void RendererNode::onRenderer() {
-    }
-    
-    void RendererNode::onAfterRenderer() {
-    }
 }

@@ -106,7 +106,6 @@ namespace dragon {
         for (auto comp : components) {
             comp.second->enter();
         }
-        onEnter();
     }
     
     void Node::resume() {
@@ -117,7 +116,6 @@ namespace dragon {
         for (auto comp : components) {
             comp.second->resume();
         }
-        onResume();
     }
     
     void Node::preUpdate() {
@@ -128,7 +126,6 @@ namespace dragon {
         for (auto comp : components) {
             comp.second->preUpdate();
         }
-        onPreUpdate();
     }
     
     void Node::update() {
@@ -139,18 +136,16 @@ namespace dragon {
         for (auto comp : components) {
             comp.second->update();
         }
-        onUpdate();
     }
     
     void Node::afterUpdate() {
-        Component::afterUpdate();
         for (auto child : children) {
             child->afterUpdate();
         }
         for (auto comp : components) {
             comp.second->afterUpdate();
         }
-        onAfterUpdate();
+        Component::afterUpdate();
     }
     
     void Node::suspend() {
@@ -161,7 +156,6 @@ namespace dragon {
         for (auto comp : components) {
             comp.second->suspend();
         }
-        onSuspend();
     }
     
     void Node::leave() {
@@ -172,7 +166,6 @@ namespace dragon {
         for (auto comp : components) {
             comp.second->leave();
         }
-        onLeave();
     }
 
 }

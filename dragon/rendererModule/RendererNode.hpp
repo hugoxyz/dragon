@@ -17,11 +17,6 @@ namespace dragon {
     public:
         friend RendererModule;
         
-    protected:
-        virtual void onPreRenderer();
-        virtual void onRenderer();
-        virtual void onAfterRenderer();
-        
         void reset();
 
     protected:

@@ -94,12 +94,10 @@ namespace dragon {
         while (running) {
             time(&startTime);
             
-            for (const auto& child : children) {
-                Module* m = dynamic_cast<Module*>(child);
-                if (nullptr != m) {
-                    m->update(0);
-                }
-            }
+            Module::preUpdate();
+            Module::update();
+            Module::afterUpdate();
+            
             dispatchMsg();
 
             AutoReleasePoolMgr::getInstance()->getCurrentPool()->clear();

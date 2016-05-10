@@ -26,16 +26,15 @@ namespace dragon {
         virtual void onLeave() {};
         virtual bool isActive() { return active; };
 
+        virtual void enter();
+        virtual void resume();
+        virtual void preUpdate();
+        virtual void update();
+        virtual void afterUpdate();
+        virtual void suspend();
+        virtual void leave();
+        
         friend class Manager;
-    protected:
-
-        void enter();
-        void resume();
-        void preUpdate();
-        void update();
-        void afterUpdate();
-        void suspend();
-        void leave();
 
     protected:
         bool active;

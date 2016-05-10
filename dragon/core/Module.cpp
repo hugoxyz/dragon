@@ -10,9 +10,6 @@
 
 namespace dragon {
     
-    void Module::update(int dt) {
-    }
-    
     void Module::onMessage(Message *msg) {
     }
 

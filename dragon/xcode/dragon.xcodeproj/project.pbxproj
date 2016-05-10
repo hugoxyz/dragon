@@ -156,6 +156,10 @@
 		9A1FD8881CDC87F40053D1FE /* MeshComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FD8861CDC87F40053D1FE /* MeshComponent.hpp */; };
 		9A1FD88C1CDDB8100053D1FE /* ILifeCycle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FD88A1CDDB8100053D1FE /* ILifeCycle.cpp */; };
 		9A1FD88D1CDDB8100053D1FE /* ILifeCycle.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FD88B1CDDB8100053D1FE /* ILifeCycle.hpp */; };
+		9A3343091CE1FEED008319E4 /* GLProgramCache.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3343071CE1FEED008319E4 /* GLProgramCache.cpp */; };
+		9A33430A1CE1FEED008319E4 /* GLProgramCache.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A3343081CE1FEED008319E4 /* GLProgramCache.hpp */; };
+		9A33430D1CE22FC2008319E4 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A33430B1CE22FC2008319E4 /* Utils.cpp */; };
+		9A33430E1CE22FC2008319E4 /* Utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A33430C1CE22FC2008319E4 /* Utils.hpp */; };
 		9A3362791CC3D2CF00C8C7C0 /* RendererModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3362771CC3D2CF00C8C7C0 /* RendererModule.cpp */; };
 		9A33627A1CC3D2CF00C8C7C0 /* RendererModule.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A3362781CC3D2CF00C8C7C0 /* RendererModule.hpp */; };
 		9A33627D1CC3D3EE00C8C7C0 /* EventRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A33627B1CC3D3EE00C8C7C0 /* EventRenderer.cpp */; };
@@ -468,6 +472,10 @@
 		9A1FD8891CDC89C30053D1FE /* GLStructDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLStructDefine.h; sourceTree = "<group>"; };
 		9A1FD88A1CDDB8100053D1FE /* ILifeCycle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ILifeCycle.cpp; sourceTree = "<group>"; };
 		9A1FD88B1CDDB8100053D1FE /* ILifeCycle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ILifeCycle.hpp; sourceTree = "<group>"; };
+		9A3343071CE1FEED008319E4 /* GLProgramCache.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgramCache.cpp; sourceTree = "<group>"; };
+		9A3343081CE1FEED008319E4 /* GLProgramCache.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgramCache.hpp; sourceTree = "<group>"; };
+		9A33430B1CE22FC2008319E4 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
+		9A33430C1CE22FC2008319E4 /* Utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utils.hpp; sourceTree = "<group>"; };
 		9A3362771CC3D2CF00C8C7C0 /* RendererModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererModule.cpp; sourceTree = "<group>"; };
 		9A3362781CC3D2CF00C8C7C0 /* RendererModule.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RendererModule.hpp; sourceTree = "<group>"; };
 		9A33627B1CC3D3EE00C8C7C0 /* EventRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventRenderer.cpp; sourceTree = "<group>"; };
@@ -858,6 +866,8 @@
 				9A3362BE1CC9B9F700C8C7C0 /* GLProgram.hpp */,
 				9AF7FBB61CDA486D0091FF73 /* RendererNode.cpp */,
 				9AF7FBB71CDA486D0091FF73 /* RendererNode.hpp */,
+				9A3343071CE1FEED008319E4 /* GLProgramCache.cpp */,
+				9A3343081CE1FEED008319E4 /* GLProgramCache.hpp */,
 			);
 			name = rendererModule;
 			path = ../rendererModule;
@@ -931,6 +941,8 @@
 				9A1FD8891CDC89C30053D1FE /* GLStructDefine.h */,
 				9A1FD88A1CDDB8100053D1FE /* ILifeCycle.cpp */,
 				9A1FD88B1CDDB8100053D1FE /* ILifeCycle.hpp */,
+				9A33430B1CE22FC2008319E4 /* Utils.cpp */,
+				9A33430C1CE22FC2008319E4 /* Utils.hpp */,
 			);
 			name = core;
 			path = ../core;
@@ -1109,6 +1121,7 @@
 				499F2B281CCCA91400827D40 /* _swizzle.hpp in Headers */,
 				499F2B2F1CCCA91400827D40 /* func_integer.hpp in Headers */,
 				499F2BAB1CCCA91400827D40 /* mat4x2.hpp in Headers */,
+				9A33430A1CE1FEED008319E4 /* GLProgramCache.hpp in Headers */,
 				499F2B431CCCA91400827D40 /* type_mat2x2.hpp in Headers */,
 				499F2B9B1CCCA91400827D40 /* std_based_type.hpp in Headers */,
 				499F2BAD1CCCA91400827D40 /* mat4x4.hpp in Headers */,
@@ -1122,6 +1135,7 @@
 				9A33627A1CC3D2CF00C8C7C0 /* RendererModule.hpp in Headers */,
 				9A33628F1CC6675B00C8C7C0 /* FBXMessage.hpp in Headers */,
 				9A71D6E21CBE45CF00564A1B /* UIModule.hpp in Headers */,
+				9A33430E1CE22FC2008319E4 /* Utils.hpp in Headers */,
 				499F2B551CCCA91400827D40 /* glm.hpp in Headers */,
 				499F2B4D1CCCA91400827D40 /* type_vec1.hpp in Headers */,
 				9A1FD88D1CDDB8100053D1FE /* ILifeCycle.hpp in Headers */,
@@ -1217,6 +1231,7 @@
 				9A33627D1CC3D3EE00C8C7C0 /* EventRenderer.cpp in Sources */,
 				9A71D6DC1CBE44D300564A1B /* Reference.cpp in Sources */,
 				9A3362791CC3D2CF00C8C7C0 /* RendererModule.cpp in Sources */,
+				9A33430D1CE22FC2008319E4 /* Utils.cpp in Sources */,
 				9A1FD88C1CDDB8100053D1FE /* ILifeCycle.cpp in Sources */,
 				9A1FD8871CDC87F40053D1FE /* MeshComponent.cpp in Sources */,
 				9A3362BA1CC9B80400C8C7C0 /* FileUtils.cpp in Sources */,
@@ -1227,6 +1242,7 @@
 				9A71D6D41CBE44D300564A1B /* Message.cpp in Sources */,
 				9A71D6D81CBE44D300564A1B /* Node.cpp in Sources */,
 				499F2B2B1CCCA91400827D40 /* dummy.cpp in Sources */,
+				9A3343091CE1FEED008319E4 /* GLProgramCache.cpp in Sources */,
 				9A71D6DA1CBE44D300564A1B /* Object.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1289,10 +1305,12 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../thirdParty/Math/glm\"",
 					"\"$(SRCROOT)/../thirdParty/fbx/include\"",
+					"\"$(SRCROOT)/../thirdParty/glfw\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../rendererModule/glfw/osx\"",
 					"\"$(SRCROOT)/../thirdParty/fbx/lib/clang/debug\"",
+					"\"$(SRCROOT)/../thirdParty/glfw/osx\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
@@ -1339,10 +1357,12 @@
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../thirdParty/Math/glm\"",
 					"\"$(SRCROOT)/../thirdParty/fbx/include\"",
+					"\"$(SRCROOT)/../thirdParty/glfw\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../rendererModule/glfw/osx\"",
 					"\"$(SRCROOT)/../thirdParty/fbx/lib/clang/release\"",
+					"\"$(SRCROOT)/../thirdParty/glfw/osx\"",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;

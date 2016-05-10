@@ -9,6 +9,7 @@
 #ifndef MeshComponent_hpp
 #define MeshComponent_hpp
 
+#include "glfw3.h"
 #include "Component.hpp"
 #include "GLStructDefine.h"
 
@@ -21,11 +22,19 @@ namespace dragon {
         void createVertexesIf(int length);
         void addVertex(const gl::Vertex& vertex);
         gl::Vertex* getVertex();
+        
+        virtual void onPreUpdate();
+        virtual void onUpdate();
+        virtual void onAfterUpdate();
 
     protected:
         gl::Vertex* vertexes;
         int vertexLength;
         int vertexCapacity;
+        
+        GLuint glBuffer;
+        bool glBufferInvalid;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
     };
 }
 

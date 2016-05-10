@@ -13,7 +13,7 @@
 
 #include "../core/Module.hpp"
 #include "GLProgram.hpp"
-#include "glfw/glfw3.h"
+#include "glfw3.h"
 
 namespace dragon {
 
@@ -25,8 +25,7 @@ namespace dragon {
         
         static RendererModule* self();
         
-        virtual void onInit();
-        virtual void update(int dt);
+        void step();
         bool windowShouldClose();
 
         virtual void onMessage(Message* msg);
@@ -34,7 +33,12 @@ namespace dragon {
         /*
          * Life Cycle
          */
-        virtual void onDeinit();
+        virtual void preUpdate() override;
+        virtual void afterUpdate() override;
+        virtual void update() override;
+        virtual void onPreUpdate() override;
+        virtual void onAfterUpdate() override;
+        virtual void onUpdate() override;
         
     protected:
         void createGLProgram();

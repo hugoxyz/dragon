@@ -69,13 +69,16 @@ namespace dragon {
         moduleMatrix = glm::mat4(1.0f);
         viewMatrix = glm::lookAt(cameraPos, cameraFocus, cameraUp);
         projectMatrix = glm::perspective(45.0f, (float)(width/height), 0.1f, 100.0f);
+        
+        step();
     }
 
     RendererModule::~RendererModule() {
         program->release();
+        glfwTerminate();
     }
     
-    void RendererModule::onInit() {
+    void RendererModule::step() {
         if (GL_TRUE != glfwInit()) {
             return ;
         }
@@ -135,67 +138,31 @@ namespace dragon {
         return glfwWindowShouldClose(window);
     }
 
-    void RendererModule::update(int dt) {
+    void RendererModule::preUpdate() {}
+    
+    void RendererModule::afterUpdate() {}
+    
+    void RendererModule::update() {
         if (windowShouldClose()) {
             Manager::getInstance()->exit();
             return;
         }
 
-        //pre renderer
-        for (auto child : children) {
-            RendererNode* node = dynamic_cast<RendererNode*>(child);
-            if (nullptr == node) {
-                LOGD("RendererModule", "can't cast child to renderer node");
-                continue;
-            }
-            node->onPreRenderer();
-        }
-        
+        Module::preUpdate();
+        Module::update();
+        Module::afterUpdate();
+    }
+    
+    void RendererModule::onPreUpdate() {
         glClear(GL_COLOR_BUFFER_BIT);
-        
-        //renderer
-        for (auto child : children) {
-            RendererNode* node = dynamic_cast<RendererNode*>(child);
-            if (nullptr == node) {
-                LOGD("RendererModule", "can't cast child to renderer node");
-                continue;
-            }
-            node->onRenderer();
-        }
-
-//        do {
-//            
-//            
-//            if (nullptr != program) {
-//                GLuint vertextLocation = 0;
-//                if (!program->getAttributeLocation("av3Vertex", &vertextLocation)) {
-//                    break;
-//                }
-//                glBindBuffer(GL_ARRAY_BUFFER, vertexesBuf);
-//                glEnableVertexAttribArray(vertextLocation);
-//                glVertexAttribPointer(vertextLocation, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, 0);
-//                glDrawArrays(GL_LINE_LOOP, 0, 30000);
-//                glBindBuffer(GL_ARRAY_BUFFER, 0);
-//            }
-//        } while (false);
-
+    }
+    
+    void RendererModule::onAfterUpdate() {
         glfwSwapBuffers(window);
         glfwPollEvents();
-        
-        //after renderer
-        for (auto child : children) {
-            RendererNode* node = dynamic_cast<RendererNode*>(child);
-            if (nullptr == node) {
-                LOGD("RendererModule", "can't cast child to renderer node");
-                continue;
-            }
-            node->onAfterRenderer();
-        }
     }
-
-    void RendererModule::onDeinit() {
-        glfwTerminate();
-    }
+    
+    void RendererModule::onUpdate() {}
 
     void RendererModule::onMessage(Message *msg) {
         EventRenderer *m = dynamic_cast<EventRenderer*>(msg);
@@ -221,7 +188,7 @@ namespace dragon {
     
     void RendererModule::onRendererNode(int event, dragon::Object *data, dragon::Object *userData) {
         if (event == static_cast<int>(EventComponent::Event::EVENT_RENDERER_NODE)) {
-            RendererNode* node = dynamic_cast<RendererNode*>(data);
+            Node* node = dynamic_cast<Node*>(data);
             if (nullptr == node) {
                 return;
             }

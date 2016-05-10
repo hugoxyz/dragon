@@ -55,7 +55,7 @@ namespace dragon {
         return path;
     }
     
-    void FBXModule::update(int dt) {
+    void FBXModule::onUpdate() {
         if (waitingPaths.size() > 0) {
             parserFBX(getWaitingPath());
         }
@@ -116,7 +116,7 @@ namespace dragon {
             rendererNode->release();
             rendererNode = nullptr;
         }
-        rendererNode = new RendererNode();
+        rendererNode = new Node();
         processFBXNode(fbxScene->GetRootNode());
 
         return true;
