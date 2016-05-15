@@ -10,6 +10,7 @@
 #include "GLProgramCache.hpp"
 #include "../core/Utils.hpp"
 #include "../core/FileUtils.hpp"
+#include "Logger.hpp"
 
 namespace dragon {
     
@@ -17,6 +18,7 @@ namespace dragon {
     GLProgramCache* GLProgramCache::getInstance() {
         if (nullptr == instance) {
             instance = new GLProgramCache();
+            instance->retain();
         }
         
         return instance;
@@ -63,11 +65,15 @@ namespace dragon {
     }
 
     std::string GLProgramCache::genName(const std::string& vsh, const std::string& fsh) {
-        std::string fName = Utils::split(fsh, '/').back();
-        fName = Utils::split(fName, '\\').back();
+        auto  strs = Utils::split(fsh, '/');
+        std::string fName = (0 == strs.size() ? "" : strs.back());
+        strs = Utils::split(fName, '\\');
+        fName = (0 == strs.size() ? "" : strs.back());
         
-        std::string vName = Utils::split(vsh, '/').back();
-        vName = Utils::split(vName, '\\').back();
+        strs = Utils::split(fName, '/');
+        std::string vName = (0 == strs.size() ? "" : strs.back());
+        strs = Utils::split(fName, '\\');
+        vName = (0 == strs.size() ? "" : strs.back());
         
         return vName + fName;
     }
@@ -78,7 +84,7 @@ namespace dragon {
         int vsLen = 0;
         int fsLen = 0;
         bool ret = false;
-        
+
         ret = FileUtils::getInstance()->read(vsh, (unsigned char**)&vs, &vsLen, true);
         ret = ret && FileUtils::getInstance()->read(fsh, (unsigned char**)&fs, &fsLen, true);
         if (!ret) {

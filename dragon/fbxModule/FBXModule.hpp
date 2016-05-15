@@ -14,7 +14,6 @@
 #include "fbxsdk.h"
 
 #include "../core/Module.hpp"
-#include "../rendererModule/RendererNode.hpp"
 
 namespace dragon {
     class FBXModule : public Module {

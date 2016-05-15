@@ -25,8 +25,11 @@ namespace dragon {
         void removeComponent(const std::string& name);
         void removeAllComponent();
         Component* getComponent(const std::string& name);
-        template <typename T>
-        T* getComponent();
+        template <class T>
+        T* getComponent() {
+            Component *comp = getComponent(typeid(T).name());
+            return dynamic_cast<T*>(comp);
+        }
 
         friend class Manager;
     protected:

@@ -12,6 +12,7 @@
 #include "glfw3.h"
 #include "Component.hpp"
 #include "GLStructDefine.h"
+#include "../rendererModule/GLProgram.hpp"
 
 namespace dragon {
     class MeshComponent : public Component {
@@ -23,9 +24,15 @@ namespace dragon {
         void addVertex(const gl::Vertex& vertex);
         gl::Vertex* getVertex();
         
-        virtual void onPreUpdate();
-        virtual void onUpdate();
-        virtual void onAfterUpdate();
+        void setShaderPath(const std::string& vshader_path, const std::string& fshader_path);
+        
+        virtual void onResume() override;
+        virtual void onPreUpdate() override;
+        virtual void onUpdate() override;
+        virtual void onAfterUpdate() override;
+        virtual void onSuspend() override;
+        
+        void onCameraProject(int event, Object* data, Object* userData);
 
     protected:
         gl::Vertex* vertexes;
@@ -34,7 +41,16 @@ namespace dragon {
         
         GLuint glBuffer;
         bool glBufferInvalid;
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+        
+        std::string vshader_path;
+        std::string fshader_path;
+        GLProgram* program;
+        
+        int cameraObserveTag;
+        bool projectMatrixDirty;
+        bool viewMatrixDirty;
+        bool moduleMatrixDirty;
+
     };
 }
 

@@ -28,7 +28,7 @@ namespace dragon {
         name = "__fbx_mod";
         waitingPaths.clear();
         
-        EventComponent* event = dynamic_cast<EventComponent*>(Manager::getInstance()->getComponent(typeid(EventComponent).name()));
+        EventComponent* event = Manager::getInstance()->getComponent<EventComponent>();
         if (nullptr != event) {
             EventComponent::EventObserverFun cb = std::bind(&FBXModule::onInputEvent, this,
                                                             std::placeholders::_1,
@@ -117,6 +117,7 @@ namespace dragon {
             rendererNode = nullptr;
         }
         rendererNode = new Node();
+        rendererNode->retain();
         processFBXNode(fbxScene->GetRootNode());
 
         return true;

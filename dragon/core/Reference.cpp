@@ -8,6 +8,7 @@
 
 #include "Reference.hpp"
 #include "AutoReleasePoolMgr.hpp"
+#include "Logger.hpp"
 
 namespace dragon {
     Reference::Reference()
@@ -25,6 +26,7 @@ namespace dragon {
     void Reference::release() {
         referenceCount--;
         if (0 == referenceCount) {
+            LOGD("Reference", ">>>> release %s, %x", typeid(*this).name(), this);
             delete this;
         }
     }

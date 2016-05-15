@@ -55,10 +55,5 @@ namespace dragon {
         auto iter = components.find(name);
         return iter->second;
     }
-    
-    template <typename T>
-    T* Component::getComponent() {
-        Component *comp = getComponent(typeid(T).name());
-        return dynamic_cast<T*>(comp);
-    }
+
 }

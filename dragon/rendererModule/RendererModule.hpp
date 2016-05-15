@@ -22,9 +22,12 @@ namespace dragon {
 
         RendererModule();
         ~RendererModule();
-        
-        static RendererModule* self();
-        
+
+        static RendererModule* getInstance();
+
+        void createCameraNode();
+        Node* getCameraNode();
+
         void step();
         bool windowShouldClose();
 
@@ -62,6 +65,8 @@ namespace dragon {
         glm::vec3 cameraPos;
         glm::vec3 cameraFocus;
         glm::vec3 cameraUp;
+        
+        int cameraid;
 
     private:
         static RendererModule* instance;

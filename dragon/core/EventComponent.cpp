@@ -38,7 +38,9 @@ namespace dragon {
         auto idx = 0;
         for (auto cbs : *vec) {
             if (cbs.tag == tag) {
-                cbs.userData->release();
+                if (nullptr != cbs.userData) {
+                    cbs.userData->release();
+                }
                 vec->erase(vec->begin() + idx);
                 break;
             }

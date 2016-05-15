@@ -23,6 +23,7 @@ namespace dragon {
             EVENT_INPUT,
             EVENT_RENDERER,
             EVENT_RENDERER_NODE,
+            EVENT_CAMERA_PROJECTION_CHANGE,
             
             EVENT_USER = 1000,
         };

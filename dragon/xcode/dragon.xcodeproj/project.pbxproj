@@ -160,6 +160,8 @@
 		9A33430A1CE1FEED008319E4 /* GLProgramCache.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A3343081CE1FEED008319E4 /* GLProgramCache.hpp */; };
 		9A33430D1CE22FC2008319E4 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A33430B1CE22FC2008319E4 /* Utils.cpp */; };
 		9A33430E1CE22FC2008319E4 /* Utils.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A33430C1CE22FC2008319E4 /* Utils.hpp */; };
+		9A3343191CE46CEC008319E4 /* CameraComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3343171CE46CEC008319E4 /* CameraComponent.cpp */; };
+		9A33431A1CE46CEC008319E4 /* CameraComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A3343181CE46CEC008319E4 /* CameraComponent.hpp */; };
 		9A3362791CC3D2CF00C8C7C0 /* RendererModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3362771CC3D2CF00C8C7C0 /* RendererModule.cpp */; };
 		9A33627A1CC3D2CF00C8C7C0 /* RendererModule.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A3362781CC3D2CF00C8C7C0 /* RendererModule.hpp */; };
 		9A33627D1CC3D3EE00C8C7C0 /* EventRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A33627B1CC3D3EE00C8C7C0 /* EventRenderer.cpp */; };
@@ -204,8 +206,6 @@
 		9AE5856F1CD25B500050BA74 /* libfbxsdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AE5856E1CD25B500050BA74 /* libfbxsdk.a */; };
 		9AE585731CD2EF580050BA74 /* EventInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AE585711CD2EF580050BA74 /* EventInput.cpp */; };
 		9AE585741CD2EF580050BA74 /* EventInput.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9AE585721CD2EF580050BA74 /* EventInput.hpp */; };
-		9AF7FBB81CDA486D0091FF73 /* RendererNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF7FBB61CDA486D0091FF73 /* RendererNode.cpp */; };
-		9AF7FBB91CDA486D0091FF73 /* RendererNode.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9AF7FBB71CDA486D0091FF73 /* RendererNode.hpp */; };
 		9AF7FBBC1CDA494A0091FF73 /* TransformComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9AF7FBBA1CDA494A0091FF73 /* TransformComponent.cpp */; };
 		9AF7FBBD1CDA494A0091FF73 /* TransformComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9AF7FBBB1CDA494A0091FF73 /* TransformComponent.hpp */; };
 /* End PBXBuildFile section */
@@ -476,6 +476,8 @@
 		9A3343081CE1FEED008319E4 /* GLProgramCache.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgramCache.hpp; sourceTree = "<group>"; };
 		9A33430B1CE22FC2008319E4 /* Utils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
 		9A33430C1CE22FC2008319E4 /* Utils.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Utils.hpp; sourceTree = "<group>"; };
+		9A3343171CE46CEC008319E4 /* CameraComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CameraComponent.cpp; sourceTree = "<group>"; };
+		9A3343181CE46CEC008319E4 /* CameraComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CameraComponent.hpp; sourceTree = "<group>"; };
 		9A3362771CC3D2CF00C8C7C0 /* RendererModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererModule.cpp; sourceTree = "<group>"; };
 		9A3362781CC3D2CF00C8C7C0 /* RendererModule.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RendererModule.hpp; sourceTree = "<group>"; };
 		9A33627B1CC3D3EE00C8C7C0 /* EventRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventRenderer.cpp; sourceTree = "<group>"; };
@@ -522,8 +524,6 @@
 		9AE5856E1CD25B500050BA74 /* libfbxsdk.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfbxsdk.a; path = ../thirdParty/fbx/lib/clang/debug/libfbxsdk.a; sourceTree = "<group>"; };
 		9AE585711CD2EF580050BA74 /* EventInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventInput.cpp; sourceTree = "<group>"; };
 		9AE585721CD2EF580050BA74 /* EventInput.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = EventInput.hpp; sourceTree = "<group>"; };
-		9AF7FBB61CDA486D0091FF73 /* RendererNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererNode.cpp; sourceTree = "<group>"; };
-		9AF7FBB71CDA486D0091FF73 /* RendererNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RendererNode.hpp; sourceTree = "<group>"; };
 		9AF7FBBA1CDA494A0091FF73 /* TransformComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransformComponent.cpp; sourceTree = "<group>"; };
 		9AF7FBBB1CDA494A0091FF73 /* TransformComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TransformComponent.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -864,8 +864,6 @@
 				9A33627C1CC3D3EE00C8C7C0 /* EventRenderer.hpp */,
 				9A3362BD1CC9B9F700C8C7C0 /* GLProgram.cpp */,
 				9A3362BE1CC9B9F700C8C7C0 /* GLProgram.hpp */,
-				9AF7FBB61CDA486D0091FF73 /* RendererNode.cpp */,
-				9AF7FBB71CDA486D0091FF73 /* RendererNode.hpp */,
 				9A3343071CE1FEED008319E4 /* GLProgramCache.cpp */,
 				9A3343081CE1FEED008319E4 /* GLProgramCache.hpp */,
 			);
@@ -943,6 +941,8 @@
 				9A1FD88B1CDDB8100053D1FE /* ILifeCycle.hpp */,
 				9A33430B1CE22FC2008319E4 /* Utils.cpp */,
 				9A33430C1CE22FC2008319E4 /* Utils.hpp */,
+				9A3343171CE46CEC008319E4 /* CameraComponent.cpp */,
+				9A3343181CE46CEC008319E4 /* CameraComponent.hpp */,
 			);
 			name = core;
 			path = ../core;
@@ -1033,6 +1033,7 @@
 				499F2B991CCCA91400827D40 /* simd_vec4.hpp in Headers */,
 				499F2B451CCCA91400827D40 /* type_mat2x4.hpp in Headers */,
 				499F2B581CCCA91400827D40 /* constants.hpp in Headers */,
+				9A33431A1CE46CEC008319E4 /* CameraComponent.hpp in Headers */,
 				9A71D6D51CBE44D300564A1B /* Message.hpp in Headers */,
 				9A33627E1CC3D3EE00C8C7C0 /* EventRenderer.hpp in Headers */,
 				499F2B811CCCA91400827D40 /* matrix_interpolation.hpp in Headers */,
@@ -1083,7 +1084,6 @@
 				9A71D6D91CBE44D300564A1B /* Node.hpp in Headers */,
 				499F2B8E1CCCA91400827D40 /* polar_coordinates.hpp in Headers */,
 				499F2B921CCCA91400827D40 /* raw_data.hpp in Headers */,
-				9AF7FBB91CDA486D0091FF73 /* RendererNode.hpp in Headers */,
 				499F2BB41CCCA91400827D40 /* vector_relational.hpp in Headers */,
 				499F2B5F1CCCA91400827D40 /* noise.hpp in Headers */,
 				499F2B891CCCA91400827D40 /* normalize_dot.hpp in Headers */,
@@ -1222,7 +1222,6 @@
 				9AF7FBBC1CDA494A0091FF73 /* TransformComponent.cpp in Sources */,
 				9AE585691CD251970050BA74 /* EventComponent.cpp in Sources */,
 				9A71D6CE1CBE44D300564A1B /* Component.cpp in Sources */,
-				9AF7FBB81CDA486D0091FF73 /* RendererNode.cpp in Sources */,
 				9A71D6D21CBE44D300564A1B /* Manager.cpp in Sources */,
 				9A3362BF1CC9B9F700C8C7C0 /* GLProgram.cpp in Sources */,
 				9A33628E1CC6675B00C8C7C0 /* FBXMessage.cpp in Sources */,
@@ -1231,6 +1230,7 @@
 				9A33627D1CC3D3EE00C8C7C0 /* EventRenderer.cpp in Sources */,
 				9A71D6DC1CBE44D300564A1B /* Reference.cpp in Sources */,
 				9A3362791CC3D2CF00C8C7C0 /* RendererModule.cpp in Sources */,
+				9A3343191CE46CEC008319E4 /* CameraComponent.cpp in Sources */,
 				9A33430D1CE22FC2008319E4 /* Utils.cpp in Sources */,
 				9A1FD88C1CDDB8100053D1FE /* ILifeCycle.cpp in Sources */,
 				9A1FD8871CDC87F40053D1FE /* MeshComponent.cpp in Sources */,

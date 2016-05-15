@@ -19,4 +19,9 @@ namespace dragon {
     
     Object::~Object() {
     }
+    
+    void Object::setName(const std::string &n) {
+        name = n;
+    }
+    
 }

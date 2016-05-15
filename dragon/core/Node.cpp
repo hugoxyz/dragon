@@ -11,6 +11,7 @@
 #include "TransformComponent.hpp"
 
 namespace dragon {
+    
     Node::Node()
     : parent(nullptr) {
     }
@@ -20,7 +21,7 @@ namespace dragon {
     }
     
     void Node::createTransformIf() {
-        TransformComponent *component = dynamic_cast<TransformComponent*>(getComponent(name));
+        TransformComponent *component = getComponent<TransformComponent>();
         if (nullptr == component) {
             component = new TransformComponent();
             addComponent(component);
@@ -119,6 +120,9 @@ namespace dragon {
     }
     
     void Node::preUpdate() {
+        if (!isActive()) {
+            resume();
+        }
         Component::preUpdate();
         for (auto child : children) {
             child->preUpdate();

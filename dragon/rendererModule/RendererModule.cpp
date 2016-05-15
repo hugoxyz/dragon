@@ -14,14 +14,13 @@
 
 #include "RendererModule.hpp"
 #include "EventRenderer.hpp"
-#include "RendererNode.hpp"
 #include "../core/Manager.hpp"
 #include "../core/FileUtils.hpp"
 #include "Logger.hpp"
 #include "../fbxModule/FBXMessage.hpp"
 #include "../core/EventInput.hpp"
 #include "../core/EventComponent.hpp"
-
+#include "../core/CameraComponent.hpp"
 
 namespace dragon {
     
@@ -56,7 +55,8 @@ namespace dragon {
     RendererModule* RendererModule::instance = nullptr;
     
     RendererModule::RendererModule()
-    : window(nullptr) {
+    : window(nullptr)
+    , cameraid(0) {
         name = "__renderer_mod";
         
         width = 960;
@@ -76,6 +76,26 @@ namespace dragon {
     RendererModule::~RendererModule() {
         program->release();
         glfwTerminate();
+    }
+    
+    RendererModule* RendererModule::getInstance() {
+        if (nullptr == instance) {
+            instance = new RendererModule();
+        }
+        
+        return instance;
+    }
+    
+    void RendererModule::createCameraNode() {
+        auto camera = new Node();
+        camera->createTransformIf();
+        camera->addComponent(new CameraComponent());
+        addChild(camera);
+        cameraid = camera->getId();
+    }
+    
+    Node* RendererModule::getCameraNode() {
+        return getChild(cameraid);
     }
     
     void RendererModule::step() {
@@ -116,7 +136,7 @@ namespace dragon {
         
         glClearColor(0.5, 0.5, 0.5, 0.5);
         
-        EventComponent* event = dynamic_cast<EventComponent*>(Manager::getInstance()->getComponent(typeid(EventComponent).name()));
+        EventComponent* event = Manager::getInstance()->getComponent<EventComponent>();
         if (nullptr != event) {
             event->addObserver(static_cast<int>(EventComponent::Event::EVENT_RENDERER),
                                std::bind(&RendererModule::onRendererEvent,
@@ -192,7 +212,8 @@ namespace dragon {
             if (nullptr == node) {
                 return;
             }
-
+            
+            //removeAllChild();
             addChild(node);
         } else {
             LOGD("RendererModule", "unknow event:%d", event);

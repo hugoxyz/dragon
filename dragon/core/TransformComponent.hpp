@@ -14,6 +14,10 @@
 
 namespace dragon {
     class TransformComponent : public Component {
+    public:
+        
+        TransformComponent();
+        ~TransformComponent();
 
         void setPosition(const glm::vec3& v);
         void setScale(const glm::vec3& v);
@@ -22,11 +26,16 @@ namespace dragon {
         const glm::vec3& getPosition();
         const glm::vec3& getScale();
         const glm::vec3& getRotation();
+        
+        const glm::mat4& getModuleMatrix();
 
     protected:
         glm::vec3 position;
         glm::vec3 scale;
         glm::vec3 rotation;
+        
+        glm::mat4 moduleMatrix;
+        bool moduleMatrixDirty;
     };
 }
 
