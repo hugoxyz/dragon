@@ -70,12 +70,12 @@ namespace dragon {
         strs = Utils::split(fName, '\\');
         fName = (0 == strs.size() ? "" : strs.back());
         
-        strs = Utils::split(fName, '/');
+        strs = Utils::split(vsh, '/');
         std::string vName = (0 == strs.size() ? "" : strs.back());
-        strs = Utils::split(fName, '\\');
+        strs = Utils::split(vName, '\\');
         vName = (0 == strs.size() ? "" : strs.back());
         
-        return vName + fName;
+        return vName + "_" + fName;
     }
     
     GLProgram* GLProgramCache::createGLProgram(const std::string& vsh, const std::string& fsh) {

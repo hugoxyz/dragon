@@ -14,9 +14,11 @@ namespace dragon {
     
     Node::Node()
     : parent(nullptr) {
+        components.clear();
     }
     
     Node::~Node() {
+        removeAllComponent();
         removeAllChild();
     }
     
@@ -78,6 +80,46 @@ namespace dragon {
             }
         }
         return nullptr;
+    }
+    
+    void Node::addComponent(Component* comp, const std::string& n) {
+        std::string name;
+        if (n.empty()) {
+            name = typeid(*comp).name();
+        } else {
+            name = n;
+        }
+        auto ret = components.insert(std::make_pair(name, comp));
+        if (ret.second) {
+            comp->host = this;
+            comp->retain();
+        }
+    }
+    
+    void Node::removeComponent(const std::string& name) {
+        for (auto iter = components.end(); iter != components.begin(); iter++) {
+            if (0 == iter->first.compare(name)) {
+                iter->second->host = nullptr;
+                iter->second->release();
+                components.erase(iter);
+            }
+        }
+    }
+    
+    void Node::removeAllComponent() {
+        for (const auto& item: components) {
+            item.second->host = nullptr;
+            item.second->release();
+        }
+        components.clear();
+    }
+    
+    Component* Node::getComponent(const std::string& name) {
+        auto iter = components.find(name);
+        if (iter == components.end()) {
+            return nullptr;
+        }
+        return iter->second;
     }
     
     Module* Node::getModule() {

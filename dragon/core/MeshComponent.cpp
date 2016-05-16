@@ -130,8 +130,11 @@ namespace dragon {
             }
         }
         if (moduleMatrixDirty) {
-            TransformComponent *trans = getComponent<TransformComponent>();
-            if (nullptr == trans) {
+            TransformComponent *trans = nullptr;
+            if ( nullptr != host) {
+                trans = host->getComponent<TransformComponent>();
+            }
+            if (nullptr != trans) {
                 program->use();
                 glm::mat4 m = trans->getModuleMatrix();
                 program->setUnifrom("", glm::value_ptr(m), 16);

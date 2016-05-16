@@ -117,6 +117,7 @@ namespace dragon {
             rendererNode = nullptr;
         }
         rendererNode = new Node();
+        rendererNode->createTransformIf();
         rendererNode->retain();
         processFBXNode(fbxScene->GetRootNode());
 
@@ -253,6 +254,7 @@ namespace dragon {
 
         MeshComponent *meshComp = new MeshComponent();
         meshComp->createVertexesIf(triangleCount * 3);
+        meshComp->setShaderPath("./resources/shader/default.vsh", "./resources/shader/default.fsh");
         FbxVector4* fbxControlPoints = fbxMesh->GetControlPoints();
         for(int i = 0 ; i < triangleCount ; ++i) {
             int polygonSize = fbxMesh->GetPolygonSize(i);
