@@ -43,6 +43,9 @@ namespace dragon {
         virtual void onAfterUpdate() override;
         virtual void onUpdate() override;
         
+        void onGLFWDrop(GLFWwindow* w, int count, const char** path);
+        void onGLFWKey(GLFWwindow* w, int key , int code , int action, int mod);
+
     protected:
         void createGLProgram();
         void setBufferData(GLuint buffer, void* data, int size);

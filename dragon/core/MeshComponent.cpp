@@ -124,7 +124,7 @@ namespace dragon {
                 }
                 if (viewMatrixDirty) {
                     glm::mat4 viewMat = comp->getViewMatrix();
-                    program->setUnifrom("um4MVMatrix", glm::value_ptr(viewMat), 16);
+                    program->setUnifrom("um4VMatrix", glm::value_ptr(viewMat), 16);
                     viewMatrixDirty = false;
                 }
             }
@@ -137,7 +137,7 @@ namespace dragon {
             if (nullptr != trans) {
                 program->use();
                 glm::mat4 m = trans->getModuleMatrix();
-                program->setUnifrom("", glm::value_ptr(m), 16);
+                program->setUnifrom("um4MMatrix", glm::value_ptr(m), 16);
                 moduleMatrixDirty = false;
             }
         }
