@@ -27,6 +27,7 @@ namespace dragon {
     , glBuffer(0)
     , glBufferInvalid(true)
     , cameraObserveTag(0)
+    , cameraViewObserveTag(0)
     , projectMatrixDirty(true)
     , viewMatrixDirty(true)
     , moduleMatrixDirty(true)
@@ -80,11 +81,17 @@ namespace dragon {
         EventComponent* event = Manager::getInstance()->getComponent<EventComponent>();
         if (nullptr != event) {
             cameraObserveTag = event->addObserver(static_cast<int>(EventComponent::Event::EVENT_CAMERA_PROJECTION_CHANGE),
-                               std::bind(&MeshComponent::onCameraProject,
-                                         this,
-                                         std::placeholders::_1,
-                                         std::placeholders::_2,
-                                         std::placeholders::_3));
+                                                  std::bind(&MeshComponent::onCameraProject,
+                                                            this,
+                                                            std::placeholders::_1,
+                                                            std::placeholders::_2,
+                                                            std::placeholders::_3));
+            cameraViewObserveTag = event->addObserver(static_cast<int>(EventComponent::Event::EVENT_CAMERA_VIEW_CHANGE),
+                                                      std::bind(&MeshComponent::onCameraView,
+                                                                this,
+                                                                std::placeholders::_1,
+                                                                std::placeholders::_2,
+                                                                std::placeholders::_3));
         }
         if (nullptr == program) {
             program = GLProgramCache::getInstance()->getProgram(vshader_path, fshader_path);
@@ -99,6 +106,7 @@ namespace dragon {
         EventComponent* event = Manager::getInstance()->getComponent<EventComponent>();
         if (nullptr != event) {
             event->removeObserver(static_cast<int>(EventComponent::Event::EVENT_CAMERA_PROJECTION_CHANGE), cameraObserveTag);
+            event->removeObserver(static_cast<int>(EventComponent::Event::EVENT_CAMERA_VIEW_CHANGE), cameraViewObserveTag);
         }
     }
     
@@ -159,6 +167,10 @@ namespace dragon {
     
     void MeshComponent::onCameraProject(int event, Object* data, Object* userData) {
         projectMatrixDirty = true;
+    }
+    
+    void MeshComponent::onCameraView(int event, Object* data, Object* userData) {
+        viewMatrixDirty = true;
     }
     
 }

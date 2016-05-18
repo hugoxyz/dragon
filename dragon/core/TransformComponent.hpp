@@ -22,6 +22,10 @@ namespace dragon {
         void setPosition(const glm::vec3& v);
         void setScale(const glm::vec3& v);
         void setRotation(const glm::vec3& v);
+        
+        void move(const glm::vec3& v);
+        void scale(const glm::vec3& v);
+        void rotate(const glm::vec3& v);
 
         const glm::vec3& getPosition();
         const glm::vec3& getScale();
@@ -31,7 +35,7 @@ namespace dragon {
 
     protected:
         glm::vec3 position;
-        glm::vec3 scale;
+        glm::vec3 size;
         glm::vec3 rotation;
         
         glm::mat4 moduleMatrix;

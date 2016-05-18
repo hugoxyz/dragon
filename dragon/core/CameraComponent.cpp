@@ -8,6 +8,10 @@
 
 #include "glm/ext.hpp"
 #include "CameraComponent.hpp"
+#include "TransformComponent.hpp"
+#include "EventComponent.hpp"
+#include "Node.hpp"
+#include "Manager.hpp"
 
 namespace dragon {
     
@@ -19,12 +23,18 @@ namespace dragon {
     , angle(45)
     , projectMatrixDirty(true)
     , viewMatrixDirty(true) {
-        position = glm::vec3(0, 0, 10);
         focus = glm::vec3(0, 0, 0);
         up = glm::vec3(0, 1, 0);
     }
     
     CameraComponent::~CameraComponent() {
+    }
+    
+    void CameraComponent::moveFocus(const glm::vec3& v) {
+        focus += v;
+        viewMatrixDirty = true;
+        
+        Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_CAMERA_VIEW_CHANGE), nullptr);
     }
     
     const glm::mat4& CameraComponent::getProjectMatrix() {
@@ -36,8 +46,16 @@ namespace dragon {
     }
 
     const glm::mat4& CameraComponent::getViewMatrix() {
+        if (nullptr == host) {
+            return viewMatrix;
+        }
+        TransformComponent *trans = host->getComponent<TransformComponent>();
+        if (nullptr == trans) {
+            return viewMatrix;
+        }
+        
         if (viewMatrixDirty) {
-            viewMatrix = glm::lookAt(position, focus, up);
+            viewMatrix = glm::lookAt(trans->getPosition(), focus, up);
             viewMatrixDirty = false;
         }
         

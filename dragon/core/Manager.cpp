@@ -13,6 +13,7 @@
 #include "Logger.hpp"
 #include "AutoReleasePoolMgr.hpp"
 #include "EventComponent.hpp"
+#include "CameraComponent.hpp"
 
 #include "../uiModule/UIModule.hpp"
 #include "../fbxModule/FBXModule.hpp"
@@ -75,6 +76,12 @@ namespace dragon {
         
         m = new RendererModule();
         addChild(m);
+        
+        Node *n = new Node();
+        n->createTransformIf();
+        n->addComponent(new CameraComponent());
+        n->setName("__camera_node");
+        addChild(n);
     }
     
     void Manager::loadDefaultComponent() {

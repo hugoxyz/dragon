@@ -20,6 +20,7 @@ namespace dragon {
         CameraComponent();
         ~CameraComponent();
         
+        void moveFocus(const glm::vec3& v);
         const glm::mat4& getProjectMatrix();
         const glm::mat4& getViewMatrix();
         
@@ -31,8 +32,7 @@ namespace dragon {
         float angle;
         glm::mat4 projectMatrix;
         bool projectMatrixDirty;
-        
-        glm::vec3 position;
+
         glm::vec3 focus;
         glm::vec3 up;
         glm::mat4 viewMatrix;

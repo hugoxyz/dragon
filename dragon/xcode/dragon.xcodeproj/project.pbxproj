@@ -168,6 +168,8 @@
 		9A33433C1CEB28FE008319E4 /* InputBaseEvent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A33433A1CEB28FE008319E4 /* InputBaseEvent.hpp */; };
 		9A33433F1CEB2A75008319E4 /* InputKeyEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A33433D1CEB2A75008319E4 /* InputKeyEvent.cpp */; };
 		9A3343401CEB2A75008319E4 /* InputKeyEvent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A33433E1CEB2A75008319E4 /* InputKeyEvent.hpp */; };
+		9A3343431CEBF79F008319E4 /* ControlComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3343411CEBF79F008319E4 /* ControlComponent.cpp */; };
+		9A3343441CEBF79F008319E4 /* ControlComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A3343421CEBF79F008319E4 /* ControlComponent.hpp */; };
 		9A3362791CC3D2CF00C8C7C0 /* RendererModule.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3362771CC3D2CF00C8C7C0 /* RendererModule.cpp */; };
 		9A33627A1CC3D2CF00C8C7C0 /* RendererModule.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A3362781CC3D2CF00C8C7C0 /* RendererModule.hpp */; };
 		9A33627D1CC3D3EE00C8C7C0 /* EventRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A33627B1CC3D3EE00C8C7C0 /* EventRenderer.cpp */; };
@@ -490,6 +492,8 @@
 		9A33433A1CEB28FE008319E4 /* InputBaseEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InputBaseEvent.hpp; sourceTree = "<group>"; };
 		9A33433D1CEB2A75008319E4 /* InputKeyEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputKeyEvent.cpp; sourceTree = "<group>"; };
 		9A33433E1CEB2A75008319E4 /* InputKeyEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InputKeyEvent.hpp; sourceTree = "<group>"; };
+		9A3343411CEBF79F008319E4 /* ControlComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ControlComponent.cpp; sourceTree = "<group>"; };
+		9A3343421CEBF79F008319E4 /* ControlComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ControlComponent.hpp; sourceTree = "<group>"; };
 		9A3362771CC3D2CF00C8C7C0 /* RendererModule.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererModule.cpp; sourceTree = "<group>"; };
 		9A3362781CC3D2CF00C8C7C0 /* RendererModule.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RendererModule.hpp; sourceTree = "<group>"; };
 		9A33627B1CC3D3EE00C8C7C0 /* EventRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EventRenderer.cpp; sourceTree = "<group>"; };
@@ -961,6 +965,8 @@
 				9A33433A1CEB28FE008319E4 /* InputBaseEvent.hpp */,
 				9A33433D1CEB2A75008319E4 /* InputKeyEvent.cpp */,
 				9A33433E1CEB2A75008319E4 /* InputKeyEvent.hpp */,
+				9A3343411CEBF79F008319E4 /* ControlComponent.cpp */,
+				9A3343421CEBF79F008319E4 /* ControlComponent.hpp */,
 			);
 			name = core;
 			path = ../core;
@@ -1037,6 +1043,7 @@
 				499F2B951CCCA91400827D40 /* scalar_multiplication.hpp in Headers */,
 				499F2B7F1CCCA91400827D40 /* matrix_cross_product.hpp in Headers */,
 				9A3343401CEB2A75008319E4 /* InputKeyEvent.hpp in Headers */,
+				9A3343441CEBF79F008319E4 /* ControlComponent.hpp in Headers */,
 				499F2B491CCCA91400827D40 /* type_mat4x2.hpp in Headers */,
 				499F2B841CCCA91400827D40 /* matrix_query.hpp in Headers */,
 				9A1FD8881CDC87F40053D1FE /* MeshComponent.hpp in Headers */,
@@ -1240,6 +1247,7 @@
 				9A71D73A1CBFE9B100564A1B /* FBXModule.cpp in Sources */,
 				9A71D6CA1CBE44D300564A1B /* AutoReleasePool.cpp in Sources */,
 				499F2B341CCCA91400827D40 /* glm.cpp in Sources */,
+				9A3343431CEBF79F008319E4 /* ControlComponent.cpp in Sources */,
 				9A3343371CEB1C07008319E4 /* InputComponent.cpp in Sources */,
 				9AF7FBBC1CDA494A0091FF73 /* TransformComponent.cpp in Sources */,
 				9AE585691CD251970050BA74 /* EventComponent.cpp in Sources */,

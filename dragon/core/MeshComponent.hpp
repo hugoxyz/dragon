@@ -33,6 +33,7 @@ namespace dragon {
         virtual void onSuspend() override;
         
         void onCameraProject(int event, Object* data, Object* userData);
+        void onCameraView(int event, Object* data, Object* userData);
 
     protected:
         gl::Vertex* vertexes;
@@ -47,6 +48,7 @@ namespace dragon {
         GLProgram* program;
         
         int cameraObserveTag;
+        int cameraViewObserveTag;
         bool projectMatrixDirty;
         bool viewMatrixDirty;
         bool moduleMatrixDirty;
