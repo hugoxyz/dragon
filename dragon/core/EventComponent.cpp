@@ -69,13 +69,14 @@ namespace dragon {
         if (0 == events.size()) {
             return;
         }
-        for (auto event : events) {
+        
+        std::vector<EventInfo> eventsTemp = std::move(events);
+        for (auto event : eventsTemp) {
             sendEvent(event.event, event.params);
             if (nullptr != event.params) {
                 event.params->release();
             }
         }
-        events.clear();
     }
     
     void EventComponent::clear() {

@@ -25,6 +25,7 @@ namespace dragon {
         virtual int getId() { return id; };
         virtual const std::string& getName() { return name; };
         virtual void setName(const std::string& name);
+        virtual std::string toString();
         
     protected:
         int id;

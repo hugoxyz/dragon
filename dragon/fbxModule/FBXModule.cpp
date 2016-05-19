@@ -80,6 +80,9 @@ namespace dragon {
     void FBXModule::onInputEvent(int event, Object* data, Object* userData) {
         if (event == static_cast<int>(EventComponent::Event::EVENT_INPUT)) {
             EventInput* event = dynamic_cast<EventInput*>(data);
+            if (nullptr == event) {
+                return;
+            }
             switch (event->getEventType()) {
                 case EventInput::EventInputType::DROP_FILE: {
                     auto paths = event->getPaths();

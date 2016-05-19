@@ -12,7 +12,7 @@
 #include "Component.hpp"
 
 namespace dragon {
-    class ControlComponent : Component {
+    class ControlComponent : public Component {
     public:
         ControlComponent();
         ~ControlComponent();

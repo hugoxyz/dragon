@@ -25,7 +25,7 @@ namespace dragon {
     
     void ControlComponent::registerKeyEvent() {
         EventComponent* comp = Manager::getInstance()->getComponent<EventComponent>();
-        comp->addObserver(static_cast<int>(EventComponent::Event::EVENT_INPUT),
+        comp->addObserver(static_cast<int>(EventComponent::Event::EVENT_INPUT_KEY),
                           std::bind(&ControlComponent::onKeyEvent, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3));
     }
     
@@ -35,7 +35,7 @@ namespace dragon {
     void ControlComponent::onKeyEvent(int e, Object* data, Object* userData) {
         EventComponent::Event event = static_cast<EventComponent::Event>(e);
         switch (event) {
-            case EventComponent::Event::EVENT_INPUT: {
+            case EventComponent::Event::EVENT_INPUT_KEY: {
                 InputKeyEvent *key = dynamic_cast<InputKeyEvent*>(data);
                 if (nullptr == key) {
                     break;

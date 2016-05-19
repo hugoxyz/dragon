@@ -21,6 +21,7 @@ namespace dragon {
             EVENT_NONE = 0,
             EVENT_ALL,
             EVENT_INPUT,
+            EVENT_INPUT_KEY,
             EVENT_RENDERER,
             EVENT_RENDERER_NODE,
             EVENT_CAMERA_PROJECTION_CHANGE,

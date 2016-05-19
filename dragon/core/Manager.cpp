@@ -14,6 +14,7 @@
 #include "AutoReleasePoolMgr.hpp"
 #include "EventComponent.hpp"
 #include "CameraComponent.hpp"
+#include "ControlComponent.hpp"
 
 #include "../uiModule/UIModule.hpp"
 #include "../fbxModule/FBXModule.hpp"
@@ -80,6 +81,7 @@ namespace dragon {
         Node *n = new Node();
         n->createTransformIf();
         n->addComponent(new CameraComponent());
+        n->addComponent(new ControlComponent());
         n->setName("__camera_node");
         addChild(n);
     }

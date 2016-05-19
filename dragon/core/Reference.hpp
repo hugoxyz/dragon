@@ -9,6 +9,8 @@
 #ifndef Reference_hpp
 #define Reference_hpp
 
+#include <string>
+
 namespace dragon {
     class Reference {
     public:
@@ -18,6 +20,8 @@ namespace dragon {
         void retain();
         void release();
         unsigned int getReferenceCount() const;
+        
+        virtual std::string toString();
 
     protected:
         unsigned int referenceCount;

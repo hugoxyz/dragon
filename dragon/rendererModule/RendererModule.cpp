@@ -460,7 +460,7 @@ namespace dragon {
         keyEvent->setAction(act);
         keyEvent->setKey(g_keyCodeMap[key]);
         
-        Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_INPUT), keyEvent);
+        Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_INPUT_KEY), keyEvent);
     }
 
 

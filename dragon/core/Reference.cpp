@@ -6,6 +6,8 @@
 //
 //
 
+#include <sstream>
+
 #include "Reference.hpp"
 #include "AutoReleasePoolMgr.hpp"
 #include "Logger.hpp"
@@ -26,12 +28,18 @@ namespace dragon {
     void Reference::release() {
         referenceCount--;
         if (0 == referenceCount) {
-            LOGD("Reference", ">>>> release %s, %x", typeid(*this).name(), this);
+            LOGD("Reference", ">>>> release %s", toString().c_str());
             delete this;
         }
     }
     
     unsigned int Reference::getReferenceCount() const {
         return referenceCount;
+    }
+    
+    std::string Reference::toString() {
+        std::stringstream ss;
+        ss << "0|" << typeid(*this).name() << "|" << this;
+        return ss.str();
     }
 }

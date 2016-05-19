@@ -6,6 +6,8 @@
 //
 //
 
+#include <sstream>
+
 #include "Object.hpp"
 #include "UUID.hpp"
 
@@ -22,6 +24,12 @@ namespace dragon {
     
     void Object::setName(const std::string &n) {
         name = n;
+    }
+    
+    std::string Object::toString() {
+        std::stringstream ss;
+        ss << id << "|" << typeid(*this).name() << "|" << this;
+        return ss.str();
     }
     
 }
