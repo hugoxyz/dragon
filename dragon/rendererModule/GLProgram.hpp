@@ -38,6 +38,8 @@ namespace dragon {
         bool compile(const char* vs, const char* fs);
         bool setUnifrom(const std::string& name, GLfloat* value, int size);
         bool getAttributeLocation(const std::string& name, GLuint* loc);
+        bool enableAttribute(const std::string& attr);
+        bool attributePointer(const std::string& attr, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid *pointer);
         void use();
 
     protected:

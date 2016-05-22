@@ -13,6 +13,7 @@ namespace dragon {
     
     TransformComponent::TransformComponent()
     : moduleMatrixDirty(true) {
+        size = glm::vec3(1);
     }
     
     TransformComponent::~TransformComponent() {

@@ -20,10 +20,10 @@ namespace dragon {
     , height(640)
     , near(0.1)
     , far(100)
-    , angle(45)
+    , angle(60)
     , projectMatrixDirty(true)
     , viewMatrixDirty(true) {
-        focus = glm::vec3(0, 0, 0);
+        focus = glm::vec3(0, 0, -1);
         up = glm::vec3(0, 1, 0);
     }
     

@@ -41,6 +41,7 @@ namespace dragon {
                     break;
                 }
                 switch (key->getAction()) {
+                    case InputKeyEvent::Action::Repeat:
                     case InputKeyEvent::Action::Release: {
                         Node* node = Manager::getInstance()->getChild("__camera_node");
                         CameraComponent* camera = node->getComponent<CameraComponent>();
@@ -51,22 +52,22 @@ namespace dragon {
                         glm::vec3 step = glm::vec3(0, 0, 0);
                         switch (key->getKey()) {
                             case InputKeyEvent::Key::KEY_LEFT_ARROW : {
-                                step = glm::vec3(-1, 0, 0);
+                                step = glm::vec3(1, 0, 0);
                                 //move left
                                 break;
                             }
                             case InputKeyEvent::Key::KEY_RIGHT_ARROW: {
-                                step = glm::vec3(1, 0, 0);
+                                step = glm::vec3(-1, 0, 0);
                                 //move right
                                 break;
                             }
                             case InputKeyEvent::Key::KEY_UP_ARROW: {
-                                step = glm::vec3(0, 0, 1);
+                                step = glm::vec3(0, 0, -1);
                                 //move forword
                                 break;
                             }
                             case InputKeyEvent::Key::KEY_DOWN_ARROW: {
-                                step = glm::vec3(0, 0, -1);
+                                step = glm::vec3(0, 0, 1);
                                 //move back
                                 break;
                             }
@@ -77,13 +78,13 @@ namespace dragon {
                             }
                             case InputKeyEvent::Key::KEY_W:
                             case InputKeyEvent::Key::KEY_CAPITAL_W: {
-                                step = glm::vec3(0, 1, 0);
+                                step = glm::vec3(0, -1, 0);
                                 //move forword
                                 break;
                             }
                             case InputKeyEvent::Key::KEY_S:
                             case InputKeyEvent::Key::KEY_CAPITAL_S: {
-                                step = glm::vec3(0, -1, 0);
+                                step = glm::vec3(0, 1, 0);
                                 //move back
                                 break;
                             }

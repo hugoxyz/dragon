@@ -34,6 +34,8 @@ namespace dragon {
         void sendMsg(const std::string& modName, Message* msg);
         void postEvent(int event, Object* data);
         
+        void afterUpdate();
+        
     protected:
         void loadDefaultModule();
         void loadDefaultComponent();

@@ -103,9 +103,9 @@ namespace dragon {
         while (running) {
             time(&startTime);
             
-            Module::preUpdate();
-            Module::update();
-            Module::afterUpdate();
+            preUpdate();
+            update();
+            afterUpdate();
             
             dispatchMsg();
 
@@ -149,5 +149,14 @@ namespace dragon {
             return;
         }
         eventComponent->dispatch();
+    }
+    
+    void Manager::afterUpdate() {
+        Module::afterUpdate();
+        
+        GLenum e = glGetError();
+        if (GL_NO_ERROR != e) {
+            LOGD("Manager", "glerror: %d", e);
+        }
     }
 }

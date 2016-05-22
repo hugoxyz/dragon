@@ -260,6 +260,24 @@ namespace dragon {
         return false;
     }
 
+    bool GLProgram::enableAttribute(const std::string& attr) {
+        GLuint loc;
+        if (!getAttributeLocation(attr, & loc)) {
+            return false;
+        }
+        glEnableVertexAttribArray(loc);
+        return true;
+    }
+    
+    bool GLProgram::attributePointer(const std::string& attr, GLint size, GLenum type, GLboolean normalized, GLsizei stride, const GLvoid *pointer) {
+        GLuint loc;
+        if (!getAttributeLocation(attr, & loc)) {
+            return false;
+        }
+        glVertexAttribPointer(loc, size, type, normalized, stride, pointer);
+        return true;
+    }
+
     void GLProgram::use() {
         glUseProgram(program);
     }

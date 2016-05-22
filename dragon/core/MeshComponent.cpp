@@ -116,8 +116,12 @@ namespace dragon {
         }
         if (glBufferInvalid) {
             glBufferInvalid = false;
+            program->use();
             glBindBuffer(GL_ARRAY_BUFFER, glBuffer);
             glBufferData(GL_ARRAY_BUFFER, vertexLength*sizeof(gl::Vertex), vertexes, GL_STATIC_DRAW);
+
+            program->enableAttribute("av3Vertex");
+            program->attributePointer("av3Vertex", 3, GL_FLOAT, false, sizeof(gl::Vertex), 0);
             glBindBuffer(GL_ARRAY_BUFFER, 0);
         }
         if (viewMatrixDirty || projectMatrixDirty) {
