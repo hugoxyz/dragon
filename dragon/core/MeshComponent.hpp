@@ -9,10 +9,13 @@
 #ifndef MeshComponent_hpp
 #define MeshComponent_hpp
 
+#include <vector>
+
 #include "glfw3.h"
 #include "Component.hpp"
 #include "GLStructDefine.h"
 #include "../rendererModule/GLProgram.hpp"
+#include "MemoryList.hpp"
 
 namespace dragon {
     class MeshComponent : public Component {
@@ -23,6 +26,8 @@ namespace dragon {
         void createVertexesIf(int length);
         void addVertex(const gl::Vertex& vertex);
         gl::Vertex* getVertex();
+        
+        void addVertexIndex(MemoryList* idx);
         
         void setShaderPath(const std::string& vshader_path, const std::string& fshader_path);
         
@@ -40,6 +45,8 @@ namespace dragon {
         int vertexLength;
         int vertexCapacity;
         
+        std::vector<MemoryList*> vertexIndexVec;
+
         GLuint glBuffer;
         bool glBufferInvalid;
         

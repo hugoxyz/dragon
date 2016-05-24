@@ -32,6 +32,7 @@ namespace dragon {
     , viewMatrixDirty(true)
     , moduleMatrixDirty(true)
     , program(nullptr) {
+        vertexIndexVec.clear();
         glGenBuffers(1, &glBuffer);
     }
     
@@ -40,6 +41,10 @@ namespace dragon {
             program->release();
         }
         FREEIF(vertexes);
+        for(auto idx : vertexIndexVec) {
+            idx->release();
+        }
+        vertexIndexVec.clear();
     }
     
     void MeshComponent::createVertexesIf(int length) {
@@ -70,6 +75,11 @@ namespace dragon {
     
     gl::Vertex* MeshComponent::getVertex() {
         return vertexes;
+    }
+    
+    void MeshComponent::addVertexIndex(MemoryList* idx) {
+        idx->retain();
+        vertexIndexVec.push_back(idx);
     }
     
     void MeshComponent::setShaderPath(const std::string& vshader, const std::string& fshader) {
@@ -162,7 +172,7 @@ namespace dragon {
         program->use();
 
         glBindBuffer(GL_ARRAY_BUFFER, glBuffer);
-        glDrawArrays(GL_LINES, 0, vertexLength*3);
+        glDrawArrays(GL_TRIANGLES, 0, vertexLength);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
     }
     

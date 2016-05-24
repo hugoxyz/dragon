@@ -22,6 +22,7 @@
 #include "../core/EventComponent.hpp"
 #include "../core/CameraComponent.hpp"
 #include "../core/InputKeyEvent.hpp"
+#include "../core/Importer.hpp"
 
 namespace dragon {
 
@@ -429,6 +430,7 @@ namespace dragon {
             file = *(path + i);
             LOGD("glCallbacks", file);
             paths.push_back(file);
+            Importer::import(file);
         }
         event->setPaths(paths);
         Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_INPUT), event);

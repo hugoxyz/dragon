@@ -18,7 +18,9 @@ namespace dragon {
     public:
         
         static std::vector<std::string> split(const std::string &s, char delim);
-        
+        static std::string normalizePath(const std::string& path);
+        static std::string getFileName(const std::string& path);
+        static std::string getSuffixName(const std::string& name);
     };
     
 }

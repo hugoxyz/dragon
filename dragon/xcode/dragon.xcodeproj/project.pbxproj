@@ -182,6 +182,12 @@
 		9A3362BC1CC9B80400C8C7C0 /* FileUtilsApple.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9A3362B91CC9B80400C8C7C0 /* FileUtilsApple.mm */; };
 		9A3362BF1CC9B9F700C8C7C0 /* GLProgram.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A3362BD1CC9B9F700C8C7C0 /* GLProgram.cpp */; };
 		9A3362C01CC9B9F700C8C7C0 /* GLProgram.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A3362BE1CC9B9F700C8C7C0 /* GLProgram.hpp */; };
+		9A466EB91CF3621E00BA4EC8 /* G3DJImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A466EB71CF3621E00BA4EC8 /* G3DJImporter.cpp */; };
+		9A466EBA1CF3621E00BA4EC8 /* G3DJImporter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A466EB81CF3621E00BA4EC8 /* G3DJImporter.hpp */; };
+		9A466EBD1CF3E8B000BA4EC8 /* Importer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A466EBB1CF3E8B000BA4EC8 /* Importer.cpp */; };
+		9A466EBE1CF3E8B000BA4EC8 /* Importer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A466EBC1CF3E8B000BA4EC8 /* Importer.hpp */; };
+		9A466EC41CF4608E00BA4EC8 /* MemoryList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A466EC21CF4608E00BA4EC8 /* MemoryList.cpp */; };
+		9A466EC51CF4608E00BA4EC8 /* MemoryList.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A466EC31CF4608E00BA4EC8 /* MemoryList.hpp */; };
 		9A71D6CA1CBE44D300564A1B /* AutoReleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A71D6B51CBE44D300564A1B /* AutoReleasePool.cpp */; };
 		9A71D6CB1CBE44D300564A1B /* AutoReleasePool.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A71D6B61CBE44D300564A1B /* AutoReleasePool.hpp */; };
 		9A71D6CC1CBE44D300564A1B /* AutoReleasePoolMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A71D6B71CBE44D300564A1B /* AutoReleasePoolMgr.cpp */; };
@@ -507,6 +513,12 @@
 		9A3362B91CC9B80400C8C7C0 /* FileUtilsApple.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FileUtilsApple.mm; sourceTree = "<group>"; };
 		9A3362BD1CC9B9F700C8C7C0 /* GLProgram.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLProgram.cpp; sourceTree = "<group>"; };
 		9A3362BE1CC9B9F700C8C7C0 /* GLProgram.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLProgram.hpp; sourceTree = "<group>"; };
+		9A466EB71CF3621E00BA4EC8 /* G3DJImporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = G3DJImporter.cpp; sourceTree = "<group>"; };
+		9A466EB81CF3621E00BA4EC8 /* G3DJImporter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = G3DJImporter.hpp; sourceTree = "<group>"; };
+		9A466EBB1CF3E8B000BA4EC8 /* Importer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Importer.cpp; sourceTree = "<group>"; };
+		9A466EBC1CF3E8B000BA4EC8 /* Importer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Importer.hpp; sourceTree = "<group>"; };
+		9A466EC21CF4608E00BA4EC8 /* MemoryList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryList.cpp; sourceTree = "<group>"; };
+		9A466EC31CF4608E00BA4EC8 /* MemoryList.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MemoryList.hpp; sourceTree = "<group>"; };
 		9A71D67B1CBCD7FB00564A1B /* libdragon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdragon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A71D6B51CBE44D300564A1B /* AutoReleasePool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AutoReleasePool.cpp; sourceTree = "<group>"; };
 		9A71D6B61CBE44D300564A1B /* AutoReleasePool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AutoReleasePool.hpp; sourceTree = "<group>"; };
@@ -967,6 +979,12 @@
 				9A33433E1CEB2A75008319E4 /* InputKeyEvent.hpp */,
 				9A3343411CEBF79F008319E4 /* ControlComponent.cpp */,
 				9A3343421CEBF79F008319E4 /* ControlComponent.hpp */,
+				9A466EB71CF3621E00BA4EC8 /* G3DJImporter.cpp */,
+				9A466EB81CF3621E00BA4EC8 /* G3DJImporter.hpp */,
+				9A466EBB1CF3E8B000BA4EC8 /* Importer.cpp */,
+				9A466EBC1CF3E8B000BA4EC8 /* Importer.hpp */,
+				9A466EC21CF4608E00BA4EC8 /* MemoryList.cpp */,
+				9A466EC31CF4608E00BA4EC8 /* MemoryList.hpp */,
 			);
 			name = core;
 			path = ../core;
@@ -1092,6 +1110,7 @@
 				499F2B6A1CCCA91400827D40 /* bit.hpp in Headers */,
 				9A3362C01CC9B9F700C8C7C0 /* GLProgram.hpp in Headers */,
 				499F2B331CCCA91400827D40 /* func_vector_relational.hpp in Headers */,
+				9A466EC51CF4608E00BA4EC8 /* MemoryList.hpp in Headers */,
 				499F2B411CCCA91400827D40 /* type_int.hpp in Headers */,
 				499F2B541CCCA91400827D40 /* geometric.hpp in Headers */,
 				9A33433C1CEB28FE008319E4 /* InputBaseEvent.hpp in Headers */,
@@ -1143,6 +1162,7 @@
 				499F2B7B1CCCA91400827D40 /* integer.hpp in Headers */,
 				499F2B691CCCA91400827D40 /* associated_min_max.hpp in Headers */,
 				499F2BA91CCCA91400827D40 /* mat3x3.hpp in Headers */,
+				9A466EBE1CF3E8B000BA4EC8 /* Importer.hpp in Headers */,
 				499F2BAC1CCCA91400827D40 /* mat4x3.hpp in Headers */,
 				499F2B4F1CCCA91400827D40 /* type_vec3.hpp in Headers */,
 				499F2B681CCCA91400827D40 /* vec1.hpp in Headers */,
@@ -1153,6 +1173,7 @@
 				499F2B431CCCA91400827D40 /* type_mat2x2.hpp in Headers */,
 				499F2B9B1CCCA91400827D40 /* std_based_type.hpp in Headers */,
 				499F2BAD1CCCA91400827D40 /* mat4x4.hpp in Headers */,
+				9A466EBA1CF3621E00BA4EC8 /* G3DJImporter.hpp in Headers */,
 				499F2B6D1CCCA91400827D40 /* color_space_YCoCg.hpp in Headers */,
 				499F2B731CCCA91400827D40 /* extend.hpp in Headers */,
 				499F2B361CCCA91400827D40 /* intrinsic_exponential.hpp in Headers */,
@@ -1251,6 +1272,7 @@
 				9A3343371CEB1C07008319E4 /* InputComponent.cpp in Sources */,
 				9AF7FBBC1CDA494A0091FF73 /* TransformComponent.cpp in Sources */,
 				9AE585691CD251970050BA74 /* EventComponent.cpp in Sources */,
+				9A466EC41CF4608E00BA4EC8 /* MemoryList.cpp in Sources */,
 				9A71D6CE1CBE44D300564A1B /* Component.cpp in Sources */,
 				9A71D6D21CBE44D300564A1B /* Manager.cpp in Sources */,
 				9A3362BF1CC9B9F700C8C7C0 /* GLProgram.cpp in Sources */,
@@ -1262,11 +1284,13 @@
 				9A3362791CC3D2CF00C8C7C0 /* RendererModule.cpp in Sources */,
 				9A3343191CE46CEC008319E4 /* CameraComponent.cpp in Sources */,
 				9A33430D1CE22FC2008319E4 /* Utils.cpp in Sources */,
+				9A466EB91CF3621E00BA4EC8 /* G3DJImporter.cpp in Sources */,
 				9A1FD88C1CDDB8100053D1FE /* ILifeCycle.cpp in Sources */,
 				9A1FD8871CDC87F40053D1FE /* MeshComponent.cpp in Sources */,
 				9A3362BA1CC9B80400C8C7C0 /* FileUtils.cpp in Sources */,
 				9A71D73E1CBFF70500564A1B /* UUID.cpp in Sources */,
 				9A71D6D61CBE44D300564A1B /* Module.cpp in Sources */,
+				9A466EBD1CF3E8B000BA4EC8 /* Importer.cpp in Sources */,
 				9A71D6CC1CBE44D300564A1B /* AutoReleasePoolMgr.cpp in Sources */,
 				9A71D6D01CBE44D300564A1B /* Logger.cpp in Sources */,
 				9A33433B1CEB28FE008319E4 /* InputBaseEvent.cpp in Sources */,
@@ -1338,6 +1362,7 @@
 					"\"$(SRCROOT)/../thirdParty/Math/glm\"",
 					"\"$(SRCROOT)/../thirdParty/fbx/include\"",
 					"\"$(SRCROOT)/../thirdParty/glfw\"",
+					"\"$(SRCROOT)/../thirdParty/rapidjson/include\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../rendererModule/glfw/osx\"",
@@ -1390,6 +1415,7 @@
 					"\"$(SRCROOT)/../thirdParty/Math/glm\"",
 					"\"$(SRCROOT)/../thirdParty/fbx/include\"",
 					"\"$(SRCROOT)/../thirdParty/glfw\"",
+					"\"$(SRCROOT)/../thirdParty/rapidjson/include\"",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(SRCROOT)/../rendererModule/glfw/osx\"",
