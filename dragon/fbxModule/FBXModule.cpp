@@ -256,7 +256,7 @@ namespace dragon {
         gl::Vertex vertex;
 
         MeshComponent *meshComp = new MeshComponent();
-        meshComp->createVertexesIf(triangleCount * 3);
+        //meshComp->createVertexesIf(triangleCount * 3);
         meshComp->setShaderPath("./resources/shader/default.vsh", "./resources/shader/default.fsh");
         FbxVector4* fbxControlPoints = fbxMesh->GetControlPoints();
         for(int i = 0 ; i < triangleCount ; ++i) {
@@ -276,7 +276,7 @@ namespace dragon {
                 vertex.x = x;
                 vertex.y = y;
                 vertex.z = z;
-                meshComp->addVertex(vertex);
+                //meshComp->addVertex(vertex);
 
                 //read color
                 if (fbxMesh->GetElementVertexColorCount() > 0) {

@@ -7,6 +7,9 @@
 //
 
 #include <stdlib.h>
+
+#include "gl-mac.h"
+
 #include "glm/glm.hpp"
 #include "glm/ext.hpp"
 
@@ -22,8 +25,6 @@ namespace dragon {
     
     MeshComponent::MeshComponent()
     : vertexes(nullptr)
-    , vertexCapacity(0)
-    , vertexLength(0)
     , glBuffer(0)
     , glBufferInvalid(true)
     , cameraObserveTag(0)
@@ -40,44 +41,52 @@ namespace dragon {
         if (nullptr != program) {
             program->release();
         }
-        FREEIF(vertexes);
         for(auto idx : vertexIndexVec) {
             idx->release();
         }
         vertexIndexVec.clear();
-    }
-    
-    void MeshComponent::createVertexesIf(int length) {
-        if (vertexCapacity >= length) {
-            vertexLength = 0;
-            return ;
+        if (nullptr != vertexes) {
+            vertexes->release();
+            vertexes = nullptr;
         }
-        FREEIF(vertexes);
-        vertexes = (gl::Vertex*)malloc(sizeof(gl::Vertex)*length);
-        if (nullptr == vertexes) {
-            LOGD("MeshComponent", "vertexes is null");
-            return;
-        }
-        vertexCapacity = length;
-        memset(vertexes, 0, sizeof(gl::Vertex)*length);
     }
     
-    void MeshComponent::addVertex(const gl::Vertex& vertex) {
-        glBufferInvalid = true;
-        if (vertexLength == vertexCapacity) {
-            LOGD("MeshComponent", "vertex capacity not enough");
-            return;
-        }
-        gl::Vertex* cur = vertexes + vertexLength;
-        memcpy(cur, &vertex, sizeof(gl::Vertex));
-        vertexLength += 1;
+//    void MeshComponent::createVertexesIf(int length) {
+//        if (vertexCapacity >= length) {
+//            vertexLength = 0;
+//            return ;
+//        }
+//        FREEIF(vertexes);
+//        vertexes = (gl::Vertex*)malloc(sizeof(gl::Vertex)*length);
+//        if (nullptr == vertexes) {
+//            LOGD("MeshComponent", "vertexes is null");
+//            return;
+//        }
+//        vertexCapacity = length;
+//        memset(vertexes, 0, sizeof(gl::Vertex)*length);
+//    }
+//    
+//    void MeshComponent::addVertex(const gl::Vertex& vertex) {
+//        glBufferInvalid = true;
+//        if (vertexLength == vertexCapacity) {
+//            LOGD("MeshComponent", "vertex capacity not enough");
+//            return;
+//        }
+//        gl::Vertex* cur = vertexes + vertexLength;
+//        memcpy(cur, &vertex, sizeof(gl::Vertex));
+//        vertexLength += 1;
+//    }
+//    
+//    gl::Vertex* MeshComponent::getVertex() {
+//        return vertexes;
+//    }
+    
+    void MeshComponent::addVertexes(GLData* v) {
+        vertexes = v;
+        vertexes->retain();
     }
     
-    gl::Vertex* MeshComponent::getVertex() {
-        return vertexes;
-    }
-    
-    void MeshComponent::addVertexIndex(MemoryList* idx) {
+    void MeshComponent::addVertexIndex(GLData* idx) {
         idx->retain();
         vertexIndexVec.push_back(idx);
     }
@@ -124,16 +133,44 @@ namespace dragon {
         if (nullptr == program) {
             return;
         }
-        if (glBufferInvalid) {
-            glBufferInvalid = false;
-            program->use();
-            glBindBuffer(GL_ARRAY_BUFFER, glBuffer);
-            glBufferData(GL_ARRAY_BUFFER, vertexLength*sizeof(gl::Vertex), vertexes, GL_STATIC_DRAW);
-
-            program->enableAttribute("av3Vertex");
-            program->attributePointer("av3Vertex", 3, GL_FLOAT, false, sizeof(gl::Vertex), 0);
-            glBindBuffer(GL_ARRAY_BUFFER, 0);
+        
+        if (vertexes->isDirty()) {
+            vertexes->setDirtyFlag(false);
+            vertexes->setGLBufferType(GL_ARRAY_BUFFER);
+            vertexes->bindData();
+            GLuint location;
+            if (vertexes->getVertexOffset() >= 0) {
+                if (program->getAttributeLocation("av3Vertex", &location)) {
+                    glEnableVertexAttribArray(location);
+                    glVertexAttribPointer(location, 3, GL_FLOAT, false, vertexes->getUnitSize(), (void*)vertexes->getVertexOffset());
+                    glBindBuffer(GL_ARRAY_BUFFER, 0);
+                }
+            }
+            if (vertexes->getNormalOffset() >= 0) {
+                if (program->getAttributeLocation("av3Normal", &location)) {
+                    glEnableVertexAttribArray(location);
+                    glVertexAttribPointer(location, 3, GL_FLOAT, false, vertexes->getUnitSize(), (void*)vertexes->getNormalOffset());
+                    glBindBuffer(GL_ARRAY_BUFFER, 0);
+                }
+            }
+            if (vertexes->getTextureOffset() >= 0) {
+                if (program->getAttributeLocation("av2Texture", &location)) {
+                    glEnableVertexAttribArray(location);
+                    glVertexAttribPointer(location, 3, GL_FLOAT, false, vertexes->getUnitSize(), (void*)vertexes->getTextureOffset());
+                    glBindBuffer(GL_ARRAY_BUFFER, 0);
+                }
+            }
         }
+        
+        for (auto vertexIndex : vertexIndexVec) {
+            if (vertexIndex->isDirty()) {
+                vertexIndex->setDirtyFlag(false);
+                vertexIndex->setGLBufferType(GL_ELEMENT_ARRAY_BUFFER);
+                vertexIndex->bindData();
+                glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+            }
+        }
+
         if (viewMatrixDirty || projectMatrixDirty) {
             Node* camera = Manager::getInstance()->getChild("__camera_node");
             CameraComponent* comp = nullptr == camera? nullptr : camera->getComponent<CameraComponent>();
@@ -171,9 +208,14 @@ namespace dragon {
         }
         program->use();
 
-        glBindBuffer(GL_ARRAY_BUFFER, glBuffer);
-        glDrawArrays(GL_TRIANGLES, 0, vertexLength);
+        glBindBuffer(GL_ARRAY_BUFFER, vertexes->getGLLocation());
+        for (auto vertexIndex : vertexIndexVec) {
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexIndex->getGLLocation());
+//            glDrawArrays(GL_LINES, 0, vertexIndex->getMemoryLength());
+            glDrawElements(GL_LINES, vertexIndex->getMemoryLength(), GL_UNSIGNED_INT, nullptr);
+        }
         glBindBuffer(GL_ARRAY_BUFFER, 0);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
     
     void MeshComponent::onAfterUpdate() {

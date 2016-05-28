@@ -186,8 +186,8 @@
 		9A466EBA1CF3621E00BA4EC8 /* G3DJImporter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A466EB81CF3621E00BA4EC8 /* G3DJImporter.hpp */; };
 		9A466EBD1CF3E8B000BA4EC8 /* Importer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A466EBB1CF3E8B000BA4EC8 /* Importer.cpp */; };
 		9A466EBE1CF3E8B000BA4EC8 /* Importer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A466EBC1CF3E8B000BA4EC8 /* Importer.hpp */; };
-		9A466EC41CF4608E00BA4EC8 /* MemoryList.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A466EC21CF4608E00BA4EC8 /* MemoryList.cpp */; };
-		9A466EC51CF4608E00BA4EC8 /* MemoryList.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A466EC31CF4608E00BA4EC8 /* MemoryList.hpp */; };
+		9A466EC41CF4608E00BA4EC8 /* GLData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A466EC21CF4608E00BA4EC8 /* GLData.cpp */; };
+		9A466EC51CF4608E00BA4EC8 /* GLData.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A466EC31CF4608E00BA4EC8 /* GLData.hpp */; };
 		9A71D6CA1CBE44D300564A1B /* AutoReleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A71D6B51CBE44D300564A1B /* AutoReleasePool.cpp */; };
 		9A71D6CB1CBE44D300564A1B /* AutoReleasePool.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A71D6B61CBE44D300564A1B /* AutoReleasePool.hpp */; };
 		9A71D6CC1CBE44D300564A1B /* AutoReleasePoolMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A71D6B71CBE44D300564A1B /* AutoReleasePoolMgr.cpp */; };
@@ -517,8 +517,9 @@
 		9A466EB81CF3621E00BA4EC8 /* G3DJImporter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = G3DJImporter.hpp; sourceTree = "<group>"; };
 		9A466EBB1CF3E8B000BA4EC8 /* Importer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Importer.cpp; sourceTree = "<group>"; };
 		9A466EBC1CF3E8B000BA4EC8 /* Importer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Importer.hpp; sourceTree = "<group>"; };
-		9A466EC21CF4608E00BA4EC8 /* MemoryList.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MemoryList.cpp; sourceTree = "<group>"; };
-		9A466EC31CF4608E00BA4EC8 /* MemoryList.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MemoryList.hpp; sourceTree = "<group>"; };
+		9A466EC21CF4608E00BA4EC8 /* GLData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLData.cpp; sourceTree = "<group>"; };
+		9A466EC31CF4608E00BA4EC8 /* GLData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLData.hpp; sourceTree = "<group>"; };
+		9A466ECF1CF5BCB600BA4EC8 /* gl-mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gl-mac.h"; sourceTree = "<group>"; };
 		9A71D67B1CBCD7FB00564A1B /* libdragon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdragon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A71D6B51CBE44D300564A1B /* AutoReleasePool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AutoReleasePool.cpp; sourceTree = "<group>"; };
 		9A71D6B61CBE44D300564A1B /* AutoReleasePool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AutoReleasePool.hpp; sourceTree = "<group>"; };
@@ -983,8 +984,9 @@
 				9A466EB81CF3621E00BA4EC8 /* G3DJImporter.hpp */,
 				9A466EBB1CF3E8B000BA4EC8 /* Importer.cpp */,
 				9A466EBC1CF3E8B000BA4EC8 /* Importer.hpp */,
-				9A466EC21CF4608E00BA4EC8 /* MemoryList.cpp */,
-				9A466EC31CF4608E00BA4EC8 /* MemoryList.hpp */,
+				9A466EC21CF4608E00BA4EC8 /* GLData.cpp */,
+				9A466EC31CF4608E00BA4EC8 /* GLData.hpp */,
+				9A466ECF1CF5BCB600BA4EC8 /* gl-mac.h */,
 			);
 			name = core;
 			path = ../core;
@@ -1110,7 +1112,7 @@
 				499F2B6A1CCCA91400827D40 /* bit.hpp in Headers */,
 				9A3362C01CC9B9F700C8C7C0 /* GLProgram.hpp in Headers */,
 				499F2B331CCCA91400827D40 /* func_vector_relational.hpp in Headers */,
-				9A466EC51CF4608E00BA4EC8 /* MemoryList.hpp in Headers */,
+				9A466EC51CF4608E00BA4EC8 /* GLData.hpp in Headers */,
 				499F2B411CCCA91400827D40 /* type_int.hpp in Headers */,
 				499F2B541CCCA91400827D40 /* geometric.hpp in Headers */,
 				9A33433C1CEB28FE008319E4 /* InputBaseEvent.hpp in Headers */,
@@ -1272,7 +1274,7 @@
 				9A3343371CEB1C07008319E4 /* InputComponent.cpp in Sources */,
 				9AF7FBBC1CDA494A0091FF73 /* TransformComponent.cpp in Sources */,
 				9AE585691CD251970050BA74 /* EventComponent.cpp in Sources */,
-				9A466EC41CF4608E00BA4EC8 /* MemoryList.cpp in Sources */,
+				9A466EC41CF4608E00BA4EC8 /* GLData.cpp in Sources */,
 				9A71D6CE1CBE44D300564A1B /* Component.cpp in Sources */,
 				9A71D6D21CBE44D300564A1B /* Manager.cpp in Sources */,
 				9A3362BF1CC9B9F700C8C7C0 /* GLProgram.cpp in Sources */,

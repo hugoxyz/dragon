@@ -156,7 +156,7 @@ namespace dragon {
         
         GLenum e = glGetError();
         if (GL_NO_ERROR != e) {
-            LOGD("Manager", "glerror: %d", e);
+            LOGD("Manager", "OpenGL error: %x", e);
         }
     }
 }

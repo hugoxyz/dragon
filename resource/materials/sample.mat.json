@@ -1,0 +1,10 @@
+
+{
+	"version":1,
+	"vsh": "default",
+	"fsh": "default",
+	"ambient":[0.0, 0.0, 0.0, 0.0], //环境光
+	"diffuse":[0.0, 0.0, 0.0, 0.0], //漫反射
+	"specular":[0.0, 0.0, 0.0, 0.0], //镜面反射
+	"shininess":0.0, //发光
+}

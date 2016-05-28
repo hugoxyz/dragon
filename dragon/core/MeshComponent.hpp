@@ -15,7 +15,7 @@
 #include "Component.hpp"
 #include "GLStructDefine.h"
 #include "../rendererModule/GLProgram.hpp"
-#include "MemoryList.hpp"
+#include "GLData.hpp"
 
 namespace dragon {
     class MeshComponent : public Component {
@@ -23,11 +23,12 @@ namespace dragon {
         MeshComponent();
         ~MeshComponent();
 
-        void createVertexesIf(int length);
-        void addVertex(const gl::Vertex& vertex);
-        gl::Vertex* getVertex();
+//        void createVertexesIf(int length);
+//        void addVertex(const gl::Vertex& vertex);
+//        gl::Vertex* getVertex();
         
-        void addVertexIndex(MemoryList* idx);
+        void addVertexes(GLData* v);
+        void addVertexIndex(GLData* idx);
         
         void setShaderPath(const std::string& vshader_path, const std::string& fshader_path);
         
@@ -36,16 +37,17 @@ namespace dragon {
         virtual void onUpdate() override;
         virtual void onAfterUpdate() override;
         virtual void onSuspend() override;
-        
+
         void onCameraProject(int event, Object* data, Object* userData);
         void onCameraView(int event, Object* data, Object* userData);
 
     protected:
-        gl::Vertex* vertexes;
-        int vertexLength;
-        int vertexCapacity;
-        
-        std::vector<MemoryList*> vertexIndexVec;
+//        gl::Vertex* vertexes;
+//        int vertexLength;
+//        int vertexCapacity;
+
+        GLData* vertexes;
+        std::vector<GLData*> vertexIndexVec;
 
         GLuint glBuffer;
         bool glBufferInvalid;

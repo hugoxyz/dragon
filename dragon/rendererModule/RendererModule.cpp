@@ -287,6 +287,8 @@ namespace dragon {
         glm::mat4 mat = moduleMatrix * viewMatrix;
         program->setUnifrom("um4MVMatrix", glm::value_ptr(mat), 16);
         program->setUnifrom("um4PMatrix", glm::value_ptr(projectMatrix), 16);
+        float ambient[4] = {0.2, 0.2, 0.2, 1};
+        program->setUnifrom("uv4Ambient", ambient, 4);
 
         glClearColor(0.5, 0.5, 0.5, 0.5);
 
@@ -433,7 +435,7 @@ namespace dragon {
             Importer::import(file);
         }
         event->setPaths(paths);
-        Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_INPUT), event);
+        //Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_INPUT), event);
     }
 
     void RendererModule::onGLFWKey(GLFWwindow* w, int key , int code , int action, int mod) {

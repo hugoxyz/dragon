@@ -67,5 +67,23 @@ namespace dragon {
             return fileName.substr(point_pos + 1);
         }
     }
+    
+    int Utils::compare(const std::string& stra, const std::string& strb, bool ignoreCase) {
+        size_t aLen = stra.length();
+        size_t bLen = strb.length();
+        int iRes = 0 , iPos = 0;
+        for (iPos = 0; iPos < aLen && iPos < bLen; ++iPos) {
+            if (ignoreCase) {
+                iRes = toupper(stra[iPos]) - toupper(strb[iPos]);
+            } else {
+                iRes = stra[iPos] - strb[iPos];
+            }
+            if (iRes)return iRes;
+        }
+        if (iPos == aLen && iPos == bLen)return 0;
+        if (iPos < aLen) return 1;
+        if (iPos < bLen) return -1;
+        return -1;
+    }
 
 }

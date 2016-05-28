@@ -21,6 +21,8 @@ namespace dragon {
         static std::string normalizePath(const std::string& path);
         static std::string getFileName(const std::string& path);
         static std::string getSuffixName(const std::string& name);
+        
+        static int compare(const std::string& str1, const std::string& str2, bool ignoreCase = true);
     };
     
 }
