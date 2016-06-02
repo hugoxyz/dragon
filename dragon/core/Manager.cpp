@@ -15,6 +15,7 @@
 #include "EventComponent.hpp"
 #include "CameraComponent.hpp"
 #include "ControlComponent.hpp"
+#include "TransformComponent.hpp"
 
 #include "../uiModule/UIModule.hpp"
 #include "../fbxModule/FBXModule.hpp"
@@ -84,6 +85,11 @@ namespace dragon {
         n->addComponent(new ControlComponent());
         n->setName("__camera_node");
         addChild(n);
+        
+        TransformComponent *comp = n->getComponent<TransformComponent>();
+        comp->setPosition(glm::vec3(0, 0, 100));
+        CameraComponent *camera = n->getComponent<CameraComponent>();
+        camera->setFocus(glm::vec3(0, 0, 0));
     }
     
     void Manager::loadDefaultComponent() {
@@ -99,6 +105,7 @@ namespace dragon {
         step();
         enter();
         resume();
+        glEnable(GL_DEPTH_TEST);
         running = true;
         while (running) {
             time(&startTime);

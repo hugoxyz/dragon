@@ -37,6 +37,7 @@ void main() {
 	vv4ColorFactor = uv4Ambient + df * uv4Diffuse + sf * uv4Specular; //环境光, 漫反射, 镜面 三者相加
 
 	vv4Color = av4Color;
+	vv4Color = vec4(1, 1, 1, 1);
 	vv2UV = av2UV;
 	gl_Position = um4PMatrix * um4VMatrix * v4ModulePos;
 }

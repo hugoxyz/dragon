@@ -17,6 +17,7 @@
 #include "Manager.hpp"
 #include "MeshComponent.hpp"
 #include "EventComponent.hpp"
+#include "RotateComponent.hpp"
 
 namespace dragon {
     Node* G3DJImporter::import(const std::string &file) {
@@ -30,9 +31,10 @@ namespace dragon {
         rapidjson::Document d;
         d.ParseStream(isw);
         
+        std::map<std::string, GLData*> vertexIdxMap;
         const rapidjson::Value& meshes = d["meshes"];
+        MeshComponent* comp = new MeshComponent();
         for (auto it = meshes.Begin(); it != meshes.End(); it++) {
-            MeshComponent* comp = new MeshComponent();
             comp->setShaderPath("./resources/shader/default.vsh", "./resources/shader/default.fsh");
             
             const rapidjson::Value& mesh = *it;
@@ -137,13 +139,42 @@ namespace dragon {
                     i = indicesIt->GetInt();
                     memory->addMemory(&i);
                 }
-                comp->addVertexIndex(memory);
+                memory->retain();
+                vertexIdxMap.insert(std::make_pair(partValue["id"].GetString(), memory));
             }
             
             node->addComponent(comp);
         }
+        
+        std::map<std::string, Material*> materialMap;
+        const rapidjson::Value& materials = d["materials"];
+        for (rapidjson::SizeType i = 0; i < materials.Size(); i++) {
+            Material* mat = Material::parserFromJosn(materials[i]);
+            mat->retain();
+            materialMap.insert(std::make_pair(materials[i]["id"].GetString(), mat));
+        }
+        
+        for (rapidjson::SizeType i = 0; i < d["nodes"].Size(); i++) {
+            const rapidjson::Value& node = d["nodes"][i];
+            for (rapidjson::SizeType i = 0; i < node["parts"].Size(); i++) {
+                const rapidjson::Value& part = node["parts"][i];
+                comp->addVertexIndex(vertexIdxMap[part["meshpartid"].GetString()]);
+                comp->addMaterial(materialMap[part["materialid"].GetString()]);
+            }
+        }
+        
+        node->addComponent(new RotateComponent());
 
         Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_RENDERER_NODE), node);
+
+        for (auto it : vertexIdxMap) {
+            it.second->release();
+        }
+        vertexIdxMap.clear();
+        for (auto it : materialMap) {
+            it.second->release();
+        }
+        materialMap.clear();
 
         return node;
     }

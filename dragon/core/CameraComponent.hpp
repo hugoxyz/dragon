@@ -24,6 +24,8 @@ namespace dragon {
         const glm::mat4& getProjectMatrix();
         const glm::mat4& getViewMatrix();
         
+        void setFocus(const glm::vec3& v);
+        
     protected:
         float width;
         float height;

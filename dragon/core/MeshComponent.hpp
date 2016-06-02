@@ -16,6 +16,7 @@
 #include "GLStructDefine.h"
 #include "../rendererModule/GLProgram.hpp"
 #include "GLData.hpp"
+#include "Material.hpp"
 
 namespace dragon {
     class MeshComponent : public Component {
@@ -29,6 +30,7 @@ namespace dragon {
         
         void addVertexes(GLData* v);
         void addVertexIndex(GLData* idx);
+        void addMaterial(Material* mat);
         
         void setShaderPath(const std::string& vshader_path, const std::string& fshader_path);
         
@@ -48,6 +50,7 @@ namespace dragon {
 
         GLData* vertexes;
         std::vector<GLData*> vertexIndexVec;
+        std::vector<Material*> materialVec;
 
         GLuint glBuffer;
         bool glBufferInvalid;

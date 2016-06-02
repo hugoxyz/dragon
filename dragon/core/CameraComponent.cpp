@@ -61,5 +61,12 @@ namespace dragon {
         
         return viewMatrix;
     }
+    
+    void CameraComponent::setFocus(const glm::vec3& v) {
+        focus = v;
+        viewMatrixDirty = true;
+
+        Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_CAMERA_VIEW_CHANGE), nullptr);
+    }
 
 }

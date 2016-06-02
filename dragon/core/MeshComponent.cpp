@@ -41,10 +41,17 @@ namespace dragon {
         if (nullptr != program) {
             program->release();
         }
+        
         for(auto idx : vertexIndexVec) {
             idx->release();
         }
         vertexIndexVec.clear();
+        
+        for (auto mat : materialVec) {
+            mat->release();
+        }
+        materialVec.clear();
+        
         if (nullptr != vertexes) {
             vertexes->release();
             vertexes = nullptr;
@@ -91,6 +98,11 @@ namespace dragon {
         vertexIndexVec.push_back(idx);
     }
     
+    void MeshComponent::addMaterial(Material* mat) {
+        mat->retain();
+        materialVec.push_back(mat);
+    }
+    
     void MeshComponent::setShaderPath(const std::string& vshader, const std::string& fshader) {
         vshader_path = vshader;
         fshader_path = fshader;
@@ -117,6 +129,10 @@ namespace dragon {
             if (nullptr != program) {
                 program->retain();
                 projectMatrixDirty = true;
+                
+                glm::vec3 light = glm::vec3(0, 1000, 0);
+
+                program->setUnifrom("uv3LightPosition", glm::value_ptr(light), 3);
             }
         }
     }
@@ -143,23 +159,21 @@ namespace dragon {
                 if (program->getAttributeLocation("av3Vertex", &location)) {
                     glEnableVertexAttribArray(location);
                     glVertexAttribPointer(location, 3, GL_FLOAT, false, vertexes->getUnitSize(), (void*)vertexes->getVertexOffset());
-                    glBindBuffer(GL_ARRAY_BUFFER, 0);
                 }
             }
             if (vertexes->getNormalOffset() >= 0) {
                 if (program->getAttributeLocation("av3Normal", &location)) {
                     glEnableVertexAttribArray(location);
                     glVertexAttribPointer(location, 3, GL_FLOAT, false, vertexes->getUnitSize(), (void*)vertexes->getNormalOffset());
-                    glBindBuffer(GL_ARRAY_BUFFER, 0);
                 }
             }
             if (vertexes->getTextureOffset() >= 0) {
-                if (program->getAttributeLocation("av2Texture", &location)) {
+                if (program->getAttributeLocation("av2UV", &location)) {
                     glEnableVertexAttribArray(location);
-                    glVertexAttribPointer(location, 3, GL_FLOAT, false, vertexes->getUnitSize(), (void*)vertexes->getTextureOffset());
-                    glBindBuffer(GL_ARRAY_BUFFER, 0);
+                    glVertexAttribPointer(location, 2, GL_FLOAT, false, vertexes->getUnitSize(), (void*)vertexes->getTextureOffset());
                 }
             }
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
         }
         
         for (auto vertexIndex : vertexIndexVec) {
@@ -188,17 +202,20 @@ namespace dragon {
                 }
             }
         }
-        if (moduleMatrixDirty) {
-            TransformComponent *trans = nullptr;
-            if ( nullptr != host) {
-                trans = host->getComponent<TransformComponent>();
-            }
-            if (nullptr != trans) {
-                program->use();
-                glm::mat4 m = trans->getModuleMatrix();
-                program->setUnifrom("um4MMatrix", glm::value_ptr(m), 16);
-                moduleMatrixDirty = false;
-            }
+        
+        TransformComponent *trans = nullptr;
+        if ( nullptr != host) {
+            trans = host->getComponent<TransformComponent>();
+        }
+        if (nullptr != trans && trans->isDirty()) {
+            program->use();
+            glm::mat4 m = trans->getModuleMatrix();
+            program->setUnifrom("um4MMatrix", glm::value_ptr(m), 16);
+            
+            glm::mat3 nMatrix = m;
+            program->setUnifrom("um3NMatrix", glm::value_ptr(nMatrix), 9);
+            glm::vec3 pos = trans->getPosition();
+            program->setUnifrom("uv3EyePosition", glm::value_ptr(pos), 3);
         }
     }
     
@@ -209,10 +226,12 @@ namespace dragon {
         program->use();
 
         glBindBuffer(GL_ARRAY_BUFFER, vertexes->getGLLocation());
-        for (auto vertexIndex : vertexIndexVec) {
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexIndex->getGLLocation());
+        for (auto i = 0; i < vertexIndexVec.size(); i++) {
+            materialVec[i]->apply(program);
+
+            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexIndexVec.at(i)->getGLLocation());
 //            glDrawArrays(GL_LINES, 0, vertexIndex->getMemoryLength());
-            glDrawElements(GL_LINES, vertexIndex->getMemoryLength(), GL_UNSIGNED_INT, nullptr);
+            glDrawElements(GL_TRIANGLES, vertexIndexVec.at(i)->getMemoryLength(), GL_UNSIGNED_INT, nullptr);
         }
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);

@@ -32,6 +32,8 @@ namespace dragon {
         const glm::vec3& getRotation();
         
         const glm::mat4& getModuleMatrix();
+        
+        bool isDirty();
 
     protected:
         glm::vec3 position;

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49883EC01CFAC30E0064F5F2 /* Material.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 49883EBE1CFAC30E0064F5F2 /* Material.cpp */; };
+		49883EC11CFAC30E0064F5F2 /* Material.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 49883EBF1CFAC30E0064F5F2 /* Material.hpp */; };
 		499F2B241CCCA91400827D40 /* common.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F29741CCCA91400827D40 /* common.hpp */; };
 		499F2B251CCCA91400827D40 /* _features.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F29761CCCA91400827D40 /* _features.hpp */; };
 		499F2B261CCCA91400827D40 /* _fixes.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F29771CCCA91400827D40 /* _fixes.hpp */; };
@@ -152,6 +154,8 @@
 		499F2BB21CCCA91400827D40 /* vec3.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F2A741CCCA91400827D40 /* vec3.hpp */; };
 		499F2BB31CCCA91400827D40 /* vec4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F2A751CCCA91400827D40 /* vec4.hpp */; };
 		499F2BB41CCCA91400827D40 /* vector_relational.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F2A761CCCA91400827D40 /* vector_relational.hpp */; };
+		9A1988FE1D007A3A00EB2E70 /* RotateComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1988FC1D007A3A00EB2E70 /* RotateComponent.cpp */; };
+		9A1988FF1D007A3A00EB2E70 /* RotateComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A1988FD1D007A3A00EB2E70 /* RotateComponent.hpp */; };
 		9A1FD8871CDC87F40053D1FE /* MeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FD8851CDC87F40053D1FE /* MeshComponent.cpp */; };
 		9A1FD8881CDC87F40053D1FE /* MeshComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A1FD8861CDC87F40053D1FE /* MeshComponent.hpp */; };
 		9A1FD88C1CDDB8100053D1FE /* ILifeCycle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FD88A1CDDB8100053D1FE /* ILifeCycle.cpp */; };
@@ -225,6 +229,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		49883EBE1CFAC30E0064F5F2 /* Material.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Material.cpp; sourceTree = "<group>"; };
+		49883EBF1CFAC30E0064F5F2 /* Material.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Material.hpp; sourceTree = "<group>"; };
 		499F29741CCCA91400827D40 /* common.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = common.hpp; sourceTree = "<group>"; };
 		499F29761CCCA91400827D40 /* _features.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = _features.hpp; sourceTree = "<group>"; };
 		499F29771CCCA91400827D40 /* _fixes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = _fixes.hpp; sourceTree = "<group>"; };
@@ -481,6 +487,8 @@
 		499F2A741CCCA91400827D40 /* vec3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec3.hpp; sourceTree = "<group>"; };
 		499F2A751CCCA91400827D40 /* vec4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec4.hpp; sourceTree = "<group>"; };
 		499F2A761CCCA91400827D40 /* vector_relational.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_relational.hpp; sourceTree = "<group>"; };
+		9A1988FC1D007A3A00EB2E70 /* RotateComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateComponent.cpp; sourceTree = "<group>"; };
+		9A1988FD1D007A3A00EB2E70 /* RotateComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RotateComponent.hpp; sourceTree = "<group>"; };
 		9A1FD8851CDC87F40053D1FE /* MeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshComponent.cpp; sourceTree = "<group>"; };
 		9A1FD8861CDC87F40053D1FE /* MeshComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MeshComponent.hpp; sourceTree = "<group>"; };
 		9A1FD8891CDC89C30053D1FE /* GLStructDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLStructDefine.h; sourceTree = "<group>"; };
@@ -987,6 +995,10 @@
 				9A466EC21CF4608E00BA4EC8 /* GLData.cpp */,
 				9A466EC31CF4608E00BA4EC8 /* GLData.hpp */,
 				9A466ECF1CF5BCB600BA4EC8 /* gl-mac.h */,
+				49883EBE1CFAC30E0064F5F2 /* Material.cpp */,
+				49883EBF1CFAC30E0064F5F2 /* Material.hpp */,
+				9A1988FC1D007A3A00EB2E70 /* RotateComponent.cpp */,
+				9A1988FD1D007A3A00EB2E70 /* RotateComponent.hpp */,
 			);
 			name = core;
 			path = ../core;
@@ -1088,6 +1100,7 @@
 				499F2B311CCCA91400827D40 /* func_packing.hpp in Headers */,
 				9AF7FBBD1CDA494A0091FF73 /* TransformComponent.hpp in Headers */,
 				499F2BB11CCCA91400827D40 /* vec2.hpp in Headers */,
+				49883EC11CFAC30E0064F5F2 /* Material.hpp in Headers */,
 				499F2B7E1CCCA91400827D40 /* log_base.hpp in Headers */,
 				499F2B961CCCA91400827D40 /* scalar_relational.hpp in Headers */,
 				499F2BAF1CCCA91400827D40 /* packing.hpp in Headers */,
@@ -1194,6 +1207,7 @@
 				499F2BB21CCCA91400827D40 /* vec3.hpp in Headers */,
 				9A71D6DD1CBE44D300564A1B /* Reference.hpp in Headers */,
 				499F2B9E1CCCA91400827D40 /* transform2.hpp in Headers */,
+				9A1988FF1D007A3A00EB2E70 /* RotateComponent.hpp in Headers */,
 				499F2B9A1CCCA91400827D40 /* spline.hpp in Headers */,
 				499F2B371CCCA91400827D40 /* intrinsic_geometric.hpp in Headers */,
 				499F2B5C1CCCA91400827D40 /* matrix_integer.hpp in Headers */,
@@ -1272,6 +1286,7 @@
 				499F2B341CCCA91400827D40 /* glm.cpp in Sources */,
 				9A3343431CEBF79F008319E4 /* ControlComponent.cpp in Sources */,
 				9A3343371CEB1C07008319E4 /* InputComponent.cpp in Sources */,
+				9A1988FE1D007A3A00EB2E70 /* RotateComponent.cpp in Sources */,
 				9AF7FBBC1CDA494A0091FF73 /* TransformComponent.cpp in Sources */,
 				9AE585691CD251970050BA74 /* EventComponent.cpp in Sources */,
 				9A466EC41CF4608E00BA4EC8 /* GLData.cpp in Sources */,
@@ -1280,6 +1295,7 @@
 				9A3362BF1CC9B9F700C8C7C0 /* GLProgram.cpp in Sources */,
 				9A33628E1CC6675B00C8C7C0 /* FBXMessage.cpp in Sources */,
 				9AE585731CD2EF580050BA74 /* EventInput.cpp in Sources */,
+				49883EC01CFAC30E0064F5F2 /* Material.cpp in Sources */,
 				9A71D6E11CBE45CF00564A1B /* UIModule.cpp in Sources */,
 				9A33627D1CC3D3EE00C8C7C0 /* EventRenderer.cpp in Sources */,
 				9A71D6DC1CBE44D300564A1B /* Reference.cpp in Sources */,

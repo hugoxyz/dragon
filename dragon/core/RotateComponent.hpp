@@ -1,21 +1,21 @@
 //
-//  ControlComponent.hpp
+//  RotateComponent.hpp
 //  dragon
 //
-//  Created by hugo on 16/5/18.
+//  Created by hugo on 16/6/2.
 //
 //
 
-#ifndef ControlComponent_hpp
-#define ControlComponent_hpp
+#ifndef RotateComponent_hpp
+#define RotateComponent_hpp
 
 #include "Component.hpp"
 
 namespace dragon {
-    class ControlComponent : public Component {
+    class RotateComponent : public Component {
     public:
-        ControlComponent();
-        ~ControlComponent();
+        RotateComponent();
+        ~RotateComponent();
         
         void registerKeyEvent();
         void unregisterKeyEvent();
@@ -27,4 +27,4 @@ namespace dragon {
     };
 }
 
-#endif /* ControlComponent_hpp */
+#endif /* RotateComponent_hpp */
