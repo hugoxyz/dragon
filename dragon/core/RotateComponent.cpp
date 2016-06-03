@@ -54,15 +54,15 @@ namespace dragon {
                         glm::vec3 step = glm::vec3(0, 0, 0);
                         switch (key->getKey()) {
                             case InputKeyEvent::Key::KEY_X : {
-                                trans->rotate(glm::vec3(1, 0, 0));
+                                trans->rotate(glm::vec3(glm::radians(30.0f), 0, 0));
                                 break;
                             }
                             case InputKeyEvent::Key::KEY_C: {
-                                trans->rotate(glm::vec3(0, 1, 0));
+                                trans->rotate(glm::vec3(0, glm::radians(30.0f), 0));
                                 break;
                             }
                             case InputKeyEvent::Key::KEY_Z: {
-                                trans->rotate(glm::vec3(0, 0, 1));
+                                trans->rotate(glm::vec3(0, 0, glm::radians(30.0f)));
                                 break;
                             }
                             default: {

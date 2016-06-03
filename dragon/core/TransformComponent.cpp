@@ -8,6 +8,8 @@
 
 #include "TransformComponent.hpp"
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/quaternion.hpp>
+#include <glm/gtx/quaternion.hpp>
 
 namespace dragon {
     
@@ -64,10 +66,8 @@ namespace dragon {
     const glm::mat4& TransformComponent::getModuleMatrix() {
         if (moduleMatrixDirty) {
             moduleMatrix = glm::scale(glm::mat4(1.0f), size);
-            //glm::rotate(View, Rotate.y, glm::vec3(-1.0f, 0.0f, 0.0f));
-            moduleMatrix = glm::rotate(moduleMatrix, rotation.z, glm::vec3(0, 0, 1));
-            moduleMatrix = glm::rotate(moduleMatrix, rotation.x, glm::vec3(1, 0, 0));
-            moduleMatrix = glm::rotate(moduleMatrix, rotation.y, glm::vec3(0, 1, 0));
+            glm::quat q = glm::quat(rotation);
+            moduleMatrix *= glm::toMat4(q);
             moduleMatrix = glm::translate(moduleMatrix, position);
             
             moduleMatrixDirty = false;
