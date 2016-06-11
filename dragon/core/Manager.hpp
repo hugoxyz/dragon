@@ -27,8 +27,10 @@ namespace dragon {
         void step();
         virtual void onDeinit();
 
-        void run();
+        void run(const std::string& scene = "main");
         void exit();
+        
+        bool loadScene(const std::string& scene);
 
         void sendMsg(Message* msg);
         void sendMsg(const std::string& modName, Message* msg);

@@ -45,6 +45,8 @@ namespace dragon {
         
         void onGLFWDrop(GLFWwindow* w, int count, const char** path);
         void onGLFWKey(GLFWwindow* w, int key , int code , int action, int mod);
+        void onGLFWMouseButton(GLFWwindow* w, int button, int action, int mod);
+        void onGLFWMouseMove(GLFWwindow* w, double x, double y);
 
     protected:
         void createGLProgram();

@@ -1,0 +1,71 @@
+{
+	"name": "edit scene",
+	"type": "Widget",
+	"components": {
+		"TransformComponent": {
+			"size": {
+				"x": 960,
+				"y": 640,
+				"z": 0
+			},
+			"position": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			},
+			"rotation": {
+				"x": 0,
+				"y": 0,
+				"z": 0
+			}
+		}
+	},
+	"children": [
+		{
+			"name":"ObjList",
+			"type": "Widget",
+			"components": {
+				"TransformComponent": {
+					"size": {
+						"x": 100,
+						"y": 640,
+						"z": 0
+					},
+					"position": {
+						"x": 0,
+						"y": 0,
+						"z": 0
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 0
+					}
+				}
+			}
+		}
+		{
+			"name":"Main",
+			"type": "Widget",
+			"components": {
+				"TransformComponent": {
+					"size": {
+						"x": 860,
+						"y": 640,
+						"z": 0
+					},
+					"position": {
+						"x": 100,
+						"y": 0,
+						"z": 0
+					},
+					"rotation": {
+						"x": 0,
+						"y": 0,
+						"z": 0
+					}
+				}
+			}
+		}
+	]
+}

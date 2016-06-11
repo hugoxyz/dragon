@@ -22,6 +22,7 @@ namespace dragon {
             EVENT_ALL,
             EVENT_INPUT,
             EVENT_INPUT_KEY,
+            EVENT_INPUT_TOUCH,
             EVENT_RENDERER,
             EVENT_RENDERER_NODE,
             EVENT_CAMERA_PROJECTION_CHANGE,

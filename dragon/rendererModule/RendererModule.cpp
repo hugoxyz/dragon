@@ -22,6 +22,7 @@
 #include "../core/EventComponent.hpp"
 #include "../core/CameraComponent.hpp"
 #include "../core/InputKeyEvent.hpp"
+#include "../core/InputTouchEvent.hpp"
 #include "../core/Importer.hpp"
 
 namespace dragon {
@@ -197,6 +198,22 @@ namespace dragon {
             }
             renderer->onGLFWKey(w, key, code, action, mod);
         }
+        
+        static void mouse_button_cb(GLFWwindow* w, int btn, int action, int mod) {
+            RendererModule* renderer = getRendererModule();
+            if (nullptr == renderer) {
+                return;
+            }
+            renderer->onGLFWMouseButton(w, btn, action, mod);
+        }
+        
+        static void mouse_move_cb(GLFWwindow* w, double x, double y) {
+            RendererModule* renderer = getRendererModule();
+            if (nullptr == renderer) {
+                return;
+            }
+            renderer->onGLFWMouseMove(w, x, y);
+        }
 
     };
 
@@ -265,6 +282,8 @@ namespace dragon {
         glfwMakeContextCurrent(window);
         glfwSetDropCallback(window, glCallbacks::drop_cb);
         glfwSetKeyCallback(window, glCallbacks::key_cb);
+        glfwSetMouseButtonCallback(window, glCallbacks::mouse_button_cb);
+        glfwSetCursorPosCallback(window, glCallbacks::mouse_move_cb);
 
         createGLProgram();
         glGenBuffers(1, &vertexesBuf);
@@ -465,6 +484,44 @@ namespace dragon {
         keyEvent->setKey(g_keyCodeMap[key]);
         
         Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_INPUT_KEY), keyEvent);
+    }
+    
+    void RendererModule::onGLFWMouseButton(GLFWwindow* w, int button, int action, int mod) {
+        InputTouchEvent::Action act = InputTouchEvent::Action::Press;
+        switch (action) {
+            case GLFW_PRESS: {
+                act = InputTouchEvent::Action::Press;
+                break;
+            }
+
+            case GLFW_RELEASE: {
+                act = InputTouchEvent::Action::Release;
+                break;
+            }
+
+            default: {
+                return;
+            }
+        }
+        InputTouchEvent *touch = new InputTouchEvent(InputBaseEvent::InputType::Touch);
+        touch->setAction(act);
+        
+        double x = 0;
+        double y = 0;
+        glfwGetCursorPos(w, &x, &y);
+        touch->setPosition(x, y);
+        
+        Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_INPUT_TOUCH), touch);
+    }
+    
+    void RendererModule::onGLFWMouseMove(GLFWwindow* w, double x, double y) {
+        if (GLFW_PRESS == glfwGetMouseButton(w, GLFW_MOUSE_BUTTON_LEFT)) {
+            InputTouchEvent *touch = new InputTouchEvent(InputBaseEvent::InputType::Touch);
+            touch->setAction(InputTouchEvent::Action::Move);
+            touch->setPosition(x, y);
+            
+            Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_INPUT_TOUCH), touch);
+        }
     }
 
 

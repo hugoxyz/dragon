@@ -98,7 +98,7 @@ namespace dragon {
         eventComponent = comp;
     }
 
-    void Manager::run() {
+    void Manager::run(const std::string& scene) {
         time_t startTime, endTime;
         int restmilsecond = 0;
 
@@ -129,6 +129,10 @@ namespace dragon {
 
     void Manager::exit() {
         running = false;
+    }
+    
+    bool Manager::loadScene(const std::string& scene) {
+        return true;
     }
     
     void Manager::sendMsg(Message *msg) {

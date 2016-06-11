@@ -192,6 +192,12 @@
 		9A466EBE1CF3E8B000BA4EC8 /* Importer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A466EBC1CF3E8B000BA4EC8 /* Importer.hpp */; };
 		9A466EC41CF4608E00BA4EC8 /* GLData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A466EC21CF4608E00BA4EC8 /* GLData.cpp */; };
 		9A466EC51CF4608E00BA4EC8 /* GLData.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A466EC31CF4608E00BA4EC8 /* GLData.hpp */; };
+		9A6B185A1D0C05ED0061D42E /* Widget.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B18581D0C05ED0061D42E /* Widget.cpp */; };
+		9A6B185B1D0C05ED0061D42E /* Widget.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B18591D0C05ED0061D42E /* Widget.hpp */; };
+		9A6B185E1D0C19800061D42E /* InputTouchEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B185C1D0C19800061D42E /* InputTouchEvent.cpp */; };
+		9A6B185F1D0C19800061D42E /* InputTouchEvent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B185D1D0C19800061D42E /* InputTouchEvent.hpp */; };
+		9A6B18621D0C67E90061D42E /* SceneImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B18601D0C67E90061D42E /* SceneImporter.cpp */; };
+		9A6B18631D0C67E90061D42E /* SceneImporter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B18611D0C67E90061D42E /* SceneImporter.hpp */; };
 		9A71D6CA1CBE44D300564A1B /* AutoReleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A71D6B51CBE44D300564A1B /* AutoReleasePool.cpp */; };
 		9A71D6CB1CBE44D300564A1B /* AutoReleasePool.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A71D6B61CBE44D300564A1B /* AutoReleasePool.hpp */; };
 		9A71D6CC1CBE44D300564A1B /* AutoReleasePoolMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A71D6B71CBE44D300564A1B /* AutoReleasePoolMgr.cpp */; };
@@ -528,6 +534,12 @@
 		9A466EC21CF4608E00BA4EC8 /* GLData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLData.cpp; sourceTree = "<group>"; };
 		9A466EC31CF4608E00BA4EC8 /* GLData.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLData.hpp; sourceTree = "<group>"; };
 		9A466ECF1CF5BCB600BA4EC8 /* gl-mac.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "gl-mac.h"; sourceTree = "<group>"; };
+		9A6B18581D0C05ED0061D42E /* Widget.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Widget.cpp; sourceTree = "<group>"; };
+		9A6B18591D0C05ED0061D42E /* Widget.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Widget.hpp; sourceTree = "<group>"; };
+		9A6B185C1D0C19800061D42E /* InputTouchEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = InputTouchEvent.cpp; sourceTree = "<group>"; };
+		9A6B185D1D0C19800061D42E /* InputTouchEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InputTouchEvent.hpp; sourceTree = "<group>"; };
+		9A6B18601D0C67E90061D42E /* SceneImporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneImporter.cpp; sourceTree = "<group>"; };
+		9A6B18611D0C67E90061D42E /* SceneImporter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SceneImporter.hpp; sourceTree = "<group>"; };
 		9A71D67B1CBCD7FB00564A1B /* libdragon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdragon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A71D6B51CBE44D300564A1B /* AutoReleasePool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AutoReleasePool.cpp; sourceTree = "<group>"; };
 		9A71D6B61CBE44D300564A1B /* AutoReleasePool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AutoReleasePool.hpp; sourceTree = "<group>"; };
@@ -908,6 +920,16 @@
 			path = ../rendererModule;
 			sourceTree = "<group>";
 		};
+		9A6B18571D0C05B20061D42E /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				9A6B18581D0C05ED0061D42E /* Widget.cpp */,
+				9A6B18591D0C05ED0061D42E /* Widget.hpp */,
+			);
+			name = ui;
+			path = ../ui;
+			sourceTree = "<group>";
+		};
 		9A71D60A1CBCC77600564A1B = {
 			isa = PBXGroup;
 			children = (
@@ -928,6 +950,7 @@
 		9A71D6871CBCD83B00564A1B /* dragon */ = {
 			isa = PBXGroup;
 			children = (
+				9A6B18571D0C05B20061D42E /* ui */,
 				9A71D7081CBEA4F200564A1B /* include */,
 				9A71D6B41CBE44D300564A1B /* core */,
 				9A71D6DE1CBE459000564A1B /* uiModule */,
@@ -999,6 +1022,10 @@
 				49883EBF1CFAC30E0064F5F2 /* Material.hpp */,
 				9A1988FC1D007A3A00EB2E70 /* RotateComponent.cpp */,
 				9A1988FD1D007A3A00EB2E70 /* RotateComponent.hpp */,
+				9A6B185C1D0C19800061D42E /* InputTouchEvent.cpp */,
+				9A6B185D1D0C19800061D42E /* InputTouchEvent.hpp */,
+				9A6B18601D0C67E90061D42E /* SceneImporter.cpp */,
+				9A6B18611D0C67E90061D42E /* SceneImporter.hpp */,
 			);
 			name = core;
 			path = ../core;
@@ -1120,6 +1147,7 @@
 				499F2B3B1CCCA91400827D40 /* intrinsic_vector_relational.hpp in Headers */,
 				499F2BA51CCCA91400827D40 /* mat2x2.hpp in Headers */,
 				499F2BAA1CCCA91400827D40 /* mat3x4.hpp in Headers */,
+				9A6B18631D0C67E90061D42E /* SceneImporter.hpp in Headers */,
 				499F2B4B1CCCA91400827D40 /* type_mat4x4.hpp in Headers */,
 				499F2B9C1CCCA91400827D40 /* string_cast.hpp in Headers */,
 				499F2B6A1CCCA91400827D40 /* bit.hpp in Headers */,
@@ -1179,6 +1207,7 @@
 				499F2BA91CCCA91400827D40 /* mat3x3.hpp in Headers */,
 				9A466EBE1CF3E8B000BA4EC8 /* Importer.hpp in Headers */,
 				499F2BAC1CCCA91400827D40 /* mat4x3.hpp in Headers */,
+				9A6B185B1D0C05ED0061D42E /* Widget.hpp in Headers */,
 				499F2B4F1CCCA91400827D40 /* type_vec3.hpp in Headers */,
 				499F2B681CCCA91400827D40 /* vec1.hpp in Headers */,
 				499F2B281CCCA91400827D40 /* _swizzle.hpp in Headers */,
@@ -1209,6 +1238,7 @@
 				499F2B9E1CCCA91400827D40 /* transform2.hpp in Headers */,
 				9A1988FF1D007A3A00EB2E70 /* RotateComponent.hpp in Headers */,
 				499F2B9A1CCCA91400827D40 /* spline.hpp in Headers */,
+				9A6B185F1D0C19800061D42E /* InputTouchEvent.hpp in Headers */,
 				499F2B371CCCA91400827D40 /* intrinsic_geometric.hpp in Headers */,
 				499F2B5C1CCCA91400827D40 /* matrix_integer.hpp in Headers */,
 				499F2B8F1CCCA91400827D40 /* projection.hpp in Headers */,
@@ -1281,6 +1311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A3362BC1CC9B80400C8C7C0 /* FileUtilsApple.mm in Sources */,
+				9A6B185E1D0C19800061D42E /* InputTouchEvent.cpp in Sources */,
 				9A71D73A1CBFE9B100564A1B /* FBXModule.cpp in Sources */,
 				9A71D6CA1CBE44D300564A1B /* AutoReleasePool.cpp in Sources */,
 				499F2B341CCCA91400827D40 /* glm.cpp in Sources */,
@@ -1307,11 +1338,13 @@
 				9A1FD8871CDC87F40053D1FE /* MeshComponent.cpp in Sources */,
 				9A3362BA1CC9B80400C8C7C0 /* FileUtils.cpp in Sources */,
 				9A71D73E1CBFF70500564A1B /* UUID.cpp in Sources */,
+				9A6B185A1D0C05ED0061D42E /* Widget.cpp in Sources */,
 				9A71D6D61CBE44D300564A1B /* Module.cpp in Sources */,
 				9A466EBD1CF3E8B000BA4EC8 /* Importer.cpp in Sources */,
 				9A71D6CC1CBE44D300564A1B /* AutoReleasePoolMgr.cpp in Sources */,
 				9A71D6D01CBE44D300564A1B /* Logger.cpp in Sources */,
 				9A33433B1CEB28FE008319E4 /* InputBaseEvent.cpp in Sources */,
+				9A6B18621D0C67E90061D42E /* SceneImporter.cpp in Sources */,
 				9A71D6D41CBE44D300564A1B /* Message.cpp in Sources */,
 				9A71D6D81CBE44D300564A1B /* Node.cpp in Sources */,
 				499F2B2B1CCCA91400827D40 /* dummy.cpp in Sources */,
