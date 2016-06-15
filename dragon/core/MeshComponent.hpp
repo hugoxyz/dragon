@@ -61,8 +61,7 @@ namespace dragon {
         
         int cameraObserveTag;
         int cameraViewObserveTag;
-        bool projectMatrixDirty;
-        bool viewMatrixDirty;
+        bool cameraMatrixDirty;
         bool moduleMatrixDirty;
 
     };

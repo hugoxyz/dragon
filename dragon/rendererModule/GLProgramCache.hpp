@@ -20,13 +20,13 @@ namespace dragon {
         GLProgramCache();
         ~GLProgramCache();
 
+        GLProgram* getProgram(const std::string& vsh, const std::string& fsh);
+
+    protected:
         void addProgram(GLProgram* program, const std::string& name);
         GLProgram* getProgram(const std::string& name);
-        
         void addProgram(GLProgram* program, const std::string& vsh, const std::string& fsh);
-        GLProgram* getProgram(const std::string& vsh, const std::string& fsh);
         
-    protected:
         std::string genName(const std::string& vsh, const std::string& fsh);
         GLProgram* createGLProgram(const std::string& vsh, const std::string& fsh);
         

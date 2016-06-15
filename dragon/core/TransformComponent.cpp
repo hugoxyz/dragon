@@ -6,10 +6,14 @@
 //
 //
 
+#include "Node.hpp"
+#include "GLProgram.hpp"
 #include "TransformComponent.hpp"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/quaternion.hpp>
 #include <glm/gtx/quaternion.hpp>
+#include "glm/ext.hpp"
+
 
 namespace dragon {
     
@@ -76,7 +80,27 @@ namespace dragon {
         return moduleMatrix;
     }
     
+    void TransformComponent::toGlobalCoorMatrix(glm::mat4& mat) {
+        Node* parent = host->getParent();
+        if (nullptr == parent) {
+            return;
+        }
+        TransformComponent* parentTrans = parent->getTransComponent();
+        assert(nullptr != parentTrans);
+        parentTrans->toGlobalCoorMatrix(mat);
+        mat *= getModuleMatrix();
+    }
+    
     bool TransformComponent::isDirty() {
         return moduleMatrixDirty;
+    }
+    
+    void TransformComponent::apply(GLProgram* program) {
+        glm::mat4 m = getModuleMatrix();
+        program->setUnifrom("um4MMatrix", glm::value_ptr(m), 16);
+        program->setUnifrom("uv3EyePosition", glm::value_ptr(position), 3);
+
+        //glm::mat3 nMatrix = m;
+        //program->setUnifrom("um3NMatrix", glm::value_ptr(nMatrix), 9);
     }
 }

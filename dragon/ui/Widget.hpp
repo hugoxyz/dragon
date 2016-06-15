@@ -21,8 +21,6 @@ namespace dragon {
             Widget();
             virtual ~Widget();
 
-            virtual void loadComponent();
-
             virtual bool isVisible();
             virtual void setVisible(bool visible);
 

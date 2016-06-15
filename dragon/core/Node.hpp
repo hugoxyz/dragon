@@ -11,7 +11,7 @@
 
 #include <vector>
 #include <map>
-#include "Component.hpp"
+#include "TransformComponent.hpp"
 
 namespace dragon {
     class Module;
@@ -30,6 +30,8 @@ namespace dragon {
         void removeAllChild(bool release = true);
         Node* getChild(int id);
         Node* getChild(const std::string& name);
+        Node* getParent() { return parent; };
+        Node* findNode(const std::string& name);
 
         /*
          * Node - component
@@ -43,8 +45,11 @@ namespace dragon {
             Component *comp = getComponent(typeid(T).name());
             return dynamic_cast<T*>(comp);
         }
+        TransformComponent* getTransComponent() { return transComp; };
         
         Module* getModule();
+        
+        void apply(GLProgram* program) override;
 
         friend class Manager;
     protected:
@@ -65,6 +70,7 @@ namespace dragon {
         std::map<std::string, Component*> components;
 
         Node* parent;
+        TransformComponent* transComp;
     };
 }
 

@@ -3,7 +3,7 @@
 	"type": "Widget",
 	"components": {
 		"TransformComponent": {
-			"size": {
+			"scale": {
 				"x": 960,
 				"y": 640,
 				"z": 0
@@ -26,7 +26,7 @@
 			"type": "Widget",
 			"components": {
 				"TransformComponent": {
-					"size": {
+					"scale": {
 						"x": 100,
 						"y": 640,
 						"z": 0
@@ -43,13 +43,13 @@
 					}
 				}
 			}
-		}
+		},
 		{
 			"name":"Main",
 			"type": "Widget",
 			"components": {
 				"TransformComponent": {
-					"size": {
+					"scale": {
 						"x": 860,
 						"y": 640,
 						"z": 0

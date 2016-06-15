@@ -198,6 +198,10 @@
 		9A6B185F1D0C19800061D42E /* InputTouchEvent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B185D1D0C19800061D42E /* InputTouchEvent.hpp */; };
 		9A6B18621D0C67E90061D42E /* SceneImporter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B18601D0C67E90061D42E /* SceneImporter.cpp */; };
 		9A6B18631D0C67E90061D42E /* SceneImporter.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B18611D0C67E90061D42E /* SceneImporter.hpp */; };
+		9A6B18661D0D00630061D42E /* GLComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B18641D0D00630061D42E /* GLComponent.cpp */; };
+		9A6B18671D0D00630061D42E /* GLComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B18651D0D00630061D42E /* GLComponent.hpp */; };
+		9A6B18771D1050F60061D42E /* RectComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B18751D1050F60061D42E /* RectComponent.cpp */; };
+		9A6B18781D1050F60061D42E /* RectComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B18761D1050F60061D42E /* RectComponent.hpp */; };
 		9A71D6CA1CBE44D300564A1B /* AutoReleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A71D6B51CBE44D300564A1B /* AutoReleasePool.cpp */; };
 		9A71D6CB1CBE44D300564A1B /* AutoReleasePool.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A71D6B61CBE44D300564A1B /* AutoReleasePool.hpp */; };
 		9A71D6CC1CBE44D300564A1B /* AutoReleasePoolMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A71D6B71CBE44D300564A1B /* AutoReleasePoolMgr.cpp */; };
@@ -540,6 +544,10 @@
 		9A6B185D1D0C19800061D42E /* InputTouchEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InputTouchEvent.hpp; sourceTree = "<group>"; };
 		9A6B18601D0C67E90061D42E /* SceneImporter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SceneImporter.cpp; sourceTree = "<group>"; };
 		9A6B18611D0C67E90061D42E /* SceneImporter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SceneImporter.hpp; sourceTree = "<group>"; };
+		9A6B18641D0D00630061D42E /* GLComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GLComponent.cpp; sourceTree = "<group>"; };
+		9A6B18651D0D00630061D42E /* GLComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLComponent.hpp; sourceTree = "<group>"; };
+		9A6B18751D1050F60061D42E /* RectComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RectComponent.cpp; sourceTree = "<group>"; };
+		9A6B18761D1050F60061D42E /* RectComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RectComponent.hpp; sourceTree = "<group>"; };
 		9A71D67B1CBCD7FB00564A1B /* libdragon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdragon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A71D6B51CBE44D300564A1B /* AutoReleasePool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AutoReleasePool.cpp; sourceTree = "<group>"; };
 		9A71D6B61CBE44D300564A1B /* AutoReleasePool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AutoReleasePool.hpp; sourceTree = "<group>"; };
@@ -1026,6 +1034,10 @@
 				9A6B185D1D0C19800061D42E /* InputTouchEvent.hpp */,
 				9A6B18601D0C67E90061D42E /* SceneImporter.cpp */,
 				9A6B18611D0C67E90061D42E /* SceneImporter.hpp */,
+				9A6B18641D0D00630061D42E /* GLComponent.cpp */,
+				9A6B18651D0D00630061D42E /* GLComponent.hpp */,
+				9A6B18751D1050F60061D42E /* RectComponent.cpp */,
+				9A6B18761D1050F60061D42E /* RectComponent.hpp */,
 			);
 			name = core;
 			path = ../core;
@@ -1230,8 +1242,10 @@
 				9A71D6E21CBE45CF00564A1B /* UIModule.hpp in Headers */,
 				9A33430E1CE22FC2008319E4 /* Utils.hpp in Headers */,
 				499F2B551CCCA91400827D40 /* glm.hpp in Headers */,
+				9A6B18781D1050F60061D42E /* RectComponent.hpp in Headers */,
 				499F2B4D1CCCA91400827D40 /* type_vec1.hpp in Headers */,
 				9A1FD88D1CDDB8100053D1FE /* ILifeCycle.hpp in Headers */,
+				9A6B18671D0D00630061D42E /* GLComponent.hpp in Headers */,
 				9A71D6CF1CBE44D300564A1B /* Component.hpp in Headers */,
 				499F2BB21CCCA91400827D40 /* vec3.hpp in Headers */,
 				9A71D6DD1CBE44D300564A1B /* Reference.hpp in Headers */,
@@ -1322,6 +1336,7 @@
 				9AE585691CD251970050BA74 /* EventComponent.cpp in Sources */,
 				9A466EC41CF4608E00BA4EC8 /* GLData.cpp in Sources */,
 				9A71D6CE1CBE44D300564A1B /* Component.cpp in Sources */,
+				9A6B18771D1050F60061D42E /* RectComponent.cpp in Sources */,
 				9A71D6D21CBE44D300564A1B /* Manager.cpp in Sources */,
 				9A3362BF1CC9B9F700C8C7C0 /* GLProgram.cpp in Sources */,
 				9A33628E1CC6675B00C8C7C0 /* FBXMessage.cpp in Sources */,
@@ -1340,6 +1355,7 @@
 				9A71D73E1CBFF70500564A1B /* UUID.cpp in Sources */,
 				9A6B185A1D0C05ED0061D42E /* Widget.cpp in Sources */,
 				9A71D6D61CBE44D300564A1B /* Module.cpp in Sources */,
+				9A6B18661D0D00630061D42E /* GLComponent.cpp in Sources */,
 				9A466EBD1CF3E8B000BA4EC8 /* Importer.cpp in Sources */,
 				9A71D6CC1CBE44D300564A1B /* AutoReleasePoolMgr.cpp in Sources */,
 				9A71D6D01CBE44D300564A1B /* Logger.cpp in Sources */,

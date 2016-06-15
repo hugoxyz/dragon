@@ -9,8 +9,9 @@
 #ifndef TransformComponent_hpp
 #define TransformComponent_hpp
 
+#include "glm/glm.hpp"
+
 #include "Component.hpp"
-#include "glm.hpp"
 
 namespace dragon {
     class TransformComponent : public Component {
@@ -32,8 +33,11 @@ namespace dragon {
         const glm::vec3& getRotation();
         
         const glm::mat4& getModuleMatrix();
+        void toGlobalCoorMatrix(glm::mat4& mat);
         
         bool isDirty();
+        
+        void apply(GLProgram* program) override;
 
     protected:
         glm::vec3 position;

@@ -15,10 +15,13 @@
 namespace dragon {
 
     class Node;
+    class GLProgram;
     class Component : public Object, public ILifeCycle {
     public:
         Component();
         virtual ~Component();
+
+        virtual inline void apply(GLProgram* program) {};
 
         friend Node;
     protected:

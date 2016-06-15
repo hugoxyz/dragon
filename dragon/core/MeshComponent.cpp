@@ -29,8 +29,7 @@ namespace dragon {
     , glBufferInvalid(true)
     , cameraObserveTag(0)
     , cameraViewObserveTag(0)
-    , projectMatrixDirty(true)
-    , viewMatrixDirty(true)
+    , cameraMatrixDirty(true)
     , moduleMatrixDirty(true)
     , program(nullptr) {
         vertexIndexVec.clear();
@@ -128,15 +127,15 @@ namespace dragon {
             program = GLProgramCache::getInstance()->getProgram(vshader_path, fshader_path);
             if (nullptr != program) {
                 program->retain();
-                projectMatrixDirty = true;
+                cameraMatrixDirty = true;
                 
-                glm::vec3 light = glm::vec3(0, 1000, 0);
+                glm::vec3 light = glm::vec3(0, 100, 50);
 
                 program->setUnifrom("uv3LightPosition", glm::value_ptr(light), 3);
             }
         }
     }
-    
+
     void MeshComponent::onSuspend() {
         EventComponent* event = Manager::getInstance()->getComponent<EventComponent>();
         if (nullptr != event) {
@@ -185,28 +184,16 @@ namespace dragon {
             }
         }
 
-        if (viewMatrixDirty || projectMatrixDirty) {
-            Node* camera = Manager::getInstance()->getChild("__camera_node");
-            CameraComponent* comp = nullptr == camera? nullptr : camera->getComponent<CameraComponent>();
+        if (cameraMatrixDirty) {
+            Node* camera = Manager::getInstance()->findNode("__camera_node");
+            CameraComponent* comp = (nullptr == camera? nullptr : camera->getComponent<CameraComponent>());
             if (nullptr != comp) {
                 program->use();
-                if (projectMatrixDirty) {
-                    glm::mat4 project = comp->getProjectMatrix();
-                    program->setUnifrom("um4PMatrix", glm::value_ptr(project), 16);
-                    projectMatrixDirty = false;
-                }
-                if (viewMatrixDirty) {
-                    glm::mat4 viewMat = comp->getViewMatrix();
-                    program->setUnifrom("um4VMatrix", glm::value_ptr(viewMat), 16);
-                    viewMatrixDirty = false;
-                }
+                comp->apply(program);
             }
         }
-        
-        TransformComponent *trans = nullptr;
-        if ( nullptr != host) {
-            trans = host->getComponent<TransformComponent>();
-        }
+
+        TransformComponent *trans = (nullptr == host? nullptr : host->getComponent<TransformComponent>());
         if (nullptr != trans && trans->isDirty()) {
             program->use();
             glm::mat4 m = trans->getModuleMatrix();
@@ -241,11 +228,11 @@ namespace dragon {
     }
     
     void MeshComponent::onCameraProject(int event, Object* data, Object* userData) {
-        projectMatrixDirty = true;
+        cameraMatrixDirty = true;
     }
     
     void MeshComponent::onCameraView(int event, Object* data, Object* userData) {
-        viewMatrixDirty = true;
+        cameraMatrixDirty = true;
     }
     
 }

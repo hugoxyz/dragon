@@ -6,6 +6,8 @@
 //
 //
 
+#include <queue>
+
 #include "Node.hpp"
 #include "Module.hpp"
 #include "TransformComponent.hpp"
@@ -82,6 +84,26 @@ namespace dragon {
         return nullptr;
     }
     
+    Node* Node::findNode(const std::string& name) {
+        std::queue<Node*> q;
+        q.push(this);
+
+        Node* retNode = nullptr;
+        while (!q.empty()) {
+            Node* n = q.front();
+            q.pop();
+            if (0 == n->getName().compare(name)) {
+                retNode = n;
+                break;
+            }
+            for (auto c : n->children) {
+                q.push(c);
+            }
+        }
+        
+        return retNode;
+    }
+    
     void Node::addComponent(Component* comp, const std::string& n) {
         std::string name;
         if (n.empty()) {
@@ -94,11 +116,22 @@ namespace dragon {
             comp->host = this;
             comp->retain();
         }
+        
+        TransformComponent* t = dynamic_cast<TransformComponent*>(comp);
+        if (t) {
+            assert(nullptr == transComp);
+            transComp = t;
+            transComp->retain();
+        }
     }
     
     void Node::removeComponent(const std::string& name) {
         for (auto iter = components.end(); iter != components.begin(); iter++) {
             if (0 == iter->first.compare(name)) {
+                if (iter->second == transComp) {
+                    transComp->release();
+                    transComp = nullptr;
+                }
                 iter->second->host = nullptr;
                 iter->second->release();
                 components.erase(iter);
@@ -108,6 +141,10 @@ namespace dragon {
     
     void Node::removeAllComponent() {
         for (const auto& item: components) {
+            if (item.second == transComp) {
+                transComp->release();
+                transComp = nullptr;
+            }
             item.second->host = nullptr;
             item.second->release();
         }
@@ -136,6 +173,12 @@ namespace dragon {
         }
         
         return dynamic_cast<Module*>(secondParent);
+    }
+    
+    void Node::apply(GLProgram* program) {
+        for(auto comps : components) {
+            comps.second->apply(program);
+        }
     }
 
     /*

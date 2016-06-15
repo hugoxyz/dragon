@@ -12,10 +12,17 @@
 #include "glm/glm.hpp"
 #include "Component.hpp"
 
+#include "GLProgram.hpp"
+
 
 namespace dragon {
     class CameraComponent : public Component {
     public:
+        
+        enum Projection {
+            Orthogonal,
+            Perspective
+        };
         
         CameraComponent();
         ~CameraComponent();
@@ -25,7 +32,10 @@ namespace dragon {
         const glm::mat4& getViewMatrix();
         
         void setFocus(const glm::vec3& v);
-        
+        void setProjection(Projection p);
+
+        void apply(GLProgram* program) override;
+
     protected:
         float width;
         float height;
@@ -39,6 +49,8 @@ namespace dragon {
         glm::vec3 up;
         glm::mat4 viewMatrix;
         bool viewMatrixDirty;
+
+        Projection projection;
     };
 }
 

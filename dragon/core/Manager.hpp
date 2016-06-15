@@ -15,19 +15,23 @@
 
 namespace dragon {
     class EventComponent;
+    class GLComponent;
     class Manager : public Module {
     public:
         static Manager* getInstance();
         Manager();
         virtual ~Manager();
-        
-        void addChild(Node* n);
+
+        void createMainNode();
+        void addChild(Node* n, bool bMain = true);
+
         void addComponent(Component* comp, const std::string& name = "");
         
         void step();
+        void config();
         virtual void onDeinit();
 
-        void run(const std::string& scene = "main");
+        void run(const std::string& scene = "main.json");
         void exit();
         
         bool loadScene(const std::string& scene);
@@ -37,6 +41,10 @@ namespace dragon {
         void postEvent(int event, Object* data);
         
         void afterUpdate();
+        
+        void setAppName(const std::string& name);
+        void setScreenSize(int w, int h);
+        void setBgColor(int r, int g, int b);
         
     protected:
         void loadDefaultModule();
@@ -48,6 +56,17 @@ namespace dragon {
         int fps;
         Module* uiModule;
         EventComponent* eventComponent;
+        GLComponent* glComponent;
+        Node* mainNode;
+
+        //config
+        std::string appName;
+        int screenWidth;
+        int screenHeight;
+        int bgColorR;
+        int bgColorG;
+        int bgColorB;
+        int bgColorA;
 
     private:
         static Manager* instance;

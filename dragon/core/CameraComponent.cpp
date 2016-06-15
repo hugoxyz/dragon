@@ -22,7 +22,8 @@ namespace dragon {
     , far(100)
     , angle(60)
     , projectMatrixDirty(true)
-    , viewMatrixDirty(true) {
+    , viewMatrixDirty(true)
+    , projection(Perspective) {
         focus = glm::vec3(0, 0, -1);
         up = glm::vec3(0, 1, 0);
     }
@@ -39,7 +40,20 @@ namespace dragon {
     
     const glm::mat4& CameraComponent::getProjectMatrix() {
         if (projectMatrixDirty) {
-            projectMatrix = glm::perspective(angle, width/height, near, far);
+            switch (projection) {
+                case Perspective: {
+                    projectMatrix = glm::perspective(angle, width/height, near, far);
+                    break;
+                }
+                case Orthogonal: {
+                    projectMatrix = glm::ortho(0.0f, width, 0.0f, height, near, far);
+                    break;
+                }
+                default: {
+                    assert(false);
+                    break;
+                }
+            }
             projectMatrixDirty = false;
         }
         return projectMatrix;
@@ -67,6 +81,18 @@ namespace dragon {
         viewMatrixDirty = true;
 
         Manager::getInstance()->postEvent(static_cast<int>(EventComponent::Event::EVENT_CAMERA_VIEW_CHANGE), nullptr);
+    }
+    
+    void CameraComponent::setProjection(Projection p) {
+        projection = p;
+    }
+
+    void CameraComponent::apply(GLProgram* program) {
+        glm::mat4 project = getProjectMatrix();
+        program->setUnifrom("um4PMatrix", glm::value_ptr(project), 16);
+        
+        glm::mat4 viewMat = getViewMatrix();
+        program->setUnifrom("um4VMatrix", glm::value_ptr(viewMat), 16);
     }
 
 }
