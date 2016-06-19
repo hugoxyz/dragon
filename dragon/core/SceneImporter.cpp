@@ -18,6 +18,9 @@
 #include "Widget.hpp"
 
 #include "TransformComponent.hpp"
+#include "MeshComponent.hpp"
+#include "MaterialComponent.hpp"
+#include "MeshRendererComponent.hpp"
 
 namespace dragon {
     Node* SceneImporter::import(const std::string &file) {
@@ -70,8 +73,10 @@ namespace dragon {
         if (memberIt != json.MemberEnd()) {
             const rapidjson::Value& components = memberIt->value;
             for (auto it = components.MemberBegin(); it != components.MemberEnd(); it++) {
-                Component* comp = parserComponent(it->name.GetString(), it->value);
-                n->addComponent(comp);
+                auto compVec = parserComponent(it->name.GetString(), it->value);
+                for (auto comp : compVec) {
+                    n->addComponent(comp);
+                }
             }
         }
 
@@ -88,25 +93,101 @@ namespace dragon {
         return n;
     }
     
-    Component* SceneImporter::parserComponent(const std::string& name, const rapidjson::Value& json) {
+    std::vector<Component*> SceneImporter::parserComponent(const std::string& name, const rapidjson::Value& json) {
+        std::vector<Component*> compVec;
         Component* comp = nullptr;
-        if (0 == Utils::compare(name, "TransformComponent")) {
-            TransformComponent* trans = new TransformComponent();
-            trans->setPosition(transToVec3(json["position"]));
-            trans->setScale(transToVec3(json["scale"]));
-            trans->setRotation(transToVec3(json["rotation"]));
-            
-            comp = trans;
+        if (0 == Utils::compare(name, "transform")) {
+            comp = parserTransform(json);
+            if (nullptr != comp) {
+                compVec.push_back(comp);
+            }
+        } else if (0 == Utils::compare(name, "mesh")) {
+            comp = parserMesh(json);
+            if (nullptr != comp) {
+                compVec.push_back(comp);
+            }
+        } else if (0 == Utils::compare(name, "materials")) {
+            for (int i = 0; i < json.Size(); i++) {
+                comp = nullptr;
+                comp = parserMaterial(json);
+                if (nullptr != comp) {
+                    compVec.push_back(comp);
+                }
+            }
+        } else if (0 == Utils::compare(name, "renderer")) {
+            comp = parserMesh(json);
+            if (nullptr != comp) {
+                compVec.push_back(comp);
+            }
         }
-        
-        return comp;
+
+        return compVec;
     }
     
     glm::vec3 SceneImporter::transToVec3(const rapidjson::Value& json) {
-        float x = json["x"].GetFloat();
-        float y = json["y"].GetFloat();
-        float z = json["z"].GetFloat();
+        float x = json[0].GetFloat();
+        float y = json[1].GetFloat();
+        float z = json[2].GetFloat();
         
         return glm::vec3(x, y, z);
+    }
+    
+    Component* SceneImporter::parserTransform(const rapidjson::Value& json) {
+        TransformComponent* trans = new TransformComponent();
+        trans->setPosition(transToVec3(json["position"]));
+        trans->setScale(transToVec3(json["scale"]));
+        trans->setRotation(transToVec3(json["rotation"]));
+        
+        return trans;
+    }
+    
+    Component* SceneImporter::parserMesh(const rapidjson::Value& json) {
+        MeshComponent* mesh = new MeshComponent();
+        
+        int attrMask = 0;
+        const rapidjson::Value& attr = json["attributes"];
+        for (auto it = attr.Begin(); it != attr.End(); it++) {
+            if (0 == Utils::compare(it->GetString(), "POSITION")) {
+                attrMask |= MeshComponent::Attribute::Position;
+            } else if (0 == Utils::compare(it->GetString(), "COLOR")) {
+                attrMask |= MeshComponent::Attribute::Normal;
+            } else if (0 == Utils::compare(it->GetString(), "NORMAL")) {
+                attrMask |= MeshComponent::Attribute::Normal;
+            } else if (0 == Utils::compare(it->GetString(), "TEXCOORD0")) {
+                attrMask |= MeshComponent::Attribute::Texcoord0;
+            }
+        }
+        mesh->enableAttribute(attrMask);
+
+        const rapidjson::Value& vertices = json["vertices"];
+        void* meshBuffer = mesh->createMeshBuffer(vertices.Size()*sizeof(float));
+        float* cur = (float*)meshBuffer;
+        for (auto b = vertices.Begin(); b != vertices.End(); b++) {
+            *cur = b->GetFloat();
+            cur += 1;
+        }
+        
+        const rapidjson::Value& parts = json["parts"];
+        for (auto it = parts.Begin(); it != parts.End(); it++) {
+            const rapidjson::Value& part = *it;
+            const rapidjson::Value& indices = part["indices"];
+            int* meshIndexBuffer = (int*)mesh->createMeshIndexBuffer(part["id"].GetString(), indices.Size()*sizeof(int));
+            for (auto idx = indices.Begin(); idx != indices.End(); idx++) {
+                *meshIndexBuffer = idx->GetInt();
+                meshIndexBuffer += 1;
+            }
+        }
+
+        return mesh;
+    }
+    
+    Component* SceneImporter::parserMaterial(const rapidjson::Value &json) {
+        Component* comp = MaterialComponent::parserFromJosn(json);
+        return comp;
+    }
+
+    Component* SceneImporter::parserRenderer(const rapidjson::Value &json) {
+        Component* comp = MeshRendererComponent::parserFromJosn(json);
+        return comp;
     }
 }

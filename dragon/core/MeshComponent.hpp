@@ -21,8 +21,36 @@
 namespace dragon {
     class MeshComponent : public Component {
     public:
+        enum Attribute {
+            None = 0,
+            Position = 1,
+            Color = 2,
+            Normal = 4,
+            Texcoord0 = 8,
+            End
+        };
+        
+        typedef struct {
+            void* buffer;
+            int size;
+        } MeshBuffer;
+
+    public:
         MeshComponent();
         ~MeshComponent();
+
+        int enableAttribute(int attr);
+        int disableAttribute(int attr);
+
+        void* createMeshBuffer(int sizeOfByte);
+        void* createMeshIndexBuffer(const std::string& name, int sizeOfByte);
+        
+        /*
+         * attr: when attr is End, can take as, return value is unit size
+         */
+        int getOffset(Attribute attr);
+
+
 
 //        void createVertexesIf(int length);
 //        void addVertex(const gl::Vertex& vertex);
@@ -64,6 +92,10 @@ namespace dragon {
         bool cameraMatrixDirty;
         bool moduleMatrixDirty;
 
+        MeshBuffer meshBuffer;
+        int attribute;
+
+        std::map<std::string, MeshBuffer> meshIndexMap;
     };
 }
 

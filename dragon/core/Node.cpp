@@ -15,7 +15,8 @@
 namespace dragon {
     
     Node::Node()
-    : parent(nullptr) {
+    : parent(nullptr)
+    , transComp(nullptr) {
         components.clear();
     }
     

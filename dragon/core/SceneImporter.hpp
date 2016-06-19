@@ -9,6 +9,7 @@
 #ifndef SceneImporter_hpp
 #define SceneImporter_hpp
 
+#include <vector>
 #include "glm.hpp"
 
 #include "Importer.hpp"
@@ -24,8 +25,14 @@ namespace dragon {
         
     protected:
         Node* parserNode(const rapidjson::Value& json);
-        Component* parserComponent(const std::string& name, const rapidjson::Value& json);
+        std::vector<Component*> parserComponent(const std::string& name, const rapidjson::Value& json);
         glm::vec3 transToVec3(const rapidjson::Value& json);
+        Component* parserTransform(const rapidjson::Value& json);
+        Component* parserMesh(const rapidjson::Value& json);
+        Component* parserMaterial(const rapidjson::Value& json);
+        Component* parserRenderer(const rapidjson::Value& json);
+
+        Component* parserModule(const rapidjson::Value& json);
 
     protected:
         std::string file;

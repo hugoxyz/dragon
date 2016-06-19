@@ -9,8 +9,7 @@
 #ifndef TransformComponent_hpp
 #define TransformComponent_hpp
 
-#include "glm/glm.hpp"
-
+#include <glm/glm.hpp>
 #include "Component.hpp"
 
 namespace dragon {

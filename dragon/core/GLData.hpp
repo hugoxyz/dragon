@@ -22,6 +22,7 @@ namespace dragon {
         void setUnitSize(int s);
         void* addMemory(void *p);
         void* getMemory(int pos = 0);
+
         int getMemoryLength();
         int getUnitSize();
         

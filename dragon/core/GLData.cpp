@@ -77,7 +77,12 @@ namespace dragon {
         if (pos >= length) {
             return nullptr;
         }
-        return (char*)memory + pos * unitSize;
+        
+        if (-1 == pos) {
+            return (char*)memory + length * unitSize;
+        } else {
+            return (char*)memory + pos * unitSize;
+        }
     }
     
     int GLData::getMemoryLength() {

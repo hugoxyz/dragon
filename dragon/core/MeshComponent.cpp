@@ -31,8 +31,11 @@ namespace dragon {
     , cameraViewObserveTag(0)
     , cameraMatrixDirty(true)
     , moduleMatrixDirty(true)
-    , program(nullptr) {
+    , program(nullptr)
+    , attribute(0) {
+        memset(&meshBuffer, 0, sizeof(meshBuffer));
         vertexIndexVec.clear();
+        meshIndexMap.clear();
         glGenBuffers(1, &glBuffer);
     }
     
@@ -55,6 +58,8 @@ namespace dragon {
             vertexes->release();
             vertexes = nullptr;
         }
+        
+        FREEIF(meshBuffer.buffer);
     }
     
 //    void MeshComponent::createVertexesIf(int length) {
@@ -207,21 +212,21 @@ namespace dragon {
     }
     
     void MeshComponent::onUpdate() {
-        if (nullptr == program) {
-            return;
-        }
-        program->use();
-
-        glBindBuffer(GL_ARRAY_BUFFER, vertexes->getGLLocation());
-        for (auto i = 0; i < vertexIndexVec.size(); i++) {
-            materialVec[i]->apply(program);
-
-            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexIndexVec.at(i)->getGLLocation());
-//            glDrawArrays(GL_LINES, 0, vertexIndex->getMemoryLength());
-            glDrawElements(GL_TRIANGLES, vertexIndexVec.at(i)->getMemoryLength(), GL_UNSIGNED_INT, nullptr);
-        }
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+//        if (nullptr == program) {
+//            return;
+//        }
+//        program->use();
+//
+//        glBindBuffer(GL_ARRAY_BUFFER, vertexes->getGLLocation());
+//        for (auto i = 0; i < vertexIndexVec.size(); i++) {
+//            materialVec[i]->apply(program);
+//
+//            glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vertexIndexVec.at(i)->getGLLocation());
+////            glDrawArrays(GL_LINES, 0, vertexIndex->getMemoryLength());
+//            glDrawElements(GL_TRIANGLES, vertexIndexVec.at(i)->getMemoryLength(), GL_UNSIGNED_INT, nullptr);
+//        }
+//        glBindBuffer(GL_ARRAY_BUFFER, 0);
+//        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
     }
     
     void MeshComponent::onAfterUpdate() {
@@ -233,6 +238,87 @@ namespace dragon {
     
     void MeshComponent::onCameraView(int event, Object* data, Object* userData) {
         cameraMatrixDirty = true;
+    }
+    
+    int MeshComponent::enableAttribute(int attr) {
+        int ret = attribute;
+        attribute |= attr;
+        
+        return ret;
+    }
+    
+    int MeshComponent::disableAttribute(int attr) {
+        int ret = attribute;
+        attribute &= (~attr);
+
+        return ret;
+    }
+    
+    void* MeshComponent::createMeshBuffer(int sizeOfByte) {
+        if (nullptr == meshBuffer.buffer) {
+            meshBuffer.buffer = malloc(sizeOfByte);
+            meshBuffer.size = sizeOfByte;
+        } else {
+            meshBuffer.buffer = realloc(meshBuffer.buffer, sizeOfByte);
+            meshBuffer.size = sizeOfByte;
+        }
+
+        return meshBuffer.buffer;
+    }
+    
+    void* MeshComponent::createMeshIndexBuffer(const std::string& name, int sizeOfByte) {
+        MeshBuffer b;
+        auto it = meshIndexMap.find(name);
+
+        memset(&b, 0, sizeof(MeshBuffer));
+        if (it != meshIndexMap.end()) {
+            memcpy(&b, &it->second, sizeof(MeshBuffer));
+        }
+        b.buffer = realloc(b.buffer, sizeOfByte);
+        b.size = sizeOfByte;
+
+        meshIndexMap[name] = b;
+
+        return b.buffer;
+    }
+
+    /*
+     * attr: when attr is End, can take as, return value is unit size
+     */
+    int MeshComponent::getOffset(Attribute attr) {
+        int offset = 0;
+        Attribute a = None;
+        int mask = 1;
+        do {
+            a = (Attribute)(attribute & mask);
+            if (a > attr) {
+                break;
+            }
+            switch (a) {
+                case Position: {
+                    offset += sizeof(gl::Vertex);
+                    break;
+                }
+                case Color: {
+                    offset += sizeof(gl::Color);
+                    break;
+                }
+                case Normal: {
+                    offset += sizeof(gl::Normal);
+                    break;
+                }
+                case Texcoord0: {
+                    offset += sizeof(gl::UV);
+                    break;
+                }
+                default: {
+                    break;
+                }
+            }
+            mask <<= 1;
+        } while (true);
+        
+        return offset;
     }
     
 }
