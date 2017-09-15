@@ -86,6 +86,10 @@ namespace dragon {
     void CameraComponent::setProjection(Projection p) {
         projection = p;
     }
+    
+    CameraComponent::Projection CameraComponent::getProjection() {
+        return projection;
+    }
 
     void CameraComponent::apply(GLProgram* program) {
         glm::mat4 project = getProjectMatrix();

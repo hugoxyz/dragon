@@ -57,13 +57,13 @@ namespace dragon {
         /*
          * Life Cycle
          */
-        virtual void enter();
-        virtual void resume();
-        virtual void preUpdate();
-        virtual void update();
-        virtual void afterUpdate();
-        virtual void suspend();
-        virtual void leave();
+        virtual void enter() override;
+        virtual void resume() override;
+        virtual void preUpdate() override;
+        virtual void update() override;
+        virtual void afterUpdate() override;
+        virtual void suspend() override;
+        virtual void leave() override;
 
     protected:
         std::vector<Node*> children;

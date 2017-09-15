@@ -9,11 +9,13 @@
 #include "Utils.hpp"
 #include "FileUtils.hpp"
 #include "MaterialComponent.hpp"
-#include "GLProgram.hpp"
+#include "GLProgramCache.hpp"
 #include "glm/ext.hpp"
 
 namespace dragon {
-    MaterialComponent::MaterialComponent() {
+    MaterialComponent::MaterialComponent()
+    : vsh("")
+    , fsh("") {
     }
     
     MaterialComponent::~MaterialComponent() {
@@ -44,6 +46,10 @@ namespace dragon {
         program->setUnifrom("uv4Diffuse", glm::value_ptr(diffuse), 4);
         program->setUnifrom("uv4Specular", glm::value_ptr(specular), 4);
         program->setUnifrom("ufShininess", &shininess, 1);
+    }
+    
+    GLProgram* MaterialComponent::getGLProgram() {
+        return GLProgramCache::getInstance()->getProgram(vsh, fsh);
     }
 
     void MaterialComponent::parser(const rapidjson::Value& json) {
@@ -98,6 +104,18 @@ namespace dragon {
                 }
             } else if (0 == Utils::compare(it->name.GetString(), "shininess")) {
                 shininess = it->value.GetFloat();
+            } else if (0 == Utils::compare(it->name.GetString(), "vsh")) {
+                vsh = it->value.GetString();
+                if (std::string::npos == vsh.find('.')) {
+                    vsh += ".vsh";
+                }
+            } else if (0 == Utils::compare(it->name.GetString(), "fsh")) {
+                fsh = it->value.GetString();
+                if (std::string::npos == fsh.find('.')) {
+                    fsh += ".fsh";
+                }
+            } else if (0 == Utils::compare(it->name.GetString(), "name")) {
+                setName(it->value.GetString());
             }
         }
     }

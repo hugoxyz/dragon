@@ -242,6 +242,14 @@ namespace dragon {
         glfwPollEvents();
     }
     
+    void GLComponent::check() {
+        GLenum error = glGetError();
+        if (GL_NO_ERROR == error) {
+            return;
+        }
+        LOGD("GLComponent", "error");
+    }
+    
     void GLComponent::onEnter() {
     }
 

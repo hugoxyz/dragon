@@ -15,7 +15,7 @@ namespace dragon {
         std::vector<std::string> elements;
         std::stringstream ss(s);
         std::string element;
-        
+
         elements.clear();
         while (std::getline(ss, element, delim)) {
             elements.push_back(element);

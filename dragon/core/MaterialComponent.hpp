@@ -24,6 +24,8 @@ namespace dragon {
 
         void apply(GLProgram* program);
         
+        GLProgram* getGLProgram();
+        
     protected:
         void parser(const rapidjson::Value& json);
         
@@ -33,6 +35,9 @@ namespace dragon {
         glm::vec4 diffuse; //漫反射
         glm::vec4 specular; //镜面反射
         float shininess; //光泽度
+        
+        std::string vsh;
+        std::string fsh;
     };
 }
 

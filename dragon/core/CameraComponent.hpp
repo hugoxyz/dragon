@@ -33,6 +33,7 @@ namespace dragon {
         
         void setFocus(const glm::vec3& v);
         void setProjection(Projection p);
+        Projection getProjection();
 
         void apply(GLProgram* program) override;
 

@@ -30,6 +30,7 @@ namespace dragon {
         
     protected:
         std::map<std::string, std::string> parts;
+        std::string projection;
     };
 }
 

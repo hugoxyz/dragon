@@ -10,5 +10,5 @@ void main() {
     gl_FragColor = vec4(vv4ColorFactor.rgb * vv4Color.rgb * vv4Color.a + vv4ColorFactor.rgb * tColor.rgb * tColor.a,
         max(vv4Color.a, tColor.a));
     //gl_FragColor = vec4(vv4ColorFactor.rgb, 1);
-    //gl_FragColor = vec4(1, 1, 1, 1);
+    gl_FragColor = vec4(1, 1, 1, 1);
 }

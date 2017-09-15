@@ -47,8 +47,8 @@ namespace dragon {
     , fps(60)
     , mainNode(nullptr)
     , appName("DRAGON")
-    , screenWidth(960)
-    , screenHeight(640)
+    , screenWidth(SCREEN_WIDTH)
+    , screenHeight(SCREEN_HEIGHT)
     , bgColorR(128)
     , bgColorG(128)
     , bgColorB(128)
@@ -144,9 +144,12 @@ namespace dragon {
     }
 
     void Manager::run(const std::string& scene) {
-        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
-
         step();
+//        if (!bLoad) {
+//            bLoad = true;
+//            loadScene(scene);
+//        }
+        loadScene(scene);
         glComponent->initGLFW();
         
         bool bLoad = false;
@@ -172,12 +175,6 @@ namespace dragon {
             if (restmilsecond > 0) {
                 std::this_thread::sleep_for(std::chrono::milliseconds(restmilsecond));
             }
-
-            if (!bLoad) {
-                bLoad = true;
-                loadScene(scene);
-            }
-            
         }
         suspend();
         leave();

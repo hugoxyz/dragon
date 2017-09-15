@@ -32,7 +32,8 @@ namespace dragon {
     , cameraMatrixDirty(true)
     , moduleMatrixDirty(true)
     , program(nullptr)
-    , attribute(0) {
+    , attribute(0)
+    , meshBuffer(nullptr) {
         memset(&meshBuffer, 0, sizeof(meshBuffer));
         vertexIndexVec.clear();
         meshIndexMap.clear();
@@ -59,7 +60,13 @@ namespace dragon {
             vertexes = nullptr;
         }
         
-        FREEIF(meshBuffer.buffer);
+        if (nullptr != meshBuffer) {
+            meshBuffer->release();
+        }
+        for (auto idxBuf : meshIndexMap) {
+            idxBuf.second->release();
+        }
+        meshIndexMap.clear();
     }
     
 //    void MeshComponent::createVertexesIf(int length) {
@@ -243,6 +250,7 @@ namespace dragon {
     int MeshComponent::enableAttribute(int attr) {
         int ret = attribute;
         attribute |= attr;
+        attribute |= Attribute::End;
         
         return ret;
     }
@@ -250,48 +258,50 @@ namespace dragon {
     int MeshComponent::disableAttribute(int attr) {
         int ret = attribute;
         attribute &= (~attr);
+        attribute |= Attribute::End;
 
         return ret;
     }
     
     void* MeshComponent::createMeshBuffer(int sizeOfByte) {
-        if (nullptr == meshBuffer.buffer) {
-            meshBuffer.buffer = malloc(sizeOfByte);
-            meshBuffer.size = sizeOfByte;
+        if (nullptr == meshBuffer) {
+            meshBuffer = new MeshBuffer(sizeOfByte);
+            meshBuffer->retain();
         } else {
-            meshBuffer.buffer = realloc(meshBuffer.buffer, sizeOfByte);
-            meshBuffer.size = sizeOfByte;
+            meshBuffer->expand(sizeOfByte);
         }
 
-        return meshBuffer.buffer;
+        return meshBuffer->getBuffer();
     }
     
     void* MeshComponent::createMeshIndexBuffer(const std::string& name, int sizeOfByte) {
-        MeshBuffer b;
+        MeshBuffer* b = nullptr;
         auto it = meshIndexMap.find(name);
 
-        memset(&b, 0, sizeof(MeshBuffer));
-        if (it != meshIndexMap.end()) {
-            memcpy(&b, &it->second, sizeof(MeshBuffer));
+        if (it == meshIndexMap.end()) {
+            b = new MeshBuffer(sizeOfByte);
+            meshIndexMap[name] = b;
+            b->retain();
+        } else {
+            b->expand(sizeOfByte);
         }
-        b.buffer = realloc(b.buffer, sizeOfByte);
-        b.size = sizeOfByte;
 
-        meshIndexMap[name] = b;
-
-        return b.buffer;
+        return b->getBuffer();
     }
 
     /*
      * attr: when attr is End, can take as, return value is unit size
      */
     int MeshComponent::getOffset(Attribute attr) {
+        if (0 == (attribute & attr)) {
+            return -1;
+        }
         int offset = 0;
         Attribute a = None;
         int mask = 1;
         do {
             a = (Attribute)(attribute & mask);
-            if (a > attr) {
+            if (a >= attr) {
                 break;
             }
             switch (a) {
@@ -319,6 +329,62 @@ namespace dragon {
         } while (true);
         
         return offset;
+    }
+    
+    void MeshComponent::apply(GLProgram* program) {
+        meshBuffer->bindBufferIf(GL_ARRAY_BUFFER, GL_STATIC_DRAW);
+        for (auto it : meshIndexMap) {
+            it.second->bindBufferIf(GL_ELEMENT_ARRAY_BUFFER, GL_STATIC_DRAW);
+        }
+        
+        int unitSize = getOffset(Attribute::End);
+        int offset = getOffset(Attribute::Position);
+        GLuint location = 0;
+        if (offset >= 0 && program->getAttributeLocation("av3Vertex", &location)) {
+            glEnableVertexAttribArray(location);
+            glVertexAttribPointer(location, 3, GL_FLOAT, false, unitSize, (void*)offset);
+        }
+
+        offset = getOffset(Attribute::Color);
+        if (offset >= 0 && program->getAttributeLocation("av4Color", &location)) {
+            glEnableVertexAttribArray(location);
+            glVertexAttribPointer(location, 4, GL_FLOAT, false, unitSize, (void*)offset);
+        }
+        
+        offset = getOffset(Attribute::Normal);
+        if (offset >= 0 && program->getAttributeLocation("av3Normal", &location)) {
+            glEnableVertexAttribArray(location);
+            glVertexAttribPointer(location, 3, GL_FLOAT, false, unitSize, (void*)offset);
+        }
+        
+        offset = getOffset(Attribute::Texcoord0);
+        if (offset >= 0 && program->getAttributeLocation("av2UV", &location)) {
+            glEnableVertexAttribArray(location);
+            glVertexAttribPointer(location, 2, GL_FLOAT, false, unitSize, (void*)offset);
+        }
+    }
+    
+    GLuint MeshComponent::getBufferLocation() {
+        if (nullptr == meshBuffer) {
+            return 0;
+        }
+        return meshBuffer->getLocation();
+    }
+    
+    GLuint MeshComponent::getIndexBufferLocation(const std::string& name) {
+        auto it = meshIndexMap.find(name);
+        if (it == meshIndexMap.end()) {
+            return 0;
+        }
+        return it->second->getLocation();
+    }
+    
+    int MeshComponent::getIndexBufferSize(const std::string& name) {
+        auto it = meshIndexMap.find(name);
+        if (it == meshIndexMap.end()) {
+            return 0;
+        }
+        return it->second->getSize()/sizeof(int);
     }
     
 }

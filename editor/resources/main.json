@@ -1,67 +1,196 @@
+
 {
-	"name": "edit scene",
-	"type": "Widget",
-	"components": {
-		"materials": [
-			{
-				"version":1,
-				"name": "mat1",
-				"vsh": "default",
-				"fsh": "default",
-				"emissive": [0.0, 0.0, 0.0, 0.0], //反射光
-				"ambient": [0.0, 0.0, 0.0, 0.0], //环境光
-				"diffuse": [0.0, 0.0, 0.0, 0.0], //漫反射
-				"specular": [0.0, 0.0, 0.0, 0.0], //镜面反射
-				"shininess": 0.0, //发光
-			}
-		],
-		"transform": {
-			"scale": [960, 640, 0],
-			"position": [0, 0, 0],
-			"rotation": [0, 0, 0]
-		},
-		"mesh": {
-			"attributes": ["POSITION", "COLOR"],
-			"vertices": [
-				0,		0,		0,		255,	0,	0
-				960,	0,		0,		255,	0,	0
-				960,	640,	0,		255,	0,	0
-				0,		640,	0,		255,	0,	0
-			],
-			"parts": [
-				{
-					"id": "rect",
-					"type": "TRIANGLES",
-					"indices": [
-						0,		1,		2,
-						0,		2,		3
-					]
-				}
-			]
-		},
-	},
-	"children": [
-		// {
-		// 	"name":"ObjList",
-		// 	"type": "Widget",
-		// 	"components": {
-		// 		"transform": {
-		// 			"scale": [100, 640, 0],
-		// 			"position": [0, 0, 0],
-		// 			"rotation": [0, 0, 0]
-		// 		}
-		// 	}
-		// },
-		// {
-		// 	"name":"Main",
-		// 	"type": "Widget",
-		// 	"components": {
-		// 		"transform": {
-		// 			"scale": [860, 640, 0],
-		// 			"position": [100, 0, 0],
-		// 			"rotation": [0, 0, 0]
-		// 		}
-		// 	}
-		// }
-	]
+    "name":"main scene",
+    "type": "Node",
+    "children": [
+        {
+            "name": "project",
+            "type": "Panel",
+            "components": {
+                "rect": {
+                    "name": "rect",
+                    "type": "rect",
+                    "scale": [200, 640, 0],
+                    "position": [100, 520, 0]
+                }
+            },
+            "children": [
+                {
+                    "name": "camera",
+                    "type": "Node",
+                    "components": {
+                        "camera": {
+                            "name": "camera",
+                            "type": "CameraComponent",
+                            "scale": [0, 0, 0],
+                            "position": [100, 320, 0]
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "work",
+            "type": "Panel",
+            "components": {
+                "rect": {
+                    "name": "rect",
+                    "type": "rect",
+                    "scale": [960, 640, 0],
+                    "position": [480, 320, 0]
+                }
+            },
+            "children": [
+                {
+                    "name": "camera",
+                    "type": "Node",
+                    "components": {
+                        "transform": {
+                            "name": "transform",
+                            "type": "transform",
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "property",
+            "type": "Panel",
+            "components": {
+                "transform": {
+                    "type": "transform",
+                    "scale": [200, 840, 0],
+                }
+            },
+            "children": [
+                {
+                    "name": "camera",
+                    "type": "Node",
+                    "components": {
+                        "transform": {
+                            "name": "transform",
+                            "type": "transform",
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "name": "asset",
+            "type": "Panel",
+            "components": {
+                "transform": {
+                    "type": "transform",
+                    "scale": [1160, 200, 0],
+                }
+            },
+            "children": [
+                {
+                    "name": "camera",
+                    "type": "Node",
+                    "components": {
+                        "transform": {
+                            "name": "transform",
+                            "type": "transform",
+                        }
+                    }
+                }
+            ]
+        },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {
+            "name": "cameraNode",
+            "type": "Node",
+            "components": {
+                "transform": {
+                    "type": "transform",
+                    "scale": [1, 1, 1],
+                    "position": [0, 0, 0],
+                    "rotation": [0, 0, 0]
+                },
+            }
+        },
+        {
+            "name": "2d",
+            "type": "Node",
+            "components": {
+                "transform": {
+                    "type": "transform",
+                    "scale": [1, 1, 1],
+                    "position": [0, 0, 0],
+                    "rotation": [0, 0, 0]
+                }
+            },
+            "children": [
+            ]
+        },
+        {
+            "name": "window",
+            "type": "Widget",
+            "components": {
+                "materials": [
+                    {
+                        "version":1,
+                        "name": "mat1",
+                        "vsh": "resources/shader/default",
+                        "fsh": "resources/shader/default",
+                        "emissive": [0.0, 0.0, 0.0, 0.0],
+                        "ambient": [0.0, 0.0, 0.0, 0.0],
+                        "diffuse": [0.0, 0.0, 0.0, 0.0],
+                        "specular": [0.0, 0.0, 0.0, 0.0],
+                        "shininess": 0.0
+                    }
+                ],
+                "transform": {
+                    "scale": [960, 640, 0],
+                    "position": [0, 0, 0],
+                    "rotation": [0, 0, 0]
+                },
+                "mesh": {
+                    "attributes": ["POSITION", "COLOR"],
+                    "vertices": [
+                        0,		0,		0,		255,	0,	0,	255,
+                        960,	0,		0,		255,	0,	0,	255,
+                        960,	640,	0,		255,	0,	0,	255,
+                        0,		640,	0,		255,	0,	0,	255
+                    ],
+                    "parts": [
+                        {
+                            "id": "rect",
+                            "type": "TRIANGLES",
+                            "indices": [
+                                0,		1,		2,
+                                0,		2,		3
+                            ]
+                        }
+                    ]
+                },
+                "renderer": {
+                    "projection": "orthogonal",
+                    "parts": [
+                        {
+                            "material": "mat1",
+                            "mesh": "rect"
+                        }
+                    ]
+                }
+            },
+        }
+    ]
 }

@@ -75,7 +75,7 @@ namespace dragon {
             for (auto it = components.MemberBegin(); it != components.MemberEnd(); it++) {
                 auto compVec = parserComponent(it->name.GetString(), it->value);
                 for (auto comp : compVec) {
-                    n->addComponent(comp);
+                    n->addComponent(comp, comp->getName());
                 }
             }
         }
@@ -109,13 +109,13 @@ namespace dragon {
         } else if (0 == Utils::compare(name, "materials")) {
             for (int i = 0; i < json.Size(); i++) {
                 comp = nullptr;
-                comp = parserMaterial(json);
+                comp = parserMaterial(json[i]);
                 if (nullptr != comp) {
                     compVec.push_back(comp);
                 }
             }
         } else if (0 == Utils::compare(name, "renderer")) {
-            comp = parserMesh(json);
+            comp = parserRenderer(json);
             if (nullptr != comp) {
                 compVec.push_back(comp);
             }
@@ -150,7 +150,7 @@ namespace dragon {
             if (0 == Utils::compare(it->GetString(), "POSITION")) {
                 attrMask |= MeshComponent::Attribute::Position;
             } else if (0 == Utils::compare(it->GetString(), "COLOR")) {
-                attrMask |= MeshComponent::Attribute::Normal;
+                attrMask |= MeshComponent::Attribute::Color;
             } else if (0 == Utils::compare(it->GetString(), "NORMAL")) {
                 attrMask |= MeshComponent::Attribute::Normal;
             } else if (0 == Utils::compare(it->GetString(), "TEXCOORD0")) {

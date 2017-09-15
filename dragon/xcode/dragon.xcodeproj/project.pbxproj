@@ -154,6 +154,8 @@
 		499F2BB21CCCA91400827D40 /* vec3.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F2A741CCCA91400827D40 /* vec3.hpp */; };
 		499F2BB31CCCA91400827D40 /* vec4.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F2A751CCCA91400827D40 /* vec4.hpp */; };
 		499F2BB41CCCA91400827D40 /* vector_relational.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 499F2A761CCCA91400827D40 /* vector_relational.hpp */; };
+		9A136FC11D1782C9004102F2 /* MeshBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A136FBF1D1782C9004102F2 /* MeshBuffer.cpp */; };
+		9A136FC21D1782C9004102F2 /* MeshBuffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A136FC01D1782C9004102F2 /* MeshBuffer.hpp */; };
 		9A1988FE1D007A3A00EB2E70 /* RotateComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1988FC1D007A3A00EB2E70 /* RotateComponent.cpp */; };
 		9A1988FF1D007A3A00EB2E70 /* RotateComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A1988FD1D007A3A00EB2E70 /* RotateComponent.hpp */; };
 		9A1FD8871CDC87F40053D1FE /* MeshComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A1FD8851CDC87F40053D1FE /* MeshComponent.cpp */; };
@@ -202,6 +204,14 @@
 		9A6B18671D0D00630061D42E /* GLComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B18651D0D00630061D42E /* GLComponent.hpp */; };
 		9A6B18771D1050F60061D42E /* RectComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B18751D1050F60061D42E /* RectComponent.cpp */; };
 		9A6B18781D1050F60061D42E /* RectComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B18761D1050F60061D42E /* RectComponent.hpp */; };
+		9A6B187F1D12A00D0061D42E /* IBuffer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B187D1D12A00D0061D42E /* IBuffer.cpp */; };
+		9A6B18801D12A00D0061D42E /* IBuffer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B187E1D12A00D0061D42E /* IBuffer.hpp */; };
+		9A6B18831D12FDC20061D42E /* MaterialComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B18811D12FDC20061D42E /* MaterialComponent.cpp */; };
+		9A6B18841D12FDC20061D42E /* MaterialComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B18821D12FDC20061D42E /* MaterialComponent.hpp */; };
+		9A6B18871D13989D0061D42E /* RendererComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B18851D13989D0061D42E /* RendererComponent.cpp */; };
+		9A6B18881D13989D0061D42E /* RendererComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B18861D13989D0061D42E /* RendererComponent.hpp */; };
+		9A6B188B1D1399390061D42E /* MeshRendererComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A6B18891D1399390061D42E /* MeshRendererComponent.cpp */; };
+		9A6B188C1D1399390061D42E /* MeshRendererComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A6B188A1D1399390061D42E /* MeshRendererComponent.hpp */; };
 		9A71D6CA1CBE44D300564A1B /* AutoReleasePool.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A71D6B51CBE44D300564A1B /* AutoReleasePool.cpp */; };
 		9A71D6CB1CBE44D300564A1B /* AutoReleasePool.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9A71D6B61CBE44D300564A1B /* AutoReleasePool.hpp */; };
 		9A71D6CC1CBE44D300564A1B /* AutoReleasePoolMgr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A71D6B71CBE44D300564A1B /* AutoReleasePoolMgr.cpp */; };
@@ -497,6 +507,8 @@
 		499F2A741CCCA91400827D40 /* vec3.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec3.hpp; sourceTree = "<group>"; };
 		499F2A751CCCA91400827D40 /* vec4.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vec4.hpp; sourceTree = "<group>"; };
 		499F2A761CCCA91400827D40 /* vector_relational.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = vector_relational.hpp; sourceTree = "<group>"; };
+		9A136FBF1D1782C9004102F2 /* MeshBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshBuffer.cpp; sourceTree = "<group>"; };
+		9A136FC01D1782C9004102F2 /* MeshBuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MeshBuffer.hpp; sourceTree = "<group>"; };
 		9A1988FC1D007A3A00EB2E70 /* RotateComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RotateComponent.cpp; sourceTree = "<group>"; };
 		9A1988FD1D007A3A00EB2E70 /* RotateComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RotateComponent.hpp; sourceTree = "<group>"; };
 		9A1FD8851CDC87F40053D1FE /* MeshComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshComponent.cpp; sourceTree = "<group>"; };
@@ -548,6 +560,14 @@
 		9A6B18651D0D00630061D42E /* GLComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GLComponent.hpp; sourceTree = "<group>"; };
 		9A6B18751D1050F60061D42E /* RectComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RectComponent.cpp; sourceTree = "<group>"; };
 		9A6B18761D1050F60061D42E /* RectComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RectComponent.hpp; sourceTree = "<group>"; };
+		9A6B187D1D12A00D0061D42E /* IBuffer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = IBuffer.cpp; sourceTree = "<group>"; };
+		9A6B187E1D12A00D0061D42E /* IBuffer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IBuffer.hpp; sourceTree = "<group>"; };
+		9A6B18811D12FDC20061D42E /* MaterialComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MaterialComponent.cpp; sourceTree = "<group>"; };
+		9A6B18821D12FDC20061D42E /* MaterialComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MaterialComponent.hpp; sourceTree = "<group>"; };
+		9A6B18851D13989D0061D42E /* RendererComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = RendererComponent.cpp; sourceTree = "<group>"; };
+		9A6B18861D13989D0061D42E /* RendererComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = RendererComponent.hpp; sourceTree = "<group>"; };
+		9A6B18891D1399390061D42E /* MeshRendererComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MeshRendererComponent.cpp; sourceTree = "<group>"; };
+		9A6B188A1D1399390061D42E /* MeshRendererComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MeshRendererComponent.hpp; sourceTree = "<group>"; };
 		9A71D67B1CBCD7FB00564A1B /* libdragon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libdragon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A71D6B51CBE44D300564A1B /* AutoReleasePool.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AutoReleasePool.cpp; sourceTree = "<group>"; };
 		9A71D6B61CBE44D300564A1B /* AutoReleasePool.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AutoReleasePool.hpp; sourceTree = "<group>"; };
@@ -1038,6 +1058,16 @@
 				9A6B18651D0D00630061D42E /* GLComponent.hpp */,
 				9A6B18751D1050F60061D42E /* RectComponent.cpp */,
 				9A6B18761D1050F60061D42E /* RectComponent.hpp */,
+				9A6B187D1D12A00D0061D42E /* IBuffer.cpp */,
+				9A6B187E1D12A00D0061D42E /* IBuffer.hpp */,
+				9A6B18811D12FDC20061D42E /* MaterialComponent.cpp */,
+				9A6B18821D12FDC20061D42E /* MaterialComponent.hpp */,
+				9A6B18851D13989D0061D42E /* RendererComponent.cpp */,
+				9A6B18861D13989D0061D42E /* RendererComponent.hpp */,
+				9A6B18891D1399390061D42E /* MeshRendererComponent.cpp */,
+				9A6B188A1D1399390061D42E /* MeshRendererComponent.hpp */,
+				9A136FBF1D1782C9004102F2 /* MeshBuffer.cpp */,
+				9A136FC01D1782C9004102F2 /* MeshBuffer.hpp */,
 			);
 			name = core;
 			path = ../core;
@@ -1153,6 +1183,7 @@
 				499F2B931CCCA91400827D40 /* rotate_normalized_axis.hpp in Headers */,
 				499F2B561CCCA91400827D40 /* bitfield.hpp in Headers */,
 				499F2BA61CCCA91400827D40 /* mat2x3.hpp in Headers */,
+				9A6B18801D12A00D0061D42E /* IBuffer.hpp in Headers */,
 				9A3343381CEB1C07008319E4 /* InputComponent.hpp in Headers */,
 				499F2BA71CCCA91400827D40 /* mat2x4.hpp in Headers */,
 				499F2B901CCCA91400827D40 /* quaternion.hpp in Headers */,
@@ -1218,6 +1249,7 @@
 				499F2B691CCCA91400827D40 /* associated_min_max.hpp in Headers */,
 				499F2BA91CCCA91400827D40 /* mat3x3.hpp in Headers */,
 				9A466EBE1CF3E8B000BA4EC8 /* Importer.hpp in Headers */,
+				9A6B18841D12FDC20061D42E /* MaterialComponent.hpp in Headers */,
 				499F2BAC1CCCA91400827D40 /* mat4x3.hpp in Headers */,
 				9A6B185B1D0C05ED0061D42E /* Widget.hpp in Headers */,
 				499F2B4F1CCCA91400827D40 /* type_vec3.hpp in Headers */,
@@ -1238,6 +1270,7 @@
 				499F2B6B1CCCA91400827D40 /* closest_point.hpp in Headers */,
 				499F2B6E1CCCA91400827D40 /* common.hpp in Headers */,
 				9A33627A1CC3D2CF00C8C7C0 /* RendererModule.hpp in Headers */,
+				9A6B188C1D1399390061D42E /* MeshRendererComponent.hpp in Headers */,
 				9A33628F1CC6675B00C8C7C0 /* FBXMessage.hpp in Headers */,
 				9A71D6E21CBE45CF00564A1B /* UIModule.hpp in Headers */,
 				9A33430E1CE22FC2008319E4 /* Utils.hpp in Headers */,
@@ -1251,6 +1284,7 @@
 				9A71D6DD1CBE44D300564A1B /* Reference.hpp in Headers */,
 				499F2B9E1CCCA91400827D40 /* transform2.hpp in Headers */,
 				9A1988FF1D007A3A00EB2E70 /* RotateComponent.hpp in Headers */,
+				9A6B18881D13989D0061D42E /* RendererComponent.hpp in Headers */,
 				499F2B9A1CCCA91400827D40 /* spline.hpp in Headers */,
 				9A6B185F1D0C19800061D42E /* InputTouchEvent.hpp in Headers */,
 				499F2B371CCCA91400827D40 /* intrinsic_geometric.hpp in Headers */,
@@ -1265,6 +1299,7 @@
 				499F2B8C1CCCA91400827D40 /* orthonormalize.hpp in Headers */,
 				499F2B9F1CCCA91400827D40 /* type_aligned.hpp in Headers */,
 				499F2B301CCCA91400827D40 /* func_matrix.hpp in Headers */,
+				9A136FC21D1782C9004102F2 /* MeshBuffer.hpp in Headers */,
 				9A71D6CB1CBE44D300564A1B /* AutoReleasePool.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1329,6 +1364,8 @@
 				9A71D73A1CBFE9B100564A1B /* FBXModule.cpp in Sources */,
 				9A71D6CA1CBE44D300564A1B /* AutoReleasePool.cpp in Sources */,
 				499F2B341CCCA91400827D40 /* glm.cpp in Sources */,
+				9A6B18831D12FDC20061D42E /* MaterialComponent.cpp in Sources */,
+				9A136FC11D1782C9004102F2 /* MeshBuffer.cpp in Sources */,
 				9A3343431CEBF79F008319E4 /* ControlComponent.cpp in Sources */,
 				9A3343371CEB1C07008319E4 /* InputComponent.cpp in Sources */,
 				9A1988FE1D007A3A00EB2E70 /* RotateComponent.cpp in Sources */,
@@ -1347,6 +1384,7 @@
 				9A71D6DC1CBE44D300564A1B /* Reference.cpp in Sources */,
 				9A3362791CC3D2CF00C8C7C0 /* RendererModule.cpp in Sources */,
 				9A3343191CE46CEC008319E4 /* CameraComponent.cpp in Sources */,
+				9A6B18871D13989D0061D42E /* RendererComponent.cpp in Sources */,
 				9A33430D1CE22FC2008319E4 /* Utils.cpp in Sources */,
 				9A466EB91CF3621E00BA4EC8 /* G3DJImporter.cpp in Sources */,
 				9A1FD88C1CDDB8100053D1FE /* ILifeCycle.cpp in Sources */,
@@ -1355,6 +1393,7 @@
 				9A71D73E1CBFF70500564A1B /* UUID.cpp in Sources */,
 				9A6B185A1D0C05ED0061D42E /* Widget.cpp in Sources */,
 				9A71D6D61CBE44D300564A1B /* Module.cpp in Sources */,
+				9A6B187F1D12A00D0061D42E /* IBuffer.cpp in Sources */,
 				9A6B18661D0D00630061D42E /* GLComponent.cpp in Sources */,
 				9A466EBD1CF3E8B000BA4EC8 /* Importer.cpp in Sources */,
 				9A71D6CC1CBE44D300564A1B /* AutoReleasePoolMgr.cpp in Sources */,
@@ -1364,6 +1403,7 @@
 				9A71D6D41CBE44D300564A1B /* Message.cpp in Sources */,
 				9A71D6D81CBE44D300564A1B /* Node.cpp in Sources */,
 				499F2B2B1CCCA91400827D40 /* dummy.cpp in Sources */,
+				9A6B188B1D1399390061D42E /* MeshRendererComponent.cpp in Sources */,
 				9A33433F1CEB2A75008319E4 /* InputKeyEvent.cpp in Sources */,
 				9A3343091CE1FEED008319E4 /* GLProgramCache.cpp in Sources */,
 				9A71D6DA1CBE44D300564A1B /* Object.cpp in Sources */,

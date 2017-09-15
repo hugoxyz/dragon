@@ -15,6 +15,8 @@
 #include "Component.hpp"
 #include "GLStructDefine.h"
 #include "../rendererModule/GLProgram.hpp"
+
+#include "MeshBuffer.hpp"
 #include "GLData.hpp"
 #include "Material.hpp"
 
@@ -24,16 +26,11 @@ namespace dragon {
         enum Attribute {
             None = 0,
             Position = 1,
-            Color = 2,
-            Normal = 4,
-            Texcoord0 = 8,
-            End
+            Color = 1 << 1,
+            Normal = 1 << 2,
+            Texcoord0 = 1 << 3,
+            End = 1 << 4
         };
-        
-        typedef struct {
-            void* buffer;
-            int size;
-        } MeshBuffer;
 
     public:
         MeshComponent();
@@ -50,6 +47,11 @@ namespace dragon {
          */
         int getOffset(Attribute attr);
 
+        virtual void apply(GLProgram* program);
+        
+        GLuint getBufferLocation();
+        GLuint getIndexBufferLocation(const std::string& name);
+        int getIndexBufferSize(const std::string& name);
 
 
 //        void createVertexesIf(int length);
@@ -92,10 +94,10 @@ namespace dragon {
         bool cameraMatrixDirty;
         bool moduleMatrixDirty;
 
-        MeshBuffer meshBuffer;
+        MeshBuffer* meshBuffer;
         int attribute;
 
-        std::map<std::string, MeshBuffer> meshIndexMap;
+        std::map<std::string, MeshBuffer*> meshIndexMap;
     };
 }
 

@@ -11,6 +11,7 @@
 #include "Node.hpp"
 #include "Module.hpp"
 #include "TransformComponent.hpp"
+#include "GLProgram.hpp"
 
 namespace dragon {
     
@@ -177,6 +178,8 @@ namespace dragon {
     }
     
     void Node::apply(GLProgram* program) {
+        assert(nullptr != program);
+        program->use();
         for(auto comps : components) {
             comps.second->apply(program);
         }

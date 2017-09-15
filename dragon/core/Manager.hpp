@@ -13,6 +13,9 @@
 #include "Module.hpp"
 #include "Message.hpp"
 
+#define SCREEN_WIDTH  840
+#define SCREEN_HEIGHT 1360
+
 namespace dragon {
     class EventComponent;
     class GLComponent;

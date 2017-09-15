@@ -27,6 +27,7 @@ namespace dragon {
         
         void clearGL();
         void swap();
+        void check();
 
         virtual void onEnter() override;
 
